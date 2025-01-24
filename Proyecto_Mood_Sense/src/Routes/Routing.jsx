@@ -1,14 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "../Pages/Login";
 
 const Routing = () => {
   return (
     <div>
-      <Router>
         <Routes>
             <Route path="/" element={<Login />} />
         </Routes>
-      </Router>
     </div>
   );
 };
