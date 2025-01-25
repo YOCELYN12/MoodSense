@@ -1,5 +1,7 @@
 import React from "react";
-import "../Login/LLoginC = () => {
+import "../Login/Login.css";
+
+const LoginC = () => {
   return <div>LoginC</div>;
 };
 
