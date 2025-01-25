@@ -6,12 +6,10 @@ import Register from "../Pages/RegisterPage/RegisterP";
 const Routing = () => {
   return (
     <div>
-      <Router>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
-      </Router>
     </div>
   );
 };
