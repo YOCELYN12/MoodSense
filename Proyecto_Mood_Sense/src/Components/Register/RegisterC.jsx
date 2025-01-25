@@ -1,14 +1,17 @@
+// Importación de dependencias necesarias: React, hooks, estilos, SweetAlert2 y cliente Supabase
 import React, { useState, useEffect } from "react";
 import "../Register/Register.css";
 import Swal from "sweetalert2";
 import supabase from "../../supabase/Supabase";
 
 const RegisterC = () => {
+  // Estados para manejar el correo, contraseña e institución seleccionada
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [instituciones, setInstituciones] = useState([]);
   const [institucionId, setInstitucionId] = useState("");
 
+  // Efecto que se ejecuta al montar el componente para obtener la lista de instituciones
   useEffect(() => {
     const fetchInstituciones = async () => {
       try {
@@ -22,48 +25,40 @@ const RegisterC = () => {
     };
     fetchInstituciones();
   }, []);
-
+  // Función para validar y registrar un nuevo usuario
   const ValidateUser = async () => {
+    // Validación de campos vacíos
     if (correo.trim() === "" || contrasena.trim() === "" || !institucionId) {
       Swal.fire("Necesitas llenar todos los campos");
       return;
     }
     try {
-      const { data, error } = await supabase
-        .from("user")
-        .select("correo")
-        .eq("correo", correo)
-        .single();
-
-      if (data) {
-        Swal.fire("El correo ya existe");
-        return;
-      }
-
-      const { user, error: signUpError } = await supabase.auth.signUp({
+      // Verifica si el usuario ya existe
+      const { data: existingUser } = await supabase.auth.signInWithPassword({
         email: correo,
         password: contrasena,
       });
 
-      if (signUpError) throw signUpError;
+      if (existingUser.user) {
+        Swal.fire("El correo ya existe");
+        return;
+      }
 
-      const { error: insertError } = await supabase.from("user").insert([
-        {
-          correo: correo,
-          contrasena: contrasena,
-          institucion_id: institucionId,
-        },
-      ]);
+      // Registra el nuevo usuario con la institución seleccionada
+      const { data, error } = await supabase.auth.signUp({
+        email: correo,
+        password: contrasena,        
+      });
 
-      if (insertError) throw insertError;
+      if (error) throw error;
 
       Swal.fire("Usuario registrado exitosamente");
     } catch (error) {
-      Swal.fire("Error al registrar usuario");
+      Swal.fire("Error al registrar usuario o ya hay un usuario con esta cuenta");
       console.error(error);
     }
   };
-
+  // Renderizado del formulario de registro
   return (
     <div>
       <h1>Registro</h1>
@@ -87,6 +82,7 @@ const RegisterC = () => {
         id="password"
         placeholder="Ingrese su contraseña"
       />
+      {/* Selector de institución */}
       <select
         name="institucion"
         id="institucion"
@@ -96,7 +92,7 @@ const RegisterC = () => {
         <option value="">Seleccione una institución</option>
         {instituciones.map((institucion) => (
           <option key={institucion.id} value={institucion.id}>
-            {institucion.nombre}
+            {institucion.institution_name}
           </option>
         ))}
       </select>
