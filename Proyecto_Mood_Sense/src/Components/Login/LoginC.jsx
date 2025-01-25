@@ -57,10 +57,14 @@ const LoginC = () => {
       <span>
         Don´t you have an account? <a href="http://">Sign up</a>
       </span>
-      <img
+
+      <div className="contenedor-img">     
+         <img className="Img-login"
         src="https://s3-alpha-sig.figma.com/img/2b6a/28ea/9c2b8a56243b0be7b8fa5ec08f2e50a2?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mKiQWvqJS0VmAS3Zhm5uMNGWFXty7HmIFkgKXddndDnswv0ZSDLXrIMamac9I0FhvbSPma1U9rgWBWc6tuNJNvcl4wyCuhoZeWdx2KdXxe1V8TeZiE3FLPEHkk8rj98YASAgS0unfupPhH9CkWeCw9~HzZ0PaOFOD8pVoMHRGNfCXhlEnIqTb3Jy-gl9qyALDuxSW3lx0NGjja0CQC1BW4NMYIf5OPiocGHRNtViod33KuXrN-O31Mooiv6ZvxVuCTYGH~guMTVXv9i3Cawf6uy2roi4jjwiSnjODmbj0bvdo4cbEDOcl6B0O1XPG2Su2qrKTbUw3tr4RMRxYKb7cQ__"
         alt="Flores moradas"
       />
+      </div>
+
     </div>
   );
 };
