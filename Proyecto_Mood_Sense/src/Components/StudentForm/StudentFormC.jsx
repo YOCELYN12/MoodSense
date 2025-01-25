@@ -19,6 +19,7 @@
       diseases: '',
       psychological_diagnosis: ''
     });
+    //hola
 
     const handleChange = (e) => {
       const { name, value } = e.target;
