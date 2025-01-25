@@ -8,15 +8,22 @@ const LoginC = () => {
   const navigate = useNavigate();
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
-  const {} = UserAuth();
+  const { asignIn, getUserInfo } = UserAuth();
 
   const Log_In = async () => {
     if (correo.trim() === "" || contrasena.trim() === "") {
       Swal.fire("Necesitas llenar todos los campos");
       return;
     }
-
     try {
+      const response = await asignIn(correo, contrasena);
+
+      if (response) {
+        console.log("ingreso exitoso");
+      } else {
+        Swal.fire("Error al iniciar sesión");
+      }
+      Swal.fire("Inicio de sesión exitoso");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
@@ -44,8 +51,8 @@ const LoginC = () => {
         value={contrasena}
       />
       <a href="http://">Olvidó contraseña?</a>
-      <input type="checkbox" name="" id="" />
-      <span>Remember for 30 days</span>
+      {/* <input type="checkbox" name="" id="" />
+      <span>Remember for 30 days</span> */}
       <button onClick={Log_In}>Inicio sesión</button>
       <span>or</span>
       <span>
