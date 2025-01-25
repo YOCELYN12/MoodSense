@@ -12,6 +12,7 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [Loading, setLoading] = useState();
   const [Rol, setRol] = useState();
+  const [Status, setStatus] = useState();
 
   //Trae el usuario de la base de datos, el usuario activo, actual
 
@@ -49,32 +50,16 @@ export const AuthContextProvider = ({ children }) => {
         .single();
 
       if (userError) {
-        console.log("Error al verificar el usuario");
+        setStatus("Error al verificar el usuario");
         return;
       }
 
       if (!userData) {
-        console.log("Usuario no encontrado en el sistema");
+        setStatus("Usuario no encontrado en el sistema");
         return;
       } else {
-        //Inserta el usuario en la base de datos
-        const { data_, error_ } = await supabase
-          .from("users") //Revisar la linea de abajo
-          //photo: authData.user.app_metadata.picture,
-          .insert({
-            email: authData.user.email,
-            user_id: authData.user.id,
-            name: authData.user.name,
-          })
-          .select(); // Incluye el select() para obtener los datos insertados
-
-        if (error_) {
-          console.error("Error al añadir usuario a tabla:", error_.message);
-          throw error_;
-        } else if (data_) {
-          console.log("Usuario guardado en la tabla users");
-          return;
-        }
+        setStatus("Usuario encontrado");  
+        return {error: authError, data: authData};
       }
     }
   };
@@ -132,7 +117,7 @@ export const AuthContextProvider = ({ children }) => {
   const UpdateTableUsers = async (email, object) => {
     console.log(object);
     const { data, error } = await supabase
-    .from('users') // Nombre de la tabla
+    .from('user') // Nombre de la tabla
     .update(object) // Los campos que deseas actualizar
     .eq('email', email); // Condición para identificar el registro a actualizar
 
@@ -158,6 +143,8 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  
+
   const logOut = async () => {
     //Sale del perfil
     try {
@@ -170,55 +157,56 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  //   useEffect(() => {
+  
 
-  //     // Verificar si existe una sesión en las cookies
-  //     const session = Cookies.get("supabase-session");
-  //     console.log(session);
+    // useEffect(() => {
 
-  //     if (session) {
-  //       const parsedSession = JSON.parse(session);
-  //       setUser(parsedSession.user); // Asume que user está incluido en la sesión
-  //       supabase.auth.setSession({
-  //         //Permite restaurar la sesión del usuario sin requerir que inicie sesión nuevamente cada vez que recarga la aplicación
-  //         access_token: parsedSession.access_token,
-  //         refresh_token: parsedSession.refresh_token,
-  //       });
+    //   // Verificar si existe una sesión en las cookies
+    //   const session = Cookies.get("supabase-session");
+    //   console.log(session);
 
-  //     }
+    //   if (session) {
+    //     const parsedSession = JSON.parse(session);
+    //     setUser(parsedSession.user); // Asume que user está incluido en la sesión
+    //     supabase.auth.setSession({
+    //       //Permite restaurar la sesión del usuario sin requerir que inicie sesión nuevamente cada vez que recarga la aplicación
+    //       access_token: parsedSession.access_token,
+    //       refresh_token: parsedSession.refresh_token,
+    //     });
+    //   }
 
-  //     // Escucha los cambios en el estado de autenticación, con un metodos de supabase llamado 'onAuthStateChange'.
-  //     const { data: authListener } = supabase.auth.onAuthStateChange(
-  //       async (event, sesion) => {
+    //   // Escucha los cambios en el estado de autenticación, con un metodos de supabase llamado 'onAuthStateChange'.
+    //   const { data: authListener } = supabase.auth.onAuthStateChange(
+    //     async (event, sesion) => {
+    //       if (sesion !== null) {
+    //         setUser(sesion.user); //
+    //         // Guardar sesión completa en cookies
+    //         Cookies.set("supabase-session", JSON.stringify(sesion), {
+    //           expires: 7,
+    //         }); // Persistencia del token
+    //         if (sesion?.user?.user_metadata) {
+    //           setPerfil(sesion.user.user_metadata); //Setea los datos del usuario en el estado
+    //         }
+    //         navigate("/StudentForm", { replace: true });
+    //       } else if (sesion === null ) {
+    //         setUser(null);
+    //         Cookies.remove("supabase-session"); //Elimina la cookie
+    //         navigate("/", { replace: true });
+    //       }
+    //     }
+    //   );
 
-  //         if (sesion !== null) {
-  //           setUser(sesion.user); //
-  //           // Guardar sesión completa en cookies
-  //           Cookies.set("supabase-session", JSON.stringify(sesion), {
-  //             expires: 7,
-  //           }); // Persistencia del token
-  //           if (sesion?.user?.user_metadata) {
-  //             setPerfil(sesion.user.user_metadata); //Setea los datos del usuario en el estado
-  //           }
-  //           navigate("/", { replace: true });
-  //         } else if (sesion === null ) {
-  //           setUser(null);
-  //           Cookies.remove("supabase-session"); //Elimina la cookie
-  //           navigate("/login", { replace: true });
-  //         }
-  //       }
-  //     );
+    //   setLoading(false);
 
-  //     setLoading(false);
-
-  //     return () => {
-  //       authListener?.unsubscribe?.(); //Evita fugas de memoria eliminando la suscripción al listener cuando el componente se desmonta.
-  //     };
-  //   }, []);
+    //   return () => {
+    //     authListener?.unsubscribe?.(); //Evita fugas de memoria eliminando la suscripción al listener cuando el componente se desmonta.
+    //   };
+    // }, []);
+    
 
   return (
     <AuthContext.Provider
-      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut, UpdateTableUsers }}
+      value={{ user, objPerfil, Loading, Status, getUserInfo, signUp, asignIn, logOut, UpdateTableUsers }}
     >
       {children}
     </AuthContext.Provider>
