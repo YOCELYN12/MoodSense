@@ -1,7 +1,6 @@
   import React, { useState } from 'react';
   import supabase from '../../supabase/Supabase';
-  import NavbarInside from '../navbar/navbarC';
-
+  import './StudentFormcc.css';
   const StudentFormC = () => {
     const [formData, setFormData] = useState({
       entry_date: '',
@@ -63,11 +62,8 @@
     };
 
     return (
-      <div style={{ display: 'flex' }}>
-        <div style={{ width: '250px', height: '100vh', position: 'fixed', left: 0, top: 0 }}>
-          <NavbarInside />
-        </div>
-        <div style={{ marginLeft: '250px', flex: 1, padding: '20px' }}>
+      <div>
+        <div style={{ padding: '20px' }}>
           <form onSubmit={handleSubmit}>
             <h2>Formulario de datos del estudiante</h2>
 
