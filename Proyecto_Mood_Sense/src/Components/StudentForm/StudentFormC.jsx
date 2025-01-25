@@ -1,254 +1,226 @@
-  import React, { useState } from 'react';
-  import supabase from '../../supabase/Supabase';
-  import './StudentFormcc.css';
+import React, { useState } from "react";
+import supabase from "../../supabase/Supabase";
+import "./StudentFormcc.css";
+import { UserAuth } from "../../context/Context";
 
+const StudentFormC = () => {
+  const { UpdateTableUsers, user } = UserAuth();
 
-  const StudentFormC = () => {
-    const [formData, setFormData] = useState({
-      entry_date: '',
-      name: '',
-      lastname: '',
-      age: '',
-      student_id: '',
-      nationality: '',
-      id_number: '',
-      personal_phone: '',
-      family_phone: '',
-      province: '',
-      canton: '',
-      district: '',
-      medications: '',
-      diseases: '',
-      psychological_diagnosis: ''
-    });
+  const [formData, setFormData] = useState({
+    name: "",
+    last_name: "",
+    age: "",
+    student_id: "",
+    nationality: "",
+    id_number: "",
+    personal_contact: "",
+    family_contact: "",
+    province: "",
+    canton: "",
+    student_state: "",
+    medications: "",
+    district: "",
+    studies: "",
+    diseases: "",
+    residence: "",
+    psychological_diagnosis: "",
+    institution_id: "",
+    rol: "",
+    province: "",
+  });
 
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData(prevState => ({
-        ...prevState,
-        [name]: value
-      }));
-    };
-
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const { data, error } = await supabase
-          .from('user')
-          .insert([
-            {
-              entry_date: formData.entry_date,
-              name: formData.name,
-              lastname: formData.lastname,
-              age: formData.age,
-              student_id: formData.student_id,
-              nationality: formData.nationality,
-              id_number: formData.id_number,
-              personal_phone: formData.personal_phone,
-              family_phone: formData.family_phone,
-              province: formData.province,
-              canton: formData.canton,
-              district: formData.district,
-              medications: formData.medications,
-              diseases: formData.diseases,
-              psychological_diagnosis: formData.psychological_diagnosis
-            }
-          ]);
-
-        if (error) throw error;
-        console.log('Data inserted successfully');
-    
-      } catch (error) {
-        console.error('Error inserting data:', error.message);
-      }
-    };
-
-    return (
-      <div>
-        <div style={{ padding: '20px' }}>
-          <form onSubmit={handleSubmit}>
-            <h2>Formulario de datos del estudiante</h2>
-
-            <div>
-              <label  >Nombre</label>
-              <input 
-                type="text" 
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Ej: Juan"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Apellidos</label>
-              <input 
-                type="text" 
-                name="lastname"
-                value={formData.lastname}
-                onChange={handleChange}
-                placeholder="Ej: Pérez Mora"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Edad</label>
-              <input 
-                type="number" 
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-                placeholder="Ej: 20"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Carné Estudiantil</label>
-              <input 
-                type="text" 
-                name="student_id"
-                value={formData.student_id}
-                onChange={handleChange}
-                placeholder="Ej: B12345"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Nacionalidad</label>
-              <input 
-                type="text" 
-                name="nationality"
-                value={formData.nationality}
-                onChange={handleChange}
-                placeholder="Ej: Costarricense"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Cédula</label>
-              <input 
-                type="text" 
-                name="id_number"
-                value={formData.id_number}
-                onChange={handleChange}
-                placeholder="Ej: 1-1234-5678"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Número de Contacto Personal</label>
-              <input 
-                type="tel" 
-                name="personal_phone"
-                value={formData.personal_phone}
-                onChange={handleChange}
-                placeholder="Ej: 8888-8888"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Número de Contacto Familiar</label>
-              <input 
-                type="tel" 
-                name="family_phone"
-                value={formData.family_phone}
-                onChange={handleChange}
-                placeholder="Ej: 7777-7777"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Provincia</label>
-              <input 
-                type="text" 
-                name="province"
-                value={formData.province}
-                onChange={handleChange}
-                placeholder="Ej: San José"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Cantón</label>
-              <input 
-                type="text" 
-                name="canton"
-                value={formData.canton}
-                onChange={handleChange}
-                placeholder="Ej: Central"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Distrito</label>
-              <input 
-                type="text" 
-                name="district"
-                value={formData.district}
-                onChange={handleChange}
-                placeholder="Ej: Catedral"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Fecha de Ingreso</label>
-              <input 
-                type="date" 
-                name="entry_date"
-                value={formData.entry_date}
-                onChange={handleChange}
-                required 
-              />
-            </div>
-
-            <div>
-              <label>¿Toma algún medicamento?</label>
-              <textarea
-                name="medications"
-                value={formData.medications}
-                onChange={handleChange}
-                placeholder="Ej: Acetaminofén 500mg, Omeprazol 20mg"
-              ></textarea>
-            </div>
-
-            <div>
-              <label>Enfermedades</label>
-              <textarea
-                name="diseases"
-                value={formData.diseases}
-                onChange={handleChange}
-                placeholder="Ej: Asma, Hipertensión"
-              ></textarea>
-            </div>
-
-            <div>
-              <label>Diagnóstico Psicológico</label>
-              <textarea
-                name="psychological_diagnosis"
-                value={formData.psychological_diagnosis}
-                onChange={handleChange}
-                placeholder="Ej: Ansiedad, Depresión"
-              ></textarea>
-            </div>
-
-            <div>
-              <button type="submit">Guardar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    );
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  export default StudentFormC;
+  const handleSubmit = async (e) => {
+    try {
+      const { error, data } = await UpdateTableUsers(formData);
+      if (data) {
+        console.log("Se registraron correctamente sus datos.");
+        return;
+      }
+
+      if (error) {
+        console.log("Se registraron correctamente sus datos.");
+        throw new Error(error);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit} className="student-form">
+        <div className="form-group">
+          <label>ID Estudiante:</label>
+          <input
+            type="text"
+            name="student_id"
+            value={formData.student_id}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Nacionalidad:</label>
+          <input
+            type="text"
+            name="nationality"
+            value={formData.nationality}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Número de Identificación:</label>
+          <input
+            type="text"
+            name="id_number"
+            value={formData.id_number}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Contacto Personal:</label>
+          <input
+            type="text"
+            name="personal_contact"
+            value={formData.personal_contact}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Contacto Familiar:</label>
+          <input
+            type="text"
+            name="family_contact"
+            value={formData.family_contact}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Provincia:</label>
+          <input
+            type="text"
+            name="province"
+            value={formData.province}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Cantón:</label>
+          <input
+            type="text"
+            name="canton"
+            value={formData.canton}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Estado del Estudiante:</label>
+          <input
+            type="text"
+            name="student_state"
+            value={formData.student_state}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Medicamentos:</label>
+          <input
+            type="text"
+            name="medications"
+            value={formData.medications}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Distrito:</label>
+          <input
+            type="text"
+            name="district"
+            value={formData.district}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Estudios:</label>
+          <input
+            type="text"
+            name="studies"
+            value={formData.studies}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Enfermedades:</label>
+          <input
+            type="text"
+            name="diseases"
+            value={formData.diseases}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Residencia:</label>
+          <input
+            type="text"
+            name="residence"
+            value={formData.residence}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Diagnóstico Psicológico:</label>
+          <input
+            type="text"
+            name="psychological_diagnosis"
+            value={formData.psychological_diagnosis}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>ID Institución:</label>
+          <input
+            type="text"
+            name="institution_id"
+            value={formData.institution_id}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Rol:</label>
+          <input
+            type="text"
+            name="rol"
+            value={formData.rol}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  );
+};
+
+export default StudentFormC;
