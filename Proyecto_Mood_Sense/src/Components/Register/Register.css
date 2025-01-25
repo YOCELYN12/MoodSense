@@ -1,0 +1,48 @@
+.MainContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.ContainerIMG {
+  background-image: url("../../assets/flores_moradas.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+.ContainerInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.ContainerInputs1 {
+  display: grid;
+  justify-content: left;
+}
+input {
+  width: 180%;
+  padding: 10%;
+  border-radius: 25px;
+}
+.select {
+  width: 25%;
+  margin: 3%;
+  margin-left: 8%;
+}
+.b-t-n {
+  width: 44%;
+  padding: 3%;
+  margin-left: 24%;
+  background-color: #47288f;
+  color: white;
+  border-radius: 25px;
+}
+body {
+  margin: 0;
+}
+
+.ContainerTags{
+    margin-left: 18%;
+}
