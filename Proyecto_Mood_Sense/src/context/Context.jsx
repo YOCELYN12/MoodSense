@@ -15,7 +15,6 @@ export const AuthContextProvider = ({ children }) => {
 
   //Trae el usuario de la base de datos, el usuario activo, actual
 
-
   const getUserInfo = async () => {
     const {
       data: { user },
@@ -28,8 +27,7 @@ export const AuthContextProvider = ({ children }) => {
     return user; // Devuelve el objeto del usuario
   };
 
-
-  //Login con email  
+  //Login con email
   const asignIn = async (email, password) => {
     const { data: authData, error: authError } =
       await supabase.auth.signInWithPassword({
@@ -56,20 +54,24 @@ export const AuthContextProvider = ({ children }) => {
       }
 
       if (!userData) {
-        
         console.log("Usuario no encontrado en el sistema");
         return;
-      }else{
+      } else {
         //Inserta el usuario en la base de datos
-          const { data_, error_ } = await supabase
+        const { data_, error_ } = await supabase
           .from("users") //Revisar la linea de abajo
-          .insert({ email: authData.user.email, user_id: authData.user.id, photo: authData.user.app_metadata.picture, name:  authData.user.name})
+          //photo: authData.user.app_metadata.picture,
+          .insert({
+            email: authData.user.email,
+            user_id: authData.user.id,
+            name: authData.user.name,
+          })
           .select(); // Incluye el select() para obtener los datos insertados
 
         if (error_) {
           console.error("Error al añadir usuario a tabla:", error_.message);
           throw error_;
-        }else if (data_){
+        } else if (data_) {
           console.log("Usuario guardado en la tabla users");
           return;
         }
@@ -77,16 +79,15 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-
   //Verifica si el email ya existe en la base de datos
   const checkEmailExists = async (email) => {
     try {
       const { data, error } = await supabase
-        .from('user')
-        .select('email')
-        .eq('email', email)
+        .from("user")
+        .select("email")
+        .eq("email", email)
         .single();
-      
+
       return { exists: !!data, error: null };
     } catch (error) {
       return { exists: false, error };
@@ -95,20 +96,19 @@ export const AuthContextProvider = ({ children }) => {
 
 
   //Registra un nuevo usuario en la base de datos.
-  const signUp = async (email, password) => {                                                                       
-    
+  const signUp = async (email, password) => {
     try {
       // Primero verificamos si el email existe
       const { exists, error: checkError } = await checkEmailExists(email);
-      
+
       if (checkError) {
         throw checkError;
       }
-      
+
       if (exists) {
         return {
           data: null,
-          error: new Error('Este correo electrónico ya está registrado')
+          error: new Error("Este correo electrónico ya está registrado"),
         };
       }
 
@@ -117,7 +117,9 @@ export const AuthContextProvider = ({ children }) => {
         email,
         password,
       });
-      
+
+      AddUserTable(email, data.user.id, data.user.user_metadata.picture, data.user.user_metadata.name);
+
       if (error) throw error;
 
       return { data, error: null };
@@ -125,10 +127,25 @@ export const AuthContextProvider = ({ children }) => {
       return { data: null, error };
     }
   };
-  
+
+
+  const UpdateTableUsers = async (email, object) => {
+    console.log(object);
+    const { data, error } = await supabase
+    .from('users') // Nombre de la tabla
+    .update(object) // Los campos que deseas actualizar
+    .eq('email', email); // Condición para identificar el registro a actualizar
+
+  if (error) {
+    console.error('Error al actualizar:', error);
+    return;
+  }
+  return {error: error, data: data}
+  }
+
   const AddUserTable = async (Email, userId, Photo, Name) => {
     //Inserta el usuario en la base de datos
-      const { data_, error_ } = await supabase
+    const { data_, error_ } = await supabase
       .from("user")
       .insert({ email: Email, user_id: userId, photo: Photo, name: Name })
       .select(); // Incluye el select() para obtener los datos insertados
@@ -136,16 +153,13 @@ export const AuthContextProvider = ({ children }) => {
     if (error_) {
       console.error("Error al añadir usuario a tabla:", error_.message);
       throw error_;
-    }else if (data_){
+    } else if (data_) {
       console.log("Usuario guardado en la tabla users");
-        
     }
-  }
-  
-
+  };
 
   const logOut = async () => {
-    //Sale del perfil 
+    //Sale del perfil
     try {
       const { error } = await supabase.auth.signOut();
       if (error)
@@ -155,11 +169,6 @@ export const AuthContextProvider = ({ children }) => {
       console.error("Error al cerrar sesión:", error);
     }
   };
-
-
-  
-
-
 
   //   useEffect(() => {
 
@@ -208,7 +217,9 @@ export const AuthContextProvider = ({ children }) => {
   //   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut }}>
+    <AuthContext.Provider
+      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut, UpdateTableUsers }}
+    >
       {children}
     </AuthContext.Provider>
   );
