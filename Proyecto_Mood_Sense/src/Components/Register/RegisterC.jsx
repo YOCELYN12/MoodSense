@@ -25,32 +25,40 @@ const RegisterC = () => {
     };
     fetchInstituciones();
   }, []);
+
   // Función para validar y registrar un nuevo usuario
   const ValidateUser = async () => {
+
+    console.log(institucionId);
+    
     // Validación de campos vacíos
     if (correo.trim() === "" || contrasena.trim() === "" || !institucionId) {
       Swal.fire("Necesitas llenar todos los campos");
       return;
     }
     try {
-      // Verifica si el usuario ya existe
-      const { data: existingUser } = await supabase.auth.signInWithPassword({
+      // Registra el nuevo usuario en auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
         email: correo,
         password: contrasena,
       });
+      
+      if (authError) throw authError;
 
-      if (existingUser.user) {
-        Swal.fire("El correo ya existe");
-        return;
+      if (authData) {
+        // Guarda la información adicional en la tabla users
+        const { error: userError } = await supabase
+        .from('datosmeta')
+        .insert([
+          {
+            email: correo,
+            id_institution: institucionId
+          }
+        ]);
       }
 
-      // Registra el nuevo usuario con la institución seleccionada
-      const { data, error } = await supabase.auth.signUp({
-        email: correo,
-        password: contrasena,        
-      });
-
-      if (error) throw error;
+      if (userError) throw userError;
+      
 
       Swal.fire("Usuario registrado exitosamente");
     } catch (error) {
