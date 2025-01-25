@@ -1,6 +1,8 @@
   import React, { useState } from 'react';
   import supabase from '../../supabase/Supabase';
   import './StudentFormcc.css';
+
+
   const StudentFormC = () => {
     const [formData, setFormData] = useState({
       entry_date: '',
@@ -68,7 +70,7 @@
             <h2>Formulario de datos del estudiante</h2>
 
             <div>
-              <label>Nombre</label>
+              <label  >Nombre</label>
               <input 
                 type="text" 
                 name="name"
