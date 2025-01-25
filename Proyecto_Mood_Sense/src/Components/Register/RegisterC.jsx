@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Register/Register.css";
 import Swal from "sweetalert2";
-import supabase from "../../supabase/client";
+import supabase from "../../supabase/Supabase";
 
 const RegisterC = () => {
   const [correo, setCorreo] = useState("");
