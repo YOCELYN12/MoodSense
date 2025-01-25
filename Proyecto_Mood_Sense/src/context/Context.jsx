@@ -94,6 +94,7 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+
   //Registra un nuevo usuario en la base de datos.
   const signUp = async (email, password) => {
     try {
@@ -119,8 +120,6 @@ export const AuthContextProvider = ({ children }) => {
 
       AddUserTable(email, data.user.id, data.user.user_metadata.picture, data.user.user_metadata.name);
 
-
-
       if (error) throw error;
 
       return { data, error: null };
@@ -128,6 +127,21 @@ export const AuthContextProvider = ({ children }) => {
       return { data: null, error };
     }
   };
+
+
+  const UpdateTableUsers = async (email, object) => {
+    console.log(object);
+    const { data, error } = await supabase
+    .from('users') // Nombre de la tabla
+    .update(object) // Los campos que deseas actualizar
+    .eq('email', email); // Condición para identificar el registro a actualizar
+
+  if (error) {
+    console.error('Error al actualizar:', error);
+    return;
+  }
+  return {error: error, data: data}
+  }
 
   const AddUserTable = async (Email, userId, Photo, Name) => {
     //Inserta el usuario en la base de datos
@@ -204,7 +218,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut }}
+      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut, UpdateTableUsers }}
     >
       {children}
     </AuthContext.Provider>

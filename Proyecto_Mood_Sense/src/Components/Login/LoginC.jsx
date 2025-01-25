@@ -23,7 +23,6 @@ const LoginC = () => {
       } else {
         Swal.fire("Error al iniciar sesión");
       }
-      Swal.fire("Inicio de sesión exitoso");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
