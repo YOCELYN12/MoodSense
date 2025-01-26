@@ -6,6 +6,8 @@ import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/Admin";
 import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
+import MoodSense from "../Components/navbar/navbarC";
+import ListaUsuarios from "../Components/Lista de Usuarios/ListaUsuarios";
 
 
 
@@ -13,11 +15,9 @@ const Routing = () => {
   return (
     <div>
       <Routes>
-        
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/StudentForm" element={<StudentForm />} />
-        <Route path="/Admin" element={<Admin />} />
         <Route path="/home" element={<Home />} /> 
         <Route path="/ForemotioP" element={<ForemotioP />} />
       </Routes>
