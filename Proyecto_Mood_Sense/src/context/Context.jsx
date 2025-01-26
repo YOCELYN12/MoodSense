@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import supabase from "../supabase/Supabase";
 import Cookies from "js-cookie";
 
-
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -73,60 +72,57 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-
   const GetEmotionTable = async (userId) => {
     const { data, error } = await supabase
-      .from('user') // nombre de tu tabla
-      .select('*') // selecciona todas las columnas
-      .eq('id', userId) // condicionante, en este caso 'id'
+      .from("user") // nombre de tu tabla
+      .select("*") // selecciona todas las columnas
+      .eq("id", userId) // condicionante, en este caso 'id'
       .single(); // Devuelve un único registro
-  
+
     if (error) {
       console.error("Error:", error);
     } else {
       console.log("User data:", data);
     }
-  
-}
+  };
 
   const GetUserTable = async (userId) => {
-      const { data, error } = await supabase
-        .from('user') // nombre de tu tabla
-        .select('*') // selecciona todas las columnas
-        .eq('id', userId) // condicionante, en este caso 'id'
-        .single(); // Devuelve un único registro
-    
-      if (error) {
-        console.error("Error:", error);
-      } else {
-        const response = await fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        });
+    const { data, error } = await supabase
+      .from("user") // nombre de tu tabla
+      .select("*") // selecciona todas las columnas
+      .eq("id", userId) // condicionante, en este caso 'id'
+      .single(); // Devuelve un único registro
 
-        if (!response.ok) {
-          throw new Error(
-            new Error(`Error al registrar los dat: ${response.statusText}`)
-          );
-        } else {
-          console.log("Se registraron correctamente sus datos.");
-          return response;
-        }
+    if (error) {
+      console.error("Error:", error);
+    } else {
+      const response = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          new Error(`Error al registrar los dat: ${response.statusText}`)
+        );
+      } else {
+        console.log("Se registraron correctamente sus datos.");
+        return response;
       }
-    } catch (error) {
-      console.error("Error al enviar el usuario al backend:", error);
-      return null;
     }
   };
 
-  return (
-    <AuthContext.Provider value={{ user, getInstitution, postUser, Status, getUsers, userActive }}>
-      {children}
-    </AuthContext.Provider>
-  );
+return (
+  <AuthContext.Provider
+    value={{ user, getInstitution, Status, getUsers, userActive }}
+  >
+    {children}
+  </AuthContext.Provider>
+);
+
 };
 export const UserAuth = () => {
   return useContext(AuthContext);

@@ -11,7 +11,8 @@ import ListaUsuarios from "../Components/Lista de Usuarios/ListaUsuarios";
 import GeneralAdministrative from "../Components/Administrativa/GeneralAdministrative";
 import NavbarAdministrative from "../Components/NavbarAdministrative/NavbarAdministrative";
 import RegisterDb from "../Components/Register/RegisterDb";
-import GroupDash from "../Pages/GroupDashboard/GroupDash";import RegisterDb from "../Components/Register/RegisterDb";
+import GroupDash from "../Pages/GroupDashboard/GroupDash";
+
 
 
 
