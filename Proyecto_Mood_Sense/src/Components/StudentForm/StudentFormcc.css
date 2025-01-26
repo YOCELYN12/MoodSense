@@ -1,3 +1,18 @@
+.student-form-container{
+  width: 60%;
+  position: absolute;
+  top: 5%;
+  left: 20%;
+}
+
+.LetrasPerfil{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .student-form {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -5,6 +20,10 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.lineaHR{
+  background-color: #763a8b;
 }
 
 /* Make each form field container take full width of its grid cell */

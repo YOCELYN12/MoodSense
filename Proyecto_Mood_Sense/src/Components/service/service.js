@@ -99,9 +99,9 @@ export async function postEmotion(emotion) {
 
 
   // Función para hacer la solicitud PATCH
-async function actualizarDatos(data) {
+async function actualizarDatos(data,id) {
   try {
-    const response = await fetch(data, {
+    const response = await fetch("http://localhost:3000/users/" + id, {
       method: 'PATCH', // Método PATCH
       headers: {
         'Content-Type': 'application/json', // Indica que los datos están en formato JSON
@@ -119,7 +119,7 @@ async function actualizarDatos(data) {
     console.error('Error al actualizar los datos:', error);
   }
 }
-
+export {actualizarDatos}
 
 const PostStudent = async (studentData) => {
   try {
