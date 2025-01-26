@@ -12,9 +12,7 @@ const RegisterC = () => {
   useEffect(() => {
     const fetchInstituciones = async () => {
       try {
-        const { data, error } = await supabase
-          .from("instituciones")
-          .select("*");
+        const { data, error } = await supabase.from("institution").select("*");
 
         if (error) throw error;
         setInstituciones(data);
@@ -32,7 +30,7 @@ const RegisterC = () => {
     }
     try {
       const { data, error } = await supabase
-        .from("usuarios")
+        .from("user")
         .select("correo")
         .eq("correo", correo)
         .single();
@@ -49,7 +47,7 @@ const RegisterC = () => {
 
       if (signUpError) throw signUpError;
 
-      const { error: insertError } = await supabase.from("usuarios").insert([
+      const { error: insertError } = await supabase.from("user").insert([
         {
           correo: correo,
           contrasena: contrasena,
