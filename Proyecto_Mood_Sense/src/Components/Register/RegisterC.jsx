@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../Register/Register.css";
 import Swal from "sweetalert2";
 import supabase from "../../supabase/Supabase";
+import { UserAuth } from "../../context/Context";
 
 const RegisterC = () => {
   // Estados para manejar el correo, contraseña e institución seleccionada

@@ -6,6 +6,9 @@ import { UserAuth } from "../../context/Context";
 const StudentFormC = () => {
   const { UpdateTableUsers, user } = UserAuth();
 
+  console.log(user);
+  
+
   const [formData, setFormData] = useState({
     name: "",
     last_name: "",

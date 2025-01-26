@@ -8,21 +8,29 @@ const LoginC = () => {
   const navigate = useNavigate();
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
-  const [estatus, setEstatus] = useState("");
-  const { asignIn, getUserInfo, Status } = UserAuth();
+  const [Status, setStatus] = useState(false);
+  const { getUsers, userActive } = UserAuth();
 
-  const Log_In = async () => {
+  const Log_In = async (e) => {
+    e.preventDefault();
     try {
-      const { error: authError, data: authData } = await asignIn(
-        correo,
-        contrasena
-      );
+      const userInfo = await getUsers();
+      const userExists = userInfo.some((user) => user.email === correo);
 
-      if (authData) {
-        setEstatus("ingreso exitoso");
+ 
+      
+      if (!userExists) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "El correo no existe en nuestros registros",
+        });
+        setStatus("Ese correo no existe");
+        return;
+      }else{
+        await userActive(correo, contrasena );
+         setStatus("Ingreso exitoso");
         navigate("/StudentForm");
-      } else {
-        setEstatus("Error al iniciar sesión");
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);

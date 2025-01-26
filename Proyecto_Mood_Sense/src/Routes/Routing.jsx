@@ -6,8 +6,7 @@ import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/Admin";
 import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
-
-
+import RegisterDb from "../Components/Register/RegisterDb";
 
 const Routing = () => {
   return (
@@ -15,7 +14,7 @@ const Routing = () => {
       <Routes>
         
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<RegisterDb />} />
         <Route path="/StudentForm" element={<StudentForm />} />
         <Route path="/Admin" element={<Admin />} />
         <Route path="/home" element={<Home />} /> 

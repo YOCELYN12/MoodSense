@@ -8,26 +8,6 @@ export async function getDatosMeta() {
       return [];
     }
   }
-  
-  export async function postDatosMetadata(data) {
-    try {
-      const response = await fetch("http://localhost:3000/datosmeta", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-  
-      if (!response.ok) {
-        throw new Error(
-throw new Error(`Error al registrar los datos meta: ${response.statusText}`);        );
-      }
-    } catch (error) {
-        console.error("Error al enviar el usuario al backend:", error);
-        return null;
-      }
-    }
     
     export async function getInstitution() {
       try {
@@ -60,21 +40,31 @@ throw new Error(`Error al registrar los datos meta: ${response.statusText}`);   
   }
   
   export async function postUser(user) {
-    try {
-      const response = await fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-    });
-
-    if (!response.ok) {
-throw new Error(`Error al registrar el usuario: ${response.statusText}`);    }
-  } catch (error) {
-    console.error("Error al enviar el usuario al backend:", error);
-    return null;
-  }
+    
+      try {
+        const response = await fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+    
+        if (!response.ok) {
+          throw new Error(
+        new Error(`Error al registrar los dat: ${response.statusText}`));
+      }
+  
+        if (data) {
+          console.log("Se registraron correctamente sus datos.");
+          return data;
+          
+        }
+      } catch (error) {
+          console.error("Error al enviar el usuario al backend:", error);
+          return null;
+        }
+      
 }
 
 export async function postEmotion(emotion) {
