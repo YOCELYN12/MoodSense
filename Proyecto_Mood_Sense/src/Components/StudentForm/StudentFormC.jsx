@@ -53,17 +53,18 @@ const StudentFormC = () => {
   };
 
 
-
-
   return (
     <div>
 
       <Navbar />
-      <h2 className="lineaHr">Datos personales</h2>
+    
 
       <div className="student-form-container">
         
         <h2 className="LetrasPerfil" >Formulario del Perfil</h2>
+        <br />
+        <br />
+        <h2 className="lineaHr">Datos personales</h2>
         <form className="student-form" onSubmit={handleSubmit}>
           <div className="form-email">
             <label>Correo Electrónico:</label>

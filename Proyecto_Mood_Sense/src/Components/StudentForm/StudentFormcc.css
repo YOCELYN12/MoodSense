@@ -1,78 +1,111 @@
-.student-form-container{
-  width: 60%;
-  position: absolute;
-  top: 5%;
-  left: 20%;
+/* Estilos para el formulario de perfil de estudiante */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f5f5;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.LetrasPerfil{
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 1.5rem;
-  color: #333;
+h2 {
+  color: #4A90E2;
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  
+}
+
+.lineaHr {
+  border: 0;
+  height: 2px;
+  background: #4A90E2;
+  margin: 12px auto;
+  width: 80%;
+  display: flex;
+  margin-left: 10px;
+  margin-bottom: 5%;
+}
+
+.student-form-container {
+  max-width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 18%;
+}
+
+.LetrasPerfil {
+  font-size: 1.8rem;
+  color: #333333;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .student-form {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: space-between;
 }
 
-.lineaHR{
-  background-color: #763a8b;
-}
-
-/* Make each form field container take full width of its grid cell */
-.student-form > div {
+.student-form div {
+  flex: 1 1 calc(32% - 10px);
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 
-/* Style for labels */
 .student-form label {
   font-size: 1rem;
-  font-weight: bold;
-  color: #333;
+  margin-bottom: 8px;
+  color: #333333;
 }
 
-/* Style for inputs */
 .student-form input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
   font-size: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-/* Submit button styles */
-.boton-guardar {
-  grid-column: 1 / -1;
-  width: max-content;
-  justify-self: center;
-  background-color: #763a8b;
-  color: #fff;
+.student-form input:focus {
+  border-color: #4A90E2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+button {
+  background-color: #4A90E2;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 10px 20px;
   border: none;
-  border-radius: 0.5rem;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  align-self: center;
 }
 
-/* Responsive breakpoints */
-@media (max-width: 992px) {
-  .student-form {
-    grid-template-columns: repeat(2, 1fr);
+button:hover {
+  background-color: #357ABD;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .student-form div {
+    flex: 1 1 100%;
   }
 }
 
-@media (max-width: 576px) {
-  .student-form {
-    grid-template-columns: 1fr;
+@media (max-width: 480px) {
+  h2, .LetrasPerfil {
+    font-size: 1.5rem;
+  }
+
+  button {
+    width: 100%;
   }
 }
