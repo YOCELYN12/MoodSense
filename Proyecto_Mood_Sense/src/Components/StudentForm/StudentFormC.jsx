@@ -29,7 +29,6 @@ const StudentFormC = () => {
     psychological_diagnosis: "",
     institution_id: "",
     rol: "",
-    province: "",
   });
 
   const handleChange = (e) => {

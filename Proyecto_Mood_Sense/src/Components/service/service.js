@@ -32,6 +32,8 @@ export async function getDatosMeta() {
     }
   }
 
+
+
   export async function getInstitution() {
     try {
       const response = await fetch("http://localhost:3000/institution");
@@ -42,26 +44,15 @@ export async function getDatosMeta() {
       return [];
     }
   }
-
-
-  export async function postInstitution(institution) {
+  
+  export async function getEmotions() {
     try {
-  
-      const response = await fetch("http://localhost:3000/institution", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(institution),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error al registrar el usuario: ${response.statusText}`);
-      }
-  
+      const response = await fetch("http://localhost:3000/emotions");
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.error("Error al enviar el usuario al backend:", error);
-      return null;
+      console.error("Error al obtener las emociones:", error);
+      return [];
     }
   }
 

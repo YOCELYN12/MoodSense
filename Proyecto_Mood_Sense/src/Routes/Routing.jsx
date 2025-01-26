@@ -8,7 +8,6 @@ import ForemotioP from "../Pages/FormEmotion/ForemotioP";
 import GroupDash from "../Pages/GroupDashboard/GroupDash";
 
 
-
 const Routing = () => {
   return (
     <div>
@@ -17,7 +16,6 @@ const Routing = () => {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/StudentForm" element={<StudentForm />} />
-        <Route path="/UserList" element={<UserList />} />
         <Route path="/GroupDash" element={<GroupDash />} />
         <Route path="/ForemotioP" element={<ForemotioP />} />
       </Routes>
