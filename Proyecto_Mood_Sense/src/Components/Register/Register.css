@@ -22,7 +22,7 @@
   display: grid;
   justify-content: left;
 }
-input {
+.Inputs {
   width: 180%;
   padding: 10%;
   border-radius: 25px;
@@ -44,6 +44,6 @@ body {
   margin: 0;
 }
 
-.ContainerTags{
-    margin-left: 18%;
+.ContainerTags {
+  margin-left: 18%;
 }
