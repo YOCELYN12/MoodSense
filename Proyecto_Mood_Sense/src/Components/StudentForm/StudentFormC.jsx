@@ -17,7 +17,7 @@ const StudentFormC = () => {
     nationality: "",
     id_number: "",
     personal_contact: "",
-    family_contact: "",
+    family_contact: "",                      
     province: "",
     canton: "",
     student_state: "",
