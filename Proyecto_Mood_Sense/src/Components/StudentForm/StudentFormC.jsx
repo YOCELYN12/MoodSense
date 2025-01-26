@@ -275,7 +275,7 @@ const StudentFormC = () => {
         ))}
       </ul>
           <button type="submit">Enviar</button>
-        </form>
+        
       </div>
     </div>
   );
