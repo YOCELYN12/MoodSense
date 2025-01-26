@@ -9,7 +9,7 @@ const LoginC = () => {
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [Status, setStatus] = useState(false);
-  const { getUsers, userActive } = UserAuth();
+  const {getUsers, userActive} = UserAuth();
 
   const Log_In = async (e) => {
     e.preventDefault();

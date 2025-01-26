@@ -1,64 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./StudentFormcc.css";
-import {PostStudent} from '../service/service';
- // Importamos la función de POST
+import { PostStudent } from "../service/service"; // Importamos la función de POST
 
 const StudentFormC = () => {
+  const [intEmail, setEmail] = useState("");
+  const [intPassword, setPassword] = useState("");
+  const [intInstitutionId, setInstitutionId] = useState("002");
   const [intName, setName] = useState("");
-  const [intLastname, setLastName] = useState("");
-  const [intStudentId, setStudentId] = useState("");
+  const [intLastName, setLastName] = useState("");
+  const [intAge, setAge] = useState(null);
+  const [intStudentState, setStudentState] = useState("");
   const [intNationality, setNationality] = useState("");
-  const [intIdNumber, setIdNumber] = useState("");
   const [intPersonalContact, setPersonalContact] = useState("");
   const [intFamilyContact, setFamilyContact] = useState("");
-  const [intProvince, setProvince] = useState("");
-  const [intCanton, setCanton] = useState("");
-  const [intDistrict, setDistrict] = useState("");
-  const [intStudentState, setStudentState] = useState("");
-  const [intDrugs, setDrugs] = useState("");
-  const [intStudies, setStudies] = useState("");
-  const [intDiseases, setDiseases] = useState("");
   const [intResidence, setResidence] = useState("");
+  const [intDiseases, setDiseases] = useState("");
+  const [intProvince, setProvince] = useState("");
+  const [intDistrict, setDistrict] = useState("");
+  const [intCanton, setCanton] = useState("");
+  const [intMedications, setMedications] = useState("");
   const [intPsychologicalDiagnosis, setPsychologicalDiagnosis] = useState("");
-  const [intInstitutionId, setInstitutionId] = useState("");
   const [intRole, setRole] = useState("");
-  const [students, setStudents] = useState([]); // Para almacenar los estudiantes obtenidos con GET
-
-
 
   // Función para manejar el envío del formulario (POST)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const newStudent = {
+      email: intEmail,
+      password: intPassword,
+      institucion_id: intInstitutionId,
+      id: "54321", // ID asignado manualmente como en el JSON de ejemplo
       name: intName,
-      lastname: intLastname,
-      studentId: intStudentId,
+      last_name: intLastName,
+      age: intAge,
+      student_state: intStudentState,
       nationality: intNationality,
-      idNumber: intIdNumber,
-      personalContact: intPersonalContact,
-      familyContact: intFamilyContact,
-      province: intProvince,
-      canton: intCanton,
-      district: intDistrict,
-      studentState: intStudentState,
-      drugs: intDrugs,
-      studies: intStudies,
-      diseases: intDiseases,
+      personal_contact: intPersonalContact,
+      family_contact: intFamilyContact,
       residence: intResidence,
-      psychologicalDiagnosis: intPsychologicalDiagnosis,
-      institutionId: intInstitutionId,
-      role: intRole,
+      diseases: intDiseases,
+      province: intProvince,
+      district: intDistrict,
+      canton: intCanton,
+      medications: intMedications,
+      psychological_diagnosis: intPsychologicalDiagnosis,
+      rol: intRole,
     };
 
     const result = await PostStudent(newStudent);
-   
   };
 
   return (
     <div>
       <h2>Formulario del Perfil</h2>
       <form className="student-form" onSubmit={handleSubmit}>
+        <div className="form-email">
+          <label>Correo Electrónico:</label>
+          <input
+            type="email"
+            value={intEmail}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div className="form-password">
+          <label>Contraseña:</label>
+          <input
+            type="password"
+            value={intPassword}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
         <div className="form-nombre">
           <label>Nombre:</label>
           <input
@@ -72,17 +86,26 @@ const StudentFormC = () => {
           <label>Apellido:</label>
           <input
             type="text"
-            value={intLastname}
+            value={intLastName}
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
 
-        <div className="form-id">
-          <label>ID Estudiante:</label>
+        <div className="form-edad">
+          <label>Edad:</label>
+          <input
+            type="number"
+            value={intAge || ""}
+            onChange={(e) => setAge(Number(e.target.value))}
+          />
+        </div>
+
+        <div className="form-estado">
+          <label>Estado del Estudiante:</label>
           <input
             type="text"
-            value={intStudentId}
-            onChange={(e) => setStudentId(e.target.value)}
+            value={intStudentState}
+            onChange={(e) => setStudentState(e.target.value)}
           />
         </div>
 
@@ -92,15 +115,6 @@ const StudentFormC = () => {
             type="text"
             value={intNationality}
             onChange={(e) => setNationality(e.target.value)}
-          />
-        </div>
-
-        <div className="form-identidad">
-          <label>Número de Identificación:</label>
-          <input
-            type="text"
-            value={intIdNumber}
-            onChange={(e) => setIdNumber(e.target.value)}
           />
         </div>
 
@@ -119,6 +133,24 @@ const StudentFormC = () => {
             type="text"
             value={intFamilyContact}
             onChange={(e) => setFamilyContact(e.target.value)}
+          />
+        </div>
+
+        <div className="form-residencia">
+          <label>Residencia:</label>
+          <input
+            type="text"
+            value={intResidence}
+            onChange={(e) => setResidence(e.target.value)}
+          />
+        </div>
+
+        <div className="form-enfermedades">
+          <label>Enfermedades:</label>
+          <input
+            type="text"
+            value={intDiseases}
+            onChange={(e) => setDiseases(e.target.value)}
           />
         </div>
 
@@ -149,48 +181,12 @@ const StudentFormC = () => {
           />
         </div>
 
-        <div className="form-estado">
-          <label>Estado del Estudiante:</label>
-          <input
-            type="text"
-            value={intStudentState}
-            onChange={(e) => setStudentState(e.target.value)}
-          />
-        </div>
-
         <div className="form-medicamentos">
           <label>Medicamentos:</label>
           <input
             type="text"
-            value={intDrugs}
-            onChange={(e) => setDrugs(e.target.value)}
-          />
-        </div>
-
-        <div className="form-estudios">
-          <label>Estudios:</label>
-          <input
-            type="text"
-            value={intStudies}
-            onChange={(e) => setStudies(e.target.value)}
-          />
-        </div>
-
-        <div className="form-enfermedades">
-          <label>Enfermedades:</label>
-          <input
-            type="text"
-            value={intDiseases}
-            onChange={(e) => setDiseases(e.target.value)}
-          />
-        </div>
-
-        <div className="form-residencia">
-          <label>Residencia:</label>
-          <input
-            type="text"
-            value={intResidence}
-            onChange={(e) => setResidence(e.target.value)}
+            value={intMedications}
+            onChange={(e) => setMedications(e.target.value)}
           />
         </div>
 
@@ -200,15 +196,6 @@ const StudentFormC = () => {
             type="text"
             value={intPsychologicalDiagnosis}
             onChange={(e) => setPsychologicalDiagnosis(e.target.value)}
-          />
-        </div>
-
-        <div className="form-institucion">
-          <label>ID Institución:</label>
-          <input
-            type="text"
-            value={intInstitutionId}
-            onChange={(e) => setInstitutionId(e.target.value)}
           />
         </div>
 
@@ -223,13 +210,6 @@ const StudentFormC = () => {
 
         <button type="submit">Enviar</button>
       </form>
-
-      <h3>Lista de Estudiantes</h3>
-      <ul>
-        {students.map((student) => (
-          <li key={student.id}>{student.name} {student.lastname}</li>
-        ))}
-      </ul>
     </div>
   );
 };

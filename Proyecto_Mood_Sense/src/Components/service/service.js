@@ -67,6 +67,17 @@ export async function getDatosMeta() {
       
 }
 
+export async function getEmotions() {
+  try {
+    const response = await fetch("http://localhost:3000/emotions");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al obtener las emociones:", error);
+    return [];
+  }
+}
+
 export async function postEmotion(emotion) {
   try {
     const response = await fetch("http://localhost:3000/emotions", {
@@ -82,6 +93,6 @@ export async function postEmotion(emotion) {
       }
     } catch (error) {
       console.error("Error al enviar la emoción al backend:", error);
-      return null;
-    }
-  }        
+      return null;
+    }
+  }

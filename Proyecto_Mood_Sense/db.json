@@ -205,27 +205,30 @@
       "institutionId": "001",
       "role": "Estudiante"
     },
+    
     {
-      "id": 2,
+      "email": "",
+      "password": "",
+      "institucion_id": "002",
+      "id": "54321",
       "name": "María",
-      "lastname": "López",
-      "studentId": "54321",
+      "last_name": "López",
+      "age": null,
+      "student_state": "Inactivo",
       "nationality": "Costarricense",
-      "idNumber": "987654321",
-      "personalContact": "66666666",
-      "familyContact": "55555555",
-      "province": "Alajuela",
-      "canton": "Central",
-      "district": "Alajuela",
-      "studentState": "Inactivo",
-      "drugs": "Paracetamol",
-      "studies": "Medicina",
-      "diseases": "Alergia al polvo",
+      "personal_contact": "66666666",
+      "family_contact": "55555555",
       "residence": "Calle 5, Alajuela",
-      "psychologicalDiagnosis": "Estrés",
-      "institutionId": "002",
-      "role": "Estudiante"
+      "diseases": "Alergia al polvo",
+      "institution_id": "002",
+      "rol": "Estudiante",
+      "province": "Alajuela",
+      "district": "Alajuela",
+      "canton": "Central",
+      "medications": "Paracetamol",
+      "psychological_diagnosis": "Estrés"
     }
+    
   ]
 
 }

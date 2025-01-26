@@ -28,7 +28,7 @@ const RegisterDb = () => {
         if (institutions.length === 0) {
           console.log("No se encontraron instituciones");
         }
-        
+
       } catch (error) {
         console.error("Error al obtener instituciones:", error);
       }
@@ -74,19 +74,19 @@ const RegisterDb = () => {
         name: "",
         last_name: "",
         age: null,
-        student_state: "",
-        nationality: "",
-        personal_contact: "",
-        family_contact: "",
-        residence: "",
-        diseases: "",
+        student_state: null,
+        nationality: null,
+        personal_contact: null,
+        family_contact: null,
+        residence: null,
+        diseases: null,
         institution_id: null,
-        rol: "",
-        province: "",
-        district: "",
-        canton: "",
-        medications: "",
-        psychological_diagnosis: ""
+        rol: null,
+        province: null,
+        district: null,
+        canton: null,
+        medications: null,
+        psychological_diagnosis: null
       });
 
       // Comprobar si la respuesta es correcta
