@@ -6,17 +6,14 @@ import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/Admin";
 import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
-import MoodSense from "../Components/navbar/navbarC";
-import ListaUsuarios from "../Components/Lista de Usuarios/ListaUsuarios";
-
-
+import RegisterDb from "../Components/Register/RegisterDb";
 
 const Routing = () => {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<RegisterDb />} />
         <Route path="/StudentForm" element={<StudentForm />} />
         <Route path="/home" element={<Home />} /> 
         <Route path="/ForemotioP" element={<ForemotioP />} />

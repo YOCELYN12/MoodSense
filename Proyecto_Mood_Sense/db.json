@@ -1,11 +1,4 @@
 {
-  "datosmeta": [
-    {
-      "id": 1,
-      "id_institution": 1,
-      "email": "carloslopez@gmail.com"
-    }
-  ],
   "institution": [
     {
       "id": 1,
@@ -90,10 +83,11 @@
     {
       "id": 3,
       "name": "John Doe",
-      "email": "john.doe@example.com",
+      "email": "javi@gmail.com",
       "user_id": "9a7b89b2-b5d1-4e91-9d5a-5873b74a758f",
       "last_name": "Doe",
       "age": 32,
+      "password": "123",
       "student_state": "Graduated",
       "nationality": "American",
       "personal_contact": "+1 202-555-0143",
@@ -107,6 +101,50 @@
       "canton": "Washington",
       "medications": "None",
       "psychological_diagnosis": "None"
+    },
+    {
+      "id": "360b2f18-9588-4144-8690-7f942b0ae877",
+      "email": "javi@gmail.com",
+      "password": "ssjsjsjs",
+      "institucion_id": "1",
+      "name": "",
+      "last_name": "",
+      "age": null,
+      "student_state": "",
+      "nationality": "",
+      "personal_contact": "",
+      "family_contact": "",
+      "residence": "",
+      "diseases": "",
+      "institution_id": null,
+      "rol": "",
+      "province": "",
+      "district": "",
+      "canton": "",
+      "medications": "",
+      "psychological_diagnosis": ""
+    },
+    {
+      "id": "b727b7b1-4e3e-472b-ad74-37ce536d2a1f",
+      "email": "javi@gmail.com",
+      "password": "dsdss",
+      "institucion_id": "1",
+      "name": "",
+      "last_name": "",
+      "age": null,
+      "student_state": "",
+      "nationality": "",
+      "personal_contact": "",
+      "family_contact": "",
+      "residence": "",
+      "diseases": "",
+      "institution_id": null,
+      "rol": "",
+      "province": "",
+      "district": "",
+      "canton": "",
+      "medications": "",
+      "psychological_diagnosis": ""
     }
   ],
   "emotions": [
@@ -118,50 +156,6 @@
       "main_emotion": 10,
       "details": "Feeling great after completing a project",
       "second_emotion": 5
-    }
-  ],
-  "personalInformatition": [
-    {
-      "id": 1,
-      "name": "Juan",
-      "lastname": "Pérez",
-      "studentId": "12345",
-      "nationality": "Costarricense",
-      "idNumber": "123456789",
-      "personalContact": "88888888",
-      "familyContact": "77777777",
-      "province": "San José",
-      "canton": "Central",
-      "district": "Carmen",
-      "studentState": "Activo",
-      "drugs": "Ninguno",
-      "studies": "Ingeniería Informática",
-      "diseases": "Ninguna",
-      "residence": "Avenida 10, San José",
-      "psychologicalDiagnosis": "Ninguno",
-      "institutionId": "001",
-      "role": "Estudiante"
-    },
-    {
-      "id": 2,
-      "name": "María",
-      "lastname": "López",
-      "studentId": "54321",
-      "nationality": "Costarricense",
-      "idNumber": "987654321",
-      "personalContact": "66666666",
-      "familyContact": "55555555",
-      "province": "Alajuela",
-      "canton": "Central",
-      "district": "Alajuela",
-      "studentState": "Inactivo",
-      "drugs": "Paracetamol",
-      "studies": "Medicina",
-      "diseases": "Alergia al polvo",
-      "residence": "Calle 5, Alajuela",
-      "psychologicalDiagnosis": "Estrés",
-      "institutionId": "002",
-      "role": "Estudiante"
     }
   ]
 }
