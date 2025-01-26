@@ -1,9 +1,30 @@
-.contenedor-img{
-    
+.ContainerLogin {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.ContainerImgLogin {
+  height: 144%;
+  width: 100%;
+}
+.ContainerLoginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  font-family: sans-serif;
 }
 
-.Img-login{
-    width: 50%;
-    height: 100%;
-    
+.InputsLogin {
+  width: 150%;
+  padding: 6%;
+  border-radius: 25px;
+}
+.Login_BTN {
+  background-color: #47288f;
+  color: white;
+  border-radius: 25px;
+  width: 166%;
+  padding: 3%;
+  margin-top: 20%;
 }
