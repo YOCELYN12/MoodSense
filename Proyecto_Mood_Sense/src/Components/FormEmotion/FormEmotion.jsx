@@ -3,6 +3,7 @@ import { postEmotion } from '../service/service';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import Calendario from '../calendario/calendario';
+import NavbarC from '../navbar/navbarC';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -134,7 +135,9 @@ const FormEmotion = () => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', width: '100%' }}>
+    <>
+    <NavbarC/>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', width: '100%', marginTop: '-793px',marginLeft: '105px' }}>
       <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', alignItems: 'flex-start', maxWidth: '1200px', width: '100%', padding: '20px' }}>
         <form onSubmit={handleSubmit} className="emotion-form">
           <h2 style={{ color: '#5E1151', textAlign: 'center' }}>Mis Emociones</h2>
@@ -168,26 +171,29 @@ const FormEmotion = () => {
               <h3 style={{ textAlign: 'center' }}>Distribución de Emociones</h3>
               <Doughnut data={emotionStats} options={{ plugins: { legend: { position: 'bottom' } }, circumference: 180, rotation: -90 }} style={{ width: '250px', height: '250px' }} />
             </div>
-            <div className="details-container" style={{ width: '100%', marginTop: '20px', display: 'flex', justifyContent: 'center' }}>
+            <div className="details-container" style={{ width: '100%', marginTop: '70px', display: 'flex', justifyContent: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center' }}>
                 <label className="details-label" style={{ color: '#000000', fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '8px' }}>
                   Quieres comentarnos el porque?(o si prefieres escribe que no te sientes comodo escribiendolo):
                 </label>
-                <input
-                  type="text"
-                  value={details}
-                  onChange={(e) => setDetails(e.target.value)}
-                  className="details-input"
-                  style={{ border: '2px solid #5F3E99', width: '15rem', height: '5rem', borderRadius: '10px' }}
-                />
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                  <input
+                    type="text"
+                    value={details}
+                    onChange={(e) => setDetails(e.target.value)}
+                    className="details-input"
+                    style={{ border: '2px solid #5F3E99', width: '15rem', height: '5rem', borderRadius: '10px' }}
+                  />
+                  <button type="submit" className="submit-button">Guardar emociones</button>
+                </div>
               </div>
             </div>
           </div>
           {showModal && selectedPrimaryEmotion && (
             <div style={modalStyles.overlay}>
               <div style={modalStyles.content}>
-                <h3 style={{ textAlign: 'center' }}>¿Cuál se acerca más a lo que sientes?</h3>
-                <div style={{ backgroundColor: '#F0EDFA', padding: '15px', borderRadius: '15px', display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+                <h3 style={{ textAlign: 'center', marginTop: '20px' }}>¿Cuál se acerca más a lo que sientes?</h3>
+                <div style={{ backgroundColor: '#F0EDFA', padding: '15px', borderRadius: '15px', display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center', marginTop: '20px' }}>
                   {SECONDARY_EMOTIONS_MAP[selectedPrimaryEmotion].map(option => (
                     <label key={option} className="emotion-label" style={{
                       backgroundColor: 'white',
@@ -196,7 +202,8 @@ const FormEmotion = () => {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '5px',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+                      marginTop: '10px'
                     }}>
                       <input
                         type="checkbox"
@@ -227,13 +234,13 @@ const FormEmotion = () => {
               </div>
             </div>
           )}
-          <button type="submit" className="submit-button" style={{ display: 'block', margin: '20px auto 0' }}>Guardar emociones</button>
         </form>
         <div style={{ marginTop: '180px' }}>
           <Calendario />
         </div>
       </div>
     </div>
+    </>
   );
 };
 

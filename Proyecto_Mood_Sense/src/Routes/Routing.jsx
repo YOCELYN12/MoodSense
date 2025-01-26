@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../Pages/LoginPage/LoginP";
 import Register from "../Pages/RegisterPage/RegisterP";
-import StudentForm from "../Pages/StudentFormPage/StudentFormp";
+import StudentFormC from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/AdminPage/AdminPage.jsx";
 import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
@@ -22,7 +22,7 @@ const Routing = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<RegisterDb />} />
-        <Route path="/StudentForm" element={<StudentForm />} />
+        <Route path="/StudentForm" element={<StudentFormC />} />
         <Route path="/navbar" element={<MoodSense/>} />
         <Route path="/listaUsuarios" element={<ListaUsuarios />} />
         <Route path="/GeneralAdministrative" element={<GeneralAdministrative />} />
