@@ -47,26 +47,15 @@ export async function postInstitution(institution) {
     if (!response.ok) {
       throw new Error(`Error al registrar la institución: ${response.statusText}`);
     }
+
+    const data = await response.json();
+    return data;
     
-    export async function postInstitution(institution) {
-      try {
-        const response = await fetch("http://localhost:3000/institution", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(institution),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error al registrar el usuario: ${response.statusText}`);
-      }
-    } catch (error) {
-      console.error("Error al enviar el usuario al backend:", error);
-      return null;
-    }
+  } catch (error) {
+    console.error("Error al enviar la institución al backend:", error);
+    return null;
   }
-  
+}  
   export async function postUser(user) {
     
       try {

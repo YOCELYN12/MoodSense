@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUser } from '../service/service';
-import "../UserList/UserList.css"; // Asegúrate de importar el CSS
+import "../UserList/UserList.css";
+import NavbarC from '../navbar/navbarC';
 
 const UserTable = () => {
   const [users, setUsers] = useState([]);
@@ -15,6 +16,8 @@ const UserTable = () => {
   }, []);
 
   return (
+    <>
+    <NavbarC/>
     <div id="userTableContainer">
       <h2 id="userTableHeader">Lista de Usuarios</h2>
       <table id="userTable">
@@ -40,6 +43,7 @@ const UserTable = () => {
         </tbody>
       </table>
     </div>
+    </>
   );
 };
 

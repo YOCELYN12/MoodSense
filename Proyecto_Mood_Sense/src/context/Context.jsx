@@ -89,6 +89,10 @@ export const AuthContextProvider = ({ children }) => {
 }
 
   const GetUserTable = async (userId) => {
+
+    try{
+
+    
       const { data, error } = await supabase
         .from('user') // nombre de tu tabla
         .select('*') // selecciona todas las columnas
@@ -119,7 +123,8 @@ export const AuthContextProvider = ({ children }) => {
       console.error("Error al enviar el usuario al backend:", error);
       return null;
     }
-  };
+  }
+
 
 return (
   <AuthContext.Provider
@@ -127,9 +132,10 @@ return (
   >
     {children}
   </AuthContext.Provider>
-);
+)
 
-};
+
+}
 
 export const UserAuth = () => {
   return useContext(AuthContext);
