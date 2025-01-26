@@ -5,6 +5,7 @@ import Register from "../Pages/RegisterPage/RegisterP";
 import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/Admin";
 import Home from "../Pages/home/Home";
+import ForemotioP from "../Pages/FormEmotion/ForemotioP";
 
 
 
