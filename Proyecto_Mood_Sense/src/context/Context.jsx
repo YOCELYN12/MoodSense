@@ -145,6 +145,21 @@ export const AuthContextProvider = ({ children }) => {
   };
 
 
+  const GetEmotionTable = async (userId) => {
+    const { data, error } = await supabase
+      .from('user') // nombre de tu tabla
+      .select('*') // selecciona todas las columnas
+      .eq('id', userId) // condicionante, en este caso 'id'
+      .single(); // Devuelve un único registro
+  
+    if (error) {
+      console.error("Error:", error);
+    } else {
+      console.log("User data:", data);
+    }
+  
+}
+
   const GetUserTable = async (userId) => {
       const { data, error } = await supabase
         .from('user') // nombre de tu tabla
@@ -221,7 +236,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut, GetUserTable }}
+      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut, GetUserTable, UpdateTableUsers, GetEmotionTable }}
     >
       {children}
     </AuthContext.Provider>
