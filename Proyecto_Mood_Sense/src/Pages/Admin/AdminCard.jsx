@@ -33,14 +33,22 @@ const AlertCard = () => {
       style={{
         backgroundColor: "#E9D5FF", // Color de fondo lavanda claro
         borderRadius: "16px", // Bordes redondeados
-        padding: "16px", // Espaciado interno
+        padding: "20px", // Espaciado interno
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Sombra
         width: "320px", // Ancho fijo
       }}
     >
       {/* Encabezado */}
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "16px" }}>
-        <h2 style={{ fontSize: "18px", fontWeight: "bold", color: "#000" }}>Alertas</h2>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "16px",
+        }}
+      >
+        <h2 style={{ fontSize: "18px", fontWeight: "bold", color: "#000" }}>
+          Alertas
+        </h2>
         <button
           style={{
             backgroundColor: "#FFFFFF",
@@ -72,14 +80,32 @@ const AlertCard = () => {
               <img
                 src={alert.image}
                 alt={alert.title}
-                style={{ width: "48px", height: "48px", borderRadius: "8px", objectFit: "cover" }}
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "8px",
+                  objectFit: "cover",
+                }}
               />
-              <p style={{ marginLeft: "12px", fontSize: "14px", fontWeight: "500", color: "#4B5563" }}>
+              <p
+                style={{
+                  marginLeft: "12px",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                  color: "#4B5563",
+                }}
+              >
                 {alert.title}
               </p>
             </div>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <span style={{ fontSize: "14px", fontWeight: "bold", color: "#F59E0B" }}>
+              <span
+                style={{
+                  fontSize: "14px",
+                  fontWeight: "bold",
+                  color: "#F59E0B",
+                }}
+              >
                 {alert.percentage}
               </span>
               <span style={{ marginLeft: "4px", color: "#F59E0B" }}>🔼</span>

@@ -9,7 +9,6 @@ const Header = () => {
         justifyContent: "space-between",
         backgroundColor: "#6B46C1", // Fondo morado
         padding: "16px 24px",
-        borderRadius: "8px", // Bordes redondeados
       }}
     >
       {/* Barra de búsqueda */}

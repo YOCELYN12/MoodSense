@@ -12,7 +12,7 @@ const NavbarAdministrative = () => {
     }}>
       <List sx={{
         border: '2px solid #AE9EE4',
-        height: '100vh',
+        height: '97vh',
         width: '250px',
         boxShadow: '0px 0px 10px rgba(174, 158, 228, 0.3)',
         backgroundColor: '#AE9EE4',

@@ -1,0 +1,26 @@
+.AdminPage {
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.AdminPage-NavFilter {
+  width: 100%;
+}
+.AdminPage-GeneralAdministrative {
+  display: grid;
+  grid-template-columns: 64% 36%;
+}
+
+.AdminPage-AdminGauche {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AdminPage-Thirdpiece {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+.AdminPage-GeneralAdministrative-General {
+  height: 80%;
+}
