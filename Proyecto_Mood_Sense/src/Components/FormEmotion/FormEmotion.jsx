@@ -73,7 +73,6 @@ const FormEmotion = () => {
         details,
         second_emotion: Object.entries(secondaryEmotions).find(([_, emotion]) => emotion.checked)?.[0] || null
       }));
-<<<<<<< HEAD
 
     if (selectedEmotions.length > 0) {
       try {
@@ -239,78 +238,6 @@ const FormEmotion = () => {
 
           </div>
         </div>
-=======
-      if (selectedEmotions.length > 0) {
-        try {
-          const response = await postEmotion(selectedEmotions);
-          if (response.error) throw response.error;
-          
-          setEmotions(prevEmotions => {
-            const resetEmotions = {};
-            Object.keys(prevEmotions).forEach(key => {
-              resetEmotions[key] = { ...prevEmotions[key], checked: false };
-            });
-            return resetEmotions;
-          });
-        } catch (error) {
-          console.error('Error inserting emotions:', error);
-        }
-      }
-    };
-  
-    return (
-      <form onSubmit={handleSubmit} className="emotion-form">
-        <h2>¿Qué emociones estás sintiendo?</h2>
-        <div className="emotions-container">
-          <label className="emotion-label">
-            <input
-              type="checkbox"
-              checked={emotions.happiness.checked}
-              onChange={() => handleEmotionChange('happiness')}
-              />
-              Felicidad (+10)
-            </label>
-            <label className="emotion-label">
-              <input
-                type="checkbox"
-                checked={emotions.sadness.checked}
-                onChange={() => handleEmotionChange('sadness')}
-              />
-              Tristeza (-8)
-            </label>
-            <label className="emotion-label">
-            <input
-            type="checkbox"
-            checked={emotions.anger.checked}
-            onChange={() => handleEmotionChange('anger')}
-          />
-          Ira (-6)
-        </label>
-        <label className="emotion-label">
-        <input
-            type="checkbox"
-            checked={emotions.fear.checked}
-            onChange={() => handleEmotionChange('fear')}
-          />
-          Miedo (-7)
-        </label>
-        <label className="emotion-label">
-          <input
-            type="checkbox"
-            checked={emotions.disgust.checked}
-            onChange={() => handleEmotionChange('disgust')}
-          />
-          Asco (-5)
-        </label>
-        <label className="emotion-label">
-          <input
-            type="checkbox"
-            checked={emotions.surprise.checked}
-            onChange={() => handleEmotionChange('surprise')}
-          />
-          Sorpresa (0)
-        </label>
->>>>>>> 69165881ed499f65a556af46bbeb09f63d611b0f
       </div>
 
       <SecondaryEmotionsModal />
