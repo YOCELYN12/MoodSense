@@ -143,6 +143,8 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  
+
 
   const GetUserTable = async (userId) => {
       const { data, error } = await supabase
@@ -220,6 +222,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
+      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut }}
       value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut, GetUserTable }}
     >
       {children}
