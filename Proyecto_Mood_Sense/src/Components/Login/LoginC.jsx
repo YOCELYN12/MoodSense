@@ -13,11 +13,11 @@ const LoginC = () => {
 
   const Log_In = async (e) => {
     e.preventDefault();
+
+    
     try {
       const userInfo = await getUsers();
       const userExists = userInfo.some((user) => user.email === correo);
-
- 
       
       if (!userExists) {
         Swal.fire({
@@ -28,7 +28,7 @@ const LoginC = () => {
         setStatus("Ese correo no existe");
         return;
       }else{
-        await userActive(correo, contrasena );
+        await userActive(correo, contrasena);
          setStatus("Ingreso exitoso");
         navigate("/StudentForm");
       }

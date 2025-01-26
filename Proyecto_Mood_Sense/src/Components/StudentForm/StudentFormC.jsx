@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import supabase from "../../supabase/Supabase";
 import "./StudentFormcc.css";
 import { UserAuth } from "../../context/Context";
 
 const StudentFormC = () => {
-  const { UpdateTableUsers, user } = UserAuth();
-
-  console.log(user);
+  const { UpdateTableUsers } = UserAuth();
   
 
   const [formData, setFormData] = useState({
