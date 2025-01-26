@@ -52,7 +52,7 @@
       "residence": "Calle Mayor, 45, Madrid",
       "diseases": "None",
       "institution_id": "4a7f27b9-b8e9-4673-8d76-2a97e6e54db3",
-      "rol": "Student",
+      "rol": "student",
       "province": "Madrid",
       "district": "Centro",
       "canton": "Madrid",
@@ -73,7 +73,7 @@
       "residence": "Av. Reforma, 100, CDMX",
       "diseases": "Asthma",
       "institution_id": "a2b78a2f-0d7b-4877-8b56-06bca05e3a58",
-      "rol": "Student",
+      "rol": "student",
       "province": "CDMX",
       "district": "Polanco",
       "canton": "Miguel Hidalgo",
@@ -95,7 +95,7 @@
       "residence": "123 Main St, Washington, DC",
       "diseases": "None",
       "institution_id": "fd30abfa-8cd0-4c80-bcbf-3b9d6e6cbb44",
-      "rol": "Graduate",
+      "rol": "student",
       "province": "District of Columbia",
       "district": "Downtown",
       "canton": "Washington",
@@ -134,6 +134,53 @@
       },
       "id": "d125"
     }
+  ],
+  "personalInformatition": [
+    {
+      "id": 1,
+      "name": "Juan",
+      "lastname": "Pérez",
+      "studentId": "12345",
+      "nationality": "Costarricense",
+      "idNumber": "123456789",
+      "personalContact": "88888888",
+      "familyContact": "77777777",
+      "province": "San José",
+      "canton": "Central",
+      "district": "Carmen",
+      "studentState": "Activo",
+      "drugs": "Ninguno",
+      "studies": "Ingeniería Informática",
+      "diseases": "Ninguna",
+      "residence": "Avenida 10, San José",
+      "psychologicalDiagnosis": "Ninguno",
+      "institutionId": "001",
+      "role": "Estudiante"
+    },
+    
+    {
+      "email": "",
+      "password": "",
+      "institucion_id": "002",
+      "id": "54321",
+      "name": "María",
+      "last_name": "López",
+      "age": null,
+      "student_state": "Inactivo",
+      "nationality": "Costarricense",
+      "personal_contact": "66666666",
+      "family_contact": "55555555",
+      "residence": "Calle 5, Alajuela",
+      "diseases": "Alergia al polvo",
+      "institution_id": "002",
+      "rol": "Estudiante",
+      "province": "Alajuela",
+      "district": "Alajuela",
+      "canton": "Central",
+      "medications": "Paracetamol",
+      "psychological_diagnosis": "Estrés"
+    }
+    
   ]
    
 }

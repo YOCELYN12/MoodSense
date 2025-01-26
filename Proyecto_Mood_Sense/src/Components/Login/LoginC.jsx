@@ -9,15 +9,15 @@ const LoginC = () => {
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [Status, setStatus] = useState(false);
-  const { getUsers, userActive } = UserAuth();
+  const {getUsers, userActive} = UserAuth();
 
   const Log_In = async (e) => {
     e.preventDefault();
+
+    
     try {
       const userInfo = await getUsers();
       const userExists = userInfo.some((user) => user.email === correo);
-
- 
       
       if (!userExists) {
         Swal.fire({
@@ -28,9 +28,17 @@ const LoginC = () => {
         setStatus("Ese correo no existe");
         return;
       }else{
-        await userActive(correo, contrasena );
+        await userActive(correo, contrasena);
          setStatus("Ingreso exitoso");
-        navigate("/StudentForm");
+         navigate("/StudentForm");
+         console.log(correo);
+         const usuarioFiltrado = userInfo.filter((usuario)=>usuario.email === correo);
+         localStorage.setItem("usuarioId",usuarioFiltrado[0].id);
+         localStorage.setItem("usuarioRol",usuarioFiltrado[0].rol);
+         localStorage.setItem("usuarioNombre",usuarioFiltrado[0].name);
+         localStorage.setItem("usuarioApellido",usuarioFiltrado[0].last_name);
+         localStorage.setItem("usuarioEmail",usuarioFiltrado[0].email);
+         
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);

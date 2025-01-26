@@ -13,6 +13,7 @@ const MoodSense = () => {
       <List sx={{
         border: '2px solid #AE9EE4',  // Changed border color
         height: '100vh',
+        position: 'absolute',
         width: '250px',
         boxShadow: '0px 0px 10px rgba(174, 158, 228, 0.3)',  // Changed shadow color
         backgroundColor: '#AE9EE4',  // Added background color
@@ -28,7 +29,7 @@ const MoodSense = () => {
           padding: '20px',
           '@media (max-width: 600px)': {
             fontSize: '1.1rem',
-            fontFamily: 'fredoka-one-regular, sans-serif',
+            fontFamily: 'Arial, sans-serif',
             padding: '15px'
           }
         }}>

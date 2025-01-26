@@ -113,3 +113,47 @@ export async function postEmotion(emotion) {
       return null;
     }
   }
+
+
+  // Función para hacer la solicitud PATCH
+async function actualizarDatos(data,id) {
+  try {
+    const response = await fetch("http://localhost:3000/users/" + id, {
+      method: 'PATCH', // Método PATCH
+      headers: {
+        'Content-Type': 'application/json', // Indica que los datos están en formato JSON
+      },
+      body: JSON.stringify(data), // Convierte el objeto en una cadena JSON
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status}`);
+    }
+
+    const resultado = await response.json();
+    console.log('Datos actualizados exitosamente:', resultado);
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+  }
+}
+export {actualizarDatos}
+
+const PostStudent = async (studentData) => {
+  try {
+    const response = await fetch("http://localhost:3000/students", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(studentData),
+    });
+    const result = await response.json();
+    console.log("Estudiante agregado:", result);
+    return result;
+  } catch (error) {
+    console.error("Error al enviar los datos:", error);
+  }
+};
+export {PostStudent}
+
+// Llamar a la función
