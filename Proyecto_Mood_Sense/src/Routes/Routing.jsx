@@ -4,6 +4,7 @@ import Login from "../Pages/LoginPage/LoginP";
 import Register from "../Pages/RegisterPage/RegisterP";
 import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Home from "../Pages/home/Home";
+import ForemotioP from "../Pages/FormEmotion/ForemotioP";
 
 
 

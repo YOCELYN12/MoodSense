@@ -1,72 +1,80 @@
+// Importación de dependencias necesarias: React, hooks, estilos, SweetAlert2 y cliente Supabase
 import React, { useState, useEffect } from "react";
 import "../Register/Register.css";
 import Swal from "sweetalert2";
-import { getInstitution, postDatosMetadata, postUser,  } from "../service/service";
+import supabase from "../../supabase/Supabase";
 
 const RegisterC = () => {
+  // Estados para manejar el correo, contraseña e institución seleccionada
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [instituciones, setInstituciones] = useState([]);
   const [institucionId, setInstitucionId] = useState("");
 
-  // Efecto que se ejecuta al montar el componente para obtener la lista de instituciones
-  useEffect(() => {
-    const fetchInstituciones = async () => {
-      try {
-        const response = await getInstitution();
-        const data = await response.json();
-        setInstituciones(data);
-      } catch (error) {
-        console.error("Error al obtener instituciones:", error);
-      }
-    };
-    fetchInstituciones();
-  }, []);
 
   // Función para validar y registrar un nuevo usuario
   const ValidateUser = async () => {
+
+    console.log(institucionId);
+    
+    // Validación de campos vacíos
     if (correo.trim() === "" || contrasena.trim() === "" || !institucionId) {
       Swal.fire("Necesitas llenar todos los campos");
       return;
     }
-
     try {
-      // Crear nuevo usuario en la "base de datos"
-      const newUser = {
+      // Registra el nuevo usuario en auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
         email: correo,
         password: contrasena,
-        id_institution: institucionId,
-      };
+      });
+      
+      if (authError) throw authError;
 
-      // Realiza la solicitud POST para agregar al nuevo usuario
-      const response = await postUser(newUser);
-      const data = await response.json();
-
-      if (data) {
-        Swal.fire("Usuario registrado exitosamente");
-      } else {
-        Swal.fire("Hubo un error al registrar el usuario");
+      if (authData) {
+        // Guarda la información adicional en la tabla users
+        const { error: userError } = await supabase
+        .from('datosmeta')
+        .insert([
+          {
+            email: correo,
+            id_institution: institucionId
+          }
+        ]);
       }
+
+      if (userError) throw userError;
+      
+
+      Swal.fire("Usuario registrado exitosamente");
     } catch (error) {
-      Swal.fire("Error al registrar usuario");
+      Swal.fire("Error al registrar usuario o ya hay un usuario con esta cuenta");
       console.error(error);
     }
   };
 
+  
+  // Renderizado del formulario de registro
   return (
     <div>
       <h1>Registro</h1>
       <span>Correo</span>
       <input
-        onChange={(e) => setCorreo(e.target.value)}
+        onChange={(e) => {
+          setCorreo(e.target.value);
+        }}
         type="email"
+        name=""
         id="email"
         placeholder="Ingrese su correo"
       />
       <span>Contraseña</span>
       <input
-        onChange={(e) => setContrasena(e.target.value)}
+        onChange={(e) => {
+          setContrasena(e.target.value);
+        }}
         type="password"
+        name=""
         id="password"
         placeholder="Ingrese su contraseña"
       />
