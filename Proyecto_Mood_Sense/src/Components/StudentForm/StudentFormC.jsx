@@ -4,18 +4,58 @@ import "./StudentFormcc.css";
 import { UserAuth } from "../../context/Context";
 
 const StudentFormC = () => {
-  
-  
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [idEstudiante, setIdEstudiante] = useState("");
+  const [nacionalidad, setNacionalidad] = useState("");
+  const [numerodeIdentificacion, setnumeroIdentificacion] = useState("");
+  const [contactoPersonal, setContactoPersonal] = useState("");
+  const [contactoFamiliar, setContactoFamiliar] = useState("");
+  const [provincia, setProvincia] = useState("");
+  const [canton, setCanton] = useState("");
+  const [distrito, setDistrito] = useState("");
+  const [estadoEstudiante, setEstadoEstudiante] = useState("");
+  const [medicamentos, setMedicamentos] = useState(""); 
+  const [estudios, setEstudios] = useState("");
+  const [enfermedades, setEnfermedades] = useState("");
+  const [residencia, setResidecia] = useState("");
+  const [diagnosticoPsicológico, setDiagnosticoPsicológico] = useState("");
+  const [idInstitucion, setIdInstitucion] = useState("");
+  const [rol, setRol] = useState("");
 
+  
   return (
     <div>
       <h2>Formulario del Perfil</h2>
       <form  className="student-form">
+      <div className="form-nombre">
+          <label className="id">Nombre:</label>
+          <input
+            className="input-id"
+            type="text"
+            id="Nombre"
+            name="student_id"
+           
+          />
+        </div>
+
+        <div className="form-Apellido">
+          <label className="id">Apellido:</label>
+          <input
+            className="input-id"
+            type="text"
+            id="from-Apellido"
+            name="student_id"
+          />
+        </div>
+
+
         <div className="form-id">
           <label className="id">ID Estudiante:</label>
           <input
             className="input-id"
             type="text"
+            id="idEstudiante"
             name="student_id"
            
           />
