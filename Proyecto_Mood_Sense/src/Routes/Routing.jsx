@@ -7,7 +7,8 @@ import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
 import MoodSense from "../Components/navbar/navbarC";
 import ListaUsuarios from "../Components/Lista de Usuarios/ListaUsuarios";
-
+import GeneralAdministrative from "../Components/Administrativa/GeneralAdministrative";
+import NavbarAdministrative from "../Components/NavbarAdministrative/NavbarAdministrative";
 
 
 const Routing = () => {
@@ -19,6 +20,8 @@ const Routing = () => {
         <Route path="/StudentForm" element={<StudentForm />} />
         <Route path="/navbar" element={<MoodSense/>} />
         <Route path="/listaUsuarios" element={<ListaUsuarios />} />
+        <Route path="/GeneralAdministrative" element={<GeneralAdministrative />} />
+        <Route path="/NavbarAdministrative" element={<NavbarAdministrative />} />
         <Route path="/home" element={<Home />} /> 
       </Routes>
     </div>

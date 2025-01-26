@@ -106,5 +106,4 @@ async function getDatosMeta() {
   //     console.error("Error al enviar el usuario al backend:", error);
   //     return null;
   //   }
-  // }
-
+  // }  
