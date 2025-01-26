@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./StudentFormcc.css";
-import { PostStudent } from "../service/service"; // Importamos la función de POST
+import {PostStudent} from "../service/service";
 
 const StudentFormC = () => {
   const [intEmail, setEmail] = useState([]);
@@ -25,7 +25,6 @@ const StudentFormC = () => {
   // Función para manejar el envío del formulario (POST)
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newStudent = {
       email: intEmail,
       password: intPassword,
@@ -48,7 +47,7 @@ const StudentFormC = () => {
       rol: intRole,
     };
 
-    const result = await PostStudent(newStudent);
+    const result = await PostStudent(newStudent); // Yos, acá hay que cambiar el export, la función no existe
   };
 
   return (

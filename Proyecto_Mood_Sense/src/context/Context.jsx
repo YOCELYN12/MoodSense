@@ -1,28 +1,32 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
-import { useNavigate } from "react-router-dom";
-import supabase from "../supabase/Supabase";
-import Cookies from "js-cookie";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [objPerfil, setPerfil] = useState([]);
-  const navigate = useNavigate();
-  const [Loading, setLoading] = useState();
+  const [Loading, setLoading] = useState(false);
   const [Rol, setRol] = useState();
-  const [Status, setStatus] = useState(false);
 
   //Responsable de verificar si el usuario esta activo.
   const userActive = (email, correo, id_institution) => {
+    
     const metadata = [{
       "email": email,
       "password": correo,
       "id_institution": id_institution,
     }];
     //Setea al usuario activo, en el contexto
+    localStorage.setItem('user_email', email);
     setUser(metadata);
+  };
+
+  //Trae los datos del usuario activo en la app.
+  const getUserLogin = async () => {
+    const email = localStorage.getItem('user_email');
+    const response = await fetch(`http://localhost:3000/users?email=${email}`);
+    const data = await response.json();
+    return {data: data};
   };
 
   const getInstitution = async () => {
@@ -54,6 +58,7 @@ export const AuthContextProvider = ({ children }) => {
 
   
 
+  //Validacion de correo
   const validateEmail = async (email) => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -61,9 +66,6 @@ export const AuthContextProvider = ({ children }) => {
 
       // Verifica si el correo ya existe en la base de datos
       const emailExists = data.some((user) => user.email === email);
-
-      console.log(emailExists);
-      
 
       // Retorna true si el correo no existe (es válido para usar)
       // Retorna false si el correo ya existe
@@ -74,7 +76,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  
 
   const postUser = async (user) => {
 
@@ -110,7 +111,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, getInstitution, postUser, Status, getUsers, userActive }}>
+    <AuthContext.Provider value={{ getInstitution, postUser, Loading, getUsers, userActive, getUserLogin }}>
       {children}
     </AuthContext.Provider>
   );
