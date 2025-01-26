@@ -1,12 +1,11 @@
 export async function getDatosMeta() {
-    try {
-      const response = await fetch("http://localhost:3000/datosmeta");
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error al obtener el usuario:", error);
-      return [];
-    }
+  try {
+    const response = await fetch("http://localhost:3000/datosmeta");
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al obtener el usuario:", error);
+    return [];
   }
     
     export async function getInstitution() {

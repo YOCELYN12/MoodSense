@@ -77,7 +77,7 @@ const RegisterC = () => {
         <h1>Registro</h1>
         <div className="ContainerInputs1">
           <p>Correo</p>
-          <input className="Inputs" 
+          <input
             onChange={(e) => {
               setCorreo(e.target.value);
             }}
@@ -89,7 +89,7 @@ const RegisterC = () => {
         </div>
         <div className="ContainerInputs1">
           <p>Contraseña</p>
-          <input className="Inputs"
+          <input
             onChange={(e) => {
               setContrasena(e.target.value);
             }}
@@ -128,3 +128,4 @@ const RegisterC = () => {
 };
 
 export default RegisterC;
+

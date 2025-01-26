@@ -16,11 +16,13 @@ export const AuthContextProvider = ({ children }) => {
 
   //Responsable de verificar si el usuario esta activo.
   const userActive = (email, correo, id_institution) => {
-    const metadata = [{
-      "email": email,
-      "password": correo,
-      "id_institution": id_institution,
-    }];
+    const metadata = [
+      {
+        email: email,
+        password: correo,
+        id_institution: id_institution,
+      },
+    ];
     //Setea al usuario activo, en el contexto
     setUser(metadata);
   };
@@ -38,7 +40,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -52,8 +53,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  
-
   const validateEmail = async (email) => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -63,7 +62,6 @@ export const AuthContextProvider = ({ children }) => {
       const emailExists = data.some((user) => user.email === email);
 
       console.log(emailExists);
-      
 
       // Retorna true si el correo no existe (es válido para usar)
       // Retorna false si el correo ya existe
@@ -74,12 +72,9 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  
-
   const postUser = async (user) => {
-
     console.log(user.email);
-    
+
     try {
       const valid = validateEmail(user.email);
       if (!valid) {

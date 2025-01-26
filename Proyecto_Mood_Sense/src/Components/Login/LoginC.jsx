@@ -36,6 +36,7 @@ const LoginC = () => {
       console.error("Error al iniciar sesión:", error);
     }
   };
+
   return (
     <div className="ContainerLogin">
       <div className="ContainerLoginForm">
@@ -81,6 +82,7 @@ const LoginC = () => {
       </div>
 
       {Status && <div>{Status}</div>}
+      
     </div>
   );
 };
