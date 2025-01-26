@@ -1,6 +1,8 @@
 
 
-async function getDatosMeta() {
+
+
+export async function getDatosMeta() {
     try {
       const response = await fetch("http://localhost:3000/datosmeta");
       const data = await response.json();
@@ -11,7 +13,7 @@ async function getDatosMeta() {
     }
   }
 
-  async function postDatosMetadata(data) {
+ export async function postDatosMetadata(data) {
     try {
   
       const response = await fetch("http://localhost:3000/datosmeta", {
@@ -32,7 +34,7 @@ async function getDatosMeta() {
     }
   }
 
-  async function getInstitution() {
+  export async function getInstitution() {
     try {
       const response = await fetch("http://localhost:3000/institution");
       const data = await response.json();
@@ -44,7 +46,7 @@ async function getDatosMeta() {
   }
 
 
-  async function postInstitution(institution) {
+  export async function postInstitution(institution) {
     try {
   
       const response = await fetch("http://localhost:3000/institution", {
@@ -66,7 +68,7 @@ async function getDatosMeta() {
   }
 
 
-  async function postUser(user) {
+  export async function postUser(user) {
     try {
   
       const response = await fetch("http://localhost:3000/users", {
@@ -87,7 +89,7 @@ async function getDatosMeta() {
     }
   }
 
-  async function postUser(user) {
+  export async function postUser(user) {
     try {
   
       const response = await fetch("http://localhost:3000/users", {
