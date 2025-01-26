@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { List, ListItem, ListItemText, Divider, Typography, Box } from '@mui/material';
 
-const MoodSense = () => {
+const NavbarAdministrative = () => {
   return (
     <Box sx={{
       display: 'flex',
@@ -11,12 +11,11 @@ const MoodSense = () => {
       }
     }}>
       <List sx={{
-        border: '2px solid #AE9EE4',  // Changed border color
+        border: '2px solid #AE9EE4',
         height: '100vh',
-        position: 'absolute',
         width: '250px',
-        boxShadow: '0px 0px 10px rgba(174, 158, 228, 0.3)',  // Changed shadow color
-        backgroundColor: '#AE9EE4',  // Added background color
+        boxShadow: '0px 0px 10px rgba(174, 158, 228, 0.3)',
+        backgroundColor: '#AE9EE4',
         '@media (max-width: 600px)': {
           width: '100%',
           height: 'auto',
@@ -25,31 +24,19 @@ const MoodSense = () => {
       }}>
         <Typography variant="h6" sx={{
           textAlign: 'center',
-          color: '#5E1151',  // Changed text color to white for better contrast
+          color: '#FFFFF',
           padding: '20px',
           '@media (max-width: 600px)': {
             fontSize: '1.1rem',
-            fontFamily: 'Arial, sans-serif',
+            fontFamily: 'fredoka-one-regular, sans-serif',
             padding: '15px'
           }
         }}>
-          MoodSense
         </Typography>
-        <Divider sx={{ backgroundColor: '#FFFFFF' }} />
-        <Typography variant="h6" sx={{
-          textAlign: 'center',
-          color: '#5E1151',  // Changed text color
-          padding: '20px',
-          '@media (max-width: 600px)': {
-            fontSize: '1.1rem',
-            padding: '10px'
-          }
-        }}>
-          Menu
-        </Typography>
-        <ListItem button>
-          <ListItemText primary="Lista de Estudiantes" sx={{
-            color: '#5E1151',  // Changed text color
+
+        <ListItem button component={Link} to="/graficas-emociones">
+          <ListItemText primary="Gráficas Emociones" sx={{
+            color: '#FFFFFF',
             '@media (max-width: 600px)': {
               '& .MuiTypography-root': {
                 fontSize: '0.9rem'
@@ -58,9 +45,9 @@ const MoodSense = () => {
           }} />
         </ListItem>
         <Divider sx={{ backgroundColor: '#FFFFFF' }} />
-        <ListItem button component={Link} to="/mis-emociones">
-          <ListItemText primary="Mis Emociones" sx={{
-            color: '#5E1151',  // Changed text color
+        <ListItem button component={Link} to="/emociones-por-grupos">
+          <ListItemText primary="Emociones por Grupos" sx={{
+            color: '#FFFFFF',
             '@media (max-width: 600px)': {
               '& .MuiTypography-root': {
                 fontSize: '0.9rem'
@@ -69,9 +56,20 @@ const MoodSense = () => {
           }} />
         </ListItem>
         <Divider sx={{ backgroundColor: '#FFFFFF' }} />
-        <ListItem button component={Link} to="/studentform">
-          <ListItemText primary="Formulario de Perfil" sx={{
-            color: '#5E1151',  // Changed text color
+        <ListItem button component={Link} to="/emociones-estudiantes">
+          <ListItemText primary="Emociones Estudiantes" sx={{
+            color: '#FFFFFF',
+            '@media (max-width: 600px)': {
+              '& .MuiTypography-root': {
+                fontSize: '0.9rem'
+              }
+            }
+          }} />
+        </ListItem>
+        <Divider sx={{ backgroundColor: '#FFFFFF' }} />
+        <ListItem button component={Link} to="/profile">
+          <ListItemText primary="Perfil" sx={{
+            color: '#FFFFFF',
             '@media (max-width: 600px)': {
               '& .MuiTypography-root': {
                 fontSize: '0.9rem'
@@ -85,4 +83,4 @@ const MoodSense = () => {
   );
 };
 
-export default MoodSense;
+export default NavbarAdministrative;

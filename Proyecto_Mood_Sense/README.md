@@ -9,6 +9,9 @@ npm i sweetalert2
 npm i -g json-server
 npm i react-lucide
 npm install uuid
+npm install chart.js react-chartjs-2
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+
 
 
 - Iniciar el db json:

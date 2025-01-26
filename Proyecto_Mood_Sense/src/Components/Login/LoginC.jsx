@@ -39,6 +39,15 @@ const LoginC = () => {
         await userActive(correo, contrasena); //Activa al usuario
         setStatus("Ingreso exitoso");
         navigate("/Home");
+        console.log(correo);
+        const usuarioFiltrado = userInfo.filter(
+          (usuario) => usuario.email === correo
+        );
+        localStorage.setItem("usuarioId", usuarioFiltrado[0].id);
+        localStorage.setItem("usuarioRol", usuarioFiltrado[0].rol);
+        localStorage.setItem("usuarioNombre", usuarioFiltrado[0].name);
+        localStorage.setItem("usuarioApellido", usuarioFiltrado[0].last_name);
+        localStorage.setItem("usuarioEmail", usuarioFiltrado[0].email);
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
