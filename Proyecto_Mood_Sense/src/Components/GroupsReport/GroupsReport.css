@@ -1,0 +1,104 @@
+/* Colores principales y secundarios */
+:root {
+    --primary-color: #AE9EE4;
+    --secondary-color: #5F3E99;
+    --white-color: #FFFFFF;
+  }
+  
+  /* Estilos generales */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Encabezados */
+  #GroupH1, #GroupH2, #GroupH3, #GroupH4, #GroupH5, #GroupH6 {
+    color: var(--primary-color);
+  }
+  
+  /* Enlaces */
+  #GroupLink {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  
+  #GroupLink:hover {
+    text-decoration: underline;
+  }
+  
+  /* Botones */
+  #buttonGroup {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  #buttonGroup:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  /* Contenedor principal */
+  #mainContainerGroup {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--white-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Tablas */
+  #dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  #dataTable, #tableHeader, #tableData {
+    border: 1px solid var(--secondary-color);
+  }
+  
+  #tableHeader, #tableData {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  #tableHeader {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
+  
+  #tableRowEven {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+  }
+  
+  #tableRowOdd {
+    background-color: var(--white-color);
+    color: var(--secondary-color);
+  }
+  
+  /* Formularios */
+  #inputText, #inputNumber, #inputEmail, #selectInput {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--secondary-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  #inputText:focus, #inputNumber:focus, #inputEmail:focus, #selectInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+  }
+  
