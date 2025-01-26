@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
   import supabase from '../../supabase/Supabase';
   import '../StudentForm/StudentFormC.css';
-  const StudentFormC = () => {
+  const StudentFormC = () => {  
+    const moha = 23
     const [formData, setFormData] = useState({
       entry_date: '',
       name: '',
