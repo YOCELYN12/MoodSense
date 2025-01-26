@@ -1,10 +1,10 @@
 export async function getDatosMeta() {
   try {
-    const response = await fetch("http://localhost:3000/datosmeta");
+    const response = await fetch('http://localhost:3000/datosmeta');
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error("Error al obtener el usuario:", error);
+    console.error('Error al obtener el usuario:', error);
     return [];
   }
 }
@@ -80,10 +80,10 @@ export async function getEmotions() {
 
 export async function postEmotion(emotion) {
   try {
-    const response = await fetch("http://localhost:3000/emotions", {
-      method: "POST",
+    const response = await fetch('http://localhost:3000/emotions', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(emotion),
     });

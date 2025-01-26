@@ -1,30 +1,41 @@
 import React, { useState, useEffect } from "react";
 import "./StudentFormcc.css";
-
-// Importamos la función de POST
+import { UserAuth } from "../../context/Context";
 
 const StudentFormC = () => {
-  const [intName, setName] = useState("");
-  const [intLastname, setLastName] = useState("");
-  const [intStudentId, setStudentId] = useState("");
-  const [intNationality, setNationality] = useState("");
-  const [intIdNumber, setIdNumber] = useState("");
-  const [intPersonalContact, setPersonalContact] = useState("");
-  const [intFamilyContact, setFamilyContact] = useState("");
-  const [intProvince, setProvince] = useState("");
-  const [intCanton, setCanton] = useState("");
-  const [intDistrict, setDistrict] = useState("");
-  const [intStudentState, setStudentState] = useState("");
-  const [intDrugs, setDrugs] = useState("");
-  const [intStudies, setStudies] = useState("");
-  const [intDiseases, setDiseases] = useState("");
-  const [intResidence, setResidence] = useState("");
-  const [intPsychologicalDiagnosis, setPsychologicalDiagnosis] = useState("");
-  const [intInstitutionId, setInstitutionId] = useState("");
-  const [intRole, setRole] = useState("");
-  const [students, setStudents] = useState([]); // Para almacenar los estudiantes obtenidos con GET
+  const { UpdateTableUsers, user } = UserAuth();
 
-  // Función para manejar el envío del formulario (POST)
+  const [formData, setFormData] = useState({
+    name: "",
+    last_name: "",
+    age: "",
+    student_id: "",
+    nationality: "",
+    id_number: "",
+    personal_contact: "",
+    family_contact: "",
+    province: "",
+    canton: "",
+    student_state: "",
+    medications: "",
+    district: "",
+    studies: "",
+    diseases: "",
+    residence: "",
+    psychological_diagnosis: "",
+    institution_id: "",
+    rol: "",
+    province: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

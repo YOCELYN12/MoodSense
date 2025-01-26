@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import supabase from "../supabase/Supabase";
 import Cookies from "js-cookie";
 
+
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -72,14 +73,31 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const postUser = async (user) => {
-    console.log(user.email);
 
-    try {
-      const valid = validateEmail(user.email);
-      if (!valid) {
-        console.log("El correo ya existe en la base de datos.");
-        return null;
+  const GetEmotionTable = async (userId) => {
+    const { data, error } = await supabase
+      .from('user') // nombre de tu tabla
+      .select('*') // selecciona todas las columnas
+      .eq('id', userId) // condicionante, en este caso 'id'
+      .single(); // Devuelve un único registro
+  
+    if (error) {
+      console.error("Error:", error);
+    } else {
+      console.log("User data:", data);
+    }
+  
+}
+
+  const GetUserTable = async (userId) => {
+      const { data, error } = await supabase
+        .from('user') // nombre de tu tabla
+        .select('*') // selecciona todas las columnas
+        .eq('id', userId) // condicionante, en este caso 'id'
+        .single(); // Devuelve un único registro
+    
+      if (error) {
+        console.error("Error:", error);
       } else {
         const response = await fetch("http://localhost:3000/users", {
           method: "POST",

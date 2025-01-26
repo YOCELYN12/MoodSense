@@ -2,8 +2,44 @@ import React, { useState } from 'react';
 import { postEmotion } from '../service/service';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import React, { useState } from 'react';
+import { postEmotion } from '../service/service';
+import { Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
+const EMOTION_COLORS = {
+  happiness: '#FFD700', sadness: '#4169E1', anger: '#FF4500',
+  fear: '#800080', disgust: '#32CD32', surprise: '#FF69B4'
+};
+
+const EMOTION_LABELS = {
+  happiness: { emoji: '😊', text: 'Felicidad', color: '#FFD700' },
+  sadness: { emoji: '😢', text: 'Tristeza', color: '#4169E1' },
+  anger: { emoji: '😠', text: 'Ira', color: '#FF4500' },
+  fear: { emoji: '😨', text: 'Miedo', color: '#800080' },
+  disgust: { emoji: '🤢', text: 'Asco', color: '#32CD32' },
+  surprise: { emoji: '😲', text: 'Sorpresa', color: '#FF69B4' }
+};
+
+const SECONDARY_EMOTIONS_MAP = {
+  happiness: ['alegre', 'interesado', 'orgulloso', 'aceptado', 'optimista'],
+  sadness: ['melancolico', 'desanimado', 'solitario', 'desesperanzado', 'nostalgico'],
+  anger: ['frustrado', 'irritado', 'indignado', 'resentido', 'furioso'],
+  fear: ['ansioso', 'inseguro', 'preocupado', 'nervioso', 'aterrado'],
+  disgust: ['repugnado', 'asqueado', 'despreciado', 'horrorizado', 'ofendido'],
+  surprise: ['asombrado', 'impactado', 'maravillado', 'confundido', 'desconcertado']
+};
+
+const EMOJI_MAP = {
+  alegre: '😊', interesado: '🤔', orgulloso: '😌', aceptado: '🤗', optimista: '😃',
+  melancolico: '😔', desanimado: '😞', solitario: '😪', desesperanzado: '😩', nostalgico: '🥺',
+  frustrado: '😤', irritado: '😠', indignado: '😡', resentido: '😣', furioso: '🤬',
+  ansioso: '😰', inseguro: '😟', preocupado: '😧', nervioso: '😥', aterrado: '😱',
+  repugnado: '🤢', asqueado: '🤮', despreciado: '😖', horrorizado: '😫', ofendido: '😒',
+  asombrado: '😲', impactado: '😮', maravillado: '🤩', confundido: '😕', desconcertado: '😵'
+};
 
 const EMOTION_COLORS = {
   happiness: '#FFD700', sadness: '#4169E1', anger: '#FF4500',
@@ -74,11 +110,30 @@ const FormEmotion = () => {
     setSecondaryEmotions(prev => Object.fromEntries(
       Object.entries(prev).map(([key, value]) => [key, { ...value, checked: key === emotion }])
     ));
+  const handleSecondaryEmotionChange = emotion => {
+    setSecondaryEmotions(prev => Object.fromEntries(
+      Object.entries(prev).map(([key, value]) => [key, { ...value, checked: key === emotion }])
+    ));
     setShowModal(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const selectedEmotion = Object.entries(emotions).find(([_, emotion]) => emotion.checked);
+    if (selectedEmotion) {
+      try {
+        const selectedSecondary = Object.entries(secondaryEmotions).find(([_, emotion]) => emotion.checked)?.[0];
+        const emotionData = {
+          id: null,
+          id_institution: null,
+          created_at: new Date().toISOString(),
+          user_id: null,
+          main_emotion: selectedEmotion[0],
+          details,
+          second_emotion: selectedSecondary || null
+        };
+        await postEmotion([emotionData]);
+        resetForm();
     const selectedEmotion = Object.entries(emotions).find(([_, emotion]) => emotion.checked);
     if (selectedEmotion) {
       try {
