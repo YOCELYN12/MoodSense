@@ -1,36 +1,59 @@
-
-.list-container {
-  border: 2px solid #a20f41;
-  height: 100vh;
-  width: 100%;
-  box-shadow: 0px 0px 10px rgba(162, 15, 65, 0.3);
-}
-
-.list-title {
-  text-align: center;
-  color: #a20f41;
+.student-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   padding: 20px;
-  font-size: 1.25rem;
-  font-weight: 500;
-  
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.divider {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.list-item {
-  padding: 8px 16px;
-  cursor: pointer;
+/* Make each form field container take full width of its grid cell */
+.student-form > div {
   display: flex;
-  align-items: center;
-  text-decoration: none;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.list-item:hover {
-  background-color: rgba(162, 15, 65, 0.04);
+/* Style for labels */
+.student-form label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
 }
 
-.list-item-text {
-  color: #a20f41;
+/* Style for inputs */
+.student-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Submit button styles */
+.boton-guardar {
+  grid-column: 1 / -1;
+  width: max-content;
+  justify-self: center;
+  background-color: #763a8b;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 992px) {
+  .student-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .student-form {
+    grid-template-columns: 1fr;
+  }
 }

@@ -13,134 +13,65 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [Loading, setLoading] = useState();
   const [Rol, setRol] = useState();
-  const [Status, setStatus] = useState();
+  const [Status, setStatus] = useState(false);
 
-  //Trae el usuario de la base de datos, el usuario activo, actual
-
-  const getUserInfo = async () => {
-    const {
-      data: { user },
-      error,
-    } = await supabase.auth.getUser();
-    if (error) {
-      console.error("Error obteniendo usuario:", error.message);
-      return null;
-    }
-    return user; // Devuelve el objeto del usuario
+  //Responsable de verificar si el usuario esta activo.
+  const userActive = (email, correo, id_institution) => {
+    const metadata = [{
+      "email": email,
+      "password": correo,
+      "id_institution": id_institution,
+    }];
+    //Setea al usuario activo, en el contexto
+    setUser(metadata);
   };
 
-  //Login con email
-  const asignIn = async (email, password) => {
-    const { data: authData, error: authError } =
-      await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-
-    if (authError) {
-      console.log("Error al iniciar sesión: Credenciales inválidas");
-      return;
-    }
-
-    if (authData && authData.user) {
-      // Verificar si el usuario existe en la tabla usuarios y es administrador
-      const { data: userData, error: userError } = await supabase
-        .from("user")
-        .select("*")
-        .eq("email", email)
-        .single();
-
-      if (userError) {
-        setStatus("Error al verificar el usuario");
-        return;
-      }
-
-      if (!userData) {
-        setStatus("Usuario no encontrado en el sistema");
-        return;
-      } else {
-        setStatus("Usuario encontrado");  
-        return {error: authError, data: authData};
-      }
-    }
-  };
-
-  //Verifica si el email ya existe en la base de datos
-  const checkEmailExists = async (email) => {
+  const getInstitution = async () => {
     try {
-      const { data, error } = await supabase
-        .from("user")
-        .select("email")
-        .eq("email", email)
-        .single();
+      const response = await fetch("http://localhost:3000/institution");
+      const data = await response.json();
+      console.log(data);
 
-      return { exists: !!data, error: null };
+      return data;
     } catch (error) {
-      return { exists: false, error };
+      console.error("Error al obtener la institution:", error);
+      return [];
     }
   };
 
 
-  //Registra un nuevo usuario en la base de datos.
-  const signUp = async (email, password) => {
+  const getUsers = async () => {
     try {
-      // Primero verificamos si el email existe
-      const { exists, error: checkError } = await checkEmailExists(email);
+      const response = await fetch("http://localhost:3000/users");
+      const data = await response.json();
+      console.log(data);
 
-      if (checkError) {
-        throw checkError;
-      }
-
-      if (exists) {
-        return {
-          data: null,
-          error: new Error("Este correo electrónico ya está registrado"),
-        };
-      }
-
-      // Si el email no existe, procedemos con el registro
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-
-      AddUserTable(email, data.user.id, data.user.user_metadata.picture, data.user.user_metadata.name);
-
-      if (error) throw error;
-
-      return { data, error: null };
+      return data;
     } catch (error) {
-      return { data: null, error };
+      console.error("Error al obtener la institution:", error);
+      return [];
     }
   };
 
+  
 
-  const UpdateTableUsers = async (email, object) => {
-    console.log(object);
-    const { data, error } = await supabase
-    .from('user') // Nombre de la tabla
-    .update(object) // Los campos que deseas actualizar
-    .eq('email', email); // Condición para identificar el registro a actualizar
+  const validateEmail = async (email) => {
+    try {
+      const response = await fetch("http://localhost:3000/users");
+      const data = await response.json();
 
-  if (error) {
-    console.error('Error al actualizar:', error);
-    return;
-  }
-  return {error: error, data: data}
-  }
+      // Verifica si el correo ya existe en la base de datos
+      const emailExists = data.some((user) => user.email === email);
 
-  const AddUserTable = async (Email, userId, Photo, Name) => {
-    //Inserta el usuario en la base de datos
-    const { data_, error_ } = await supabase
-      .from("user")
-      .insert({ email: Email, user_id: userId, photo: Photo, name: Name })
-      .select(); // Incluye el select() para obtener los datos insertados
+      console.log(emailExists);
+      
 
-    if (error_) {
-      console.error("Error al añadir usuario a tabla:", error_.message);
-      throw error_;
-    } else if (data_) {
-      console.log("Usuario guardado en la tabla users");
+      // Retorna true si el correo no existe (es válido para usar)
+      // Retorna false si el correo ya existe
+      return !emailExists;
+    } catch (error) {
+      console.error("Error al validar el email:", error);
+      return false;
     }
   };
 
@@ -170,79 +101,35 @@ export const AuthContextProvider = ({ children }) => {
       if (error) {
         console.error("Error:", error);
       } else {
-        console.log("User data:", data);
-      }
-    
-  }
+        const response = await fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
 
-  const logOut = async () => {
-    //Sale del perfil
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error)
-        throw new Error("Ah ocurrido un problema duente el cierre de sesion ");
-      Cookies.remove("supabase-session"); //Borra la cokie
+        if (!response.ok) {
+          throw new Error(
+            new Error(`Error al registrar los dat: ${response.statusText}`)
+          );
+        } else {
+          console.log("Se registraron correctamente sus datos.");
+          return response;
+        }
+      }
     } catch (error) {
-      console.error("Error al cerrar sesión:", error);
+      console.error("Error al enviar el usuario al backend:", error);
+      return null;
     }
   };
 
-  
-
-    // useEffect(() => {
-
-    //   // Verificar si existe una sesión en las cookies
-    //   const session = Cookies.get("supabase-session");
-    //   console.log(session);
-
-    //   if (session) {
-    //     const parsedSession = JSON.parse(session);
-    //     setUser(parsedSession.user); // Asume que user está incluido en la sesión
-    //     supabase.auth.setSession({
-    //       //Permite restaurar la sesión del usuario sin requerir que inicie sesión nuevamente cada vez que recarga la aplicación
-    //       access_token: parsedSession.access_token,
-    //       refresh_token: parsedSession.refresh_token,
-    //     });
-    //   }
-
-    //   // Escucha los cambios en el estado de autenticación, con un metodos de supabase llamado 'onAuthStateChange'.
-    //   const { data: authListener } = supabase.auth.onAuthStateChange(
-    //     async (event, sesion) => {
-    //       if (sesion !== null) {
-    //         setUser(sesion.user); //
-    //         // Guardar sesión completa en cookies
-    //         Cookies.set("supabase-session", JSON.stringify(sesion), {
-    //           expires: 7,
-    //         }); // Persistencia del token
-    //         if (sesion?.user?.user_metadata) {
-    //           setPerfil(sesion.user.user_metadata); //Setea los datos del usuario en el estado
-    //         }
-    //         navigate("/StudentForm", { replace: true });
-    //       } else if (sesion === null ) {
-    //         setUser(null);
-    //         Cookies.remove("supabase-session"); //Elimina la cookie
-    //         navigate("/", { replace: true });
-    //       }
-    //     }
-    //   );
-
-    //   setLoading(false);
-
-    //   return () => {
-    //     authListener?.unsubscribe?.(); //Evita fugas de memoria eliminando la suscripción al listener cuando el componente se desmonta.
-    //   };
-    // }, []);
-    
-
   return (
-    <AuthContext.Provider
-      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut, GetUserTable, UpdateTableUsers, GetEmotionTable }}
-    >
+    <AuthContext.Provider value={{ user, getInstitution, postUser, Status, getUsers, userActive }}>
       {children}
     </AuthContext.Provider>
   );
 };
-
 export const UserAuth = () => {
   return useContext(AuthContext);
 };
