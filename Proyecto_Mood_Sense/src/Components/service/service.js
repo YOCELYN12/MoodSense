@@ -7,6 +7,7 @@ export async function getDatosMeta() {
     console.error("Error al obtener el usuario:", error);
     return [];
   }
+}
     
     export async function getInstitution() {
       try {

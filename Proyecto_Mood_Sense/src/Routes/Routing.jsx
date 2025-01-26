@@ -12,7 +12,7 @@ import GeneralAdministrative from "../Components/Administrativa/GeneralAdministr
 import NavbarAdministrative from "../Components/NavbarAdministrative/NavbarAdministrative";
 import RegisterDb from "../Components/Register/RegisterDb";
 
-import RegisterDb from "../Components/Register/RegisterDb";
+
 
 const Routing = () => {
   return (
