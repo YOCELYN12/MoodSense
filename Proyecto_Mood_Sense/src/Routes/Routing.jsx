@@ -6,7 +6,16 @@ import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/AdminPage/AdminPage.jsx";
 import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
+<<<<<<< HEAD
 import RegisterDb from "../Components/Register/RegisterDb";
+=======
+import MoodSense from "../Components/navbar/navbarC";
+import ListaUsuarios from "../Components/Lista de Usuarios/ListaUsuarios";
+import GeneralAdministrative from "../Components/Administrativa/GeneralAdministrative";
+import NavbarAdministrative from "../Components/NavbarAdministrative/NavbarAdministrative";
+import RegisterDb from "../Components/Register/RegisterDb";
+
+>>>>>>> d238fedceb089d32936111dabb76ace90a841e28
 
 const Routing = () => {
   return (
@@ -15,7 +24,15 @@ const Routing = () => {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<RegisterDb />} />
         <Route path="/StudentForm" element={<StudentForm />} />
+<<<<<<< HEAD
         <Route path="/home" element={<Home />} />
+=======
+        <Route path="/navbar" element={<MoodSense/>} />
+        <Route path="/listaUsuarios" element={<ListaUsuarios />} />
+        <Route path="/GeneralAdministrative" element={<GeneralAdministrative />} />
+        <Route path="/NavbarAdministrative" element={<NavbarAdministrative />} />
+        <Route path="/home" element={<Home />} /> 
+>>>>>>> d238fedceb089d32936111dabb76ace90a841e28
         <Route path="/ForemotioP" element={<ForemotioP />} />
         <Route path="/Admin" element={<Admin />} />
       </Routes>
