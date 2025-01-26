@@ -19,6 +19,7 @@ const Routing = () => {
         <Route path="/StudentForm" element={<StudentForm />} />
         <Route path="/Admin" element={<Admin />} />
         <Route path="/home" element={<Home />} /> 
+        <Route path="/ForemotioP" element={<ForemotioP />} />
       </Routes>
     </div>
   );
