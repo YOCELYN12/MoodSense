@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./StudentFormcc.css";
-import service from "../service/service.js"; // Importamos la función de POST
+import {PostStudent} from '../service/service';
+ // Importamos la función de POST
 
 const StudentFormC = () => {
   const [intName, setName] = useState("");
@@ -51,10 +52,7 @@ const StudentFormC = () => {
     };
 
     const result = await PostStudent(newStudent);
-    if (result) {
-      setStudents([...students, result]); // Actualizar el estado con el nuevo estudiante
-      alert("Estudiante agregado correctamente");
-    }
+   
   };
 
   return (

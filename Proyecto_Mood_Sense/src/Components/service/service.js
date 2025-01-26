@@ -69,7 +69,7 @@ export async function getDatosMeta() {
   export const postUser=async(user) => {
     try {
   
-      const response = await fetch("http://localhost:3000/users", {
+      const response = await fetch("http://localhost:3001/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,9 +111,9 @@ export async function getDatosMeta() {
 
 
   // PostStudent.js
-import React from "react";
 
-const PostStudent = async (studentData) => {
+
+export async function PostStudent (studentData) {
   try {
     const response = await fetch("http://localhost:3000/students", {
       method: "POST",
@@ -131,5 +131,28 @@ const PostStudent = async (studentData) => {
   }
 };
 
-export default PostStudent;
+
+
+
+export async function postEmotion(emotion) {
+  try {
+    const response = await fetch("http://localhost:3000/emotions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(emotion),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error al registrar la emoción: ${response.statusText}`);
+
+      }
+    } catch (error) {
+      console.error("Error al enviar la emoción al backend:", error);
+      return null;
+    }
+  }
+
+
 

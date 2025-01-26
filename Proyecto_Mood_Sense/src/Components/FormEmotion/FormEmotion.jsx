@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { postEmotion } from '../service/service';
 
+
 const FormEmotion = () => {
   const [emotions, setEmotions] = useState({
     happiness: { checked: false, value: 10 },
@@ -38,7 +39,7 @@ const FormEmotion = () => {
 
     if (selectedEmotions.length > 0) {
       try {
-        const response = await postEmotion(selectedEmotions);
+        const response = await xpostEmotion(selectedEmotions);
         if (response.error) throw response.error;
         
         setEmotions(prevEmotions => {
