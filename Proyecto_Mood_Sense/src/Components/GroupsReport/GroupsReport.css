@@ -1,104 +1,180 @@
 /* Colores principales y secundarios */
 :root {
-    --primary-color: #AE9EE4;
-    --secondary-color: #5F3E99;
-    --white-color: #FFFFFF;
+  --primary-color: #AE9EE4;
+  --secondary-color: #5F3E99;
+  --white-color: #FFFFFF;
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--white-color);
+  color: var(--secondary-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Encabezados */
+#GroupH1, #GroupH2, #GroupH3, #GroupH4, #GroupH5, #GroupH6 {
+  color: var(--primary-color);
+}
+
+/* Estilos especiales para el título */
+#pageTitle {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: bold;
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+  padding: 15px 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  animation: titleAnimation 1s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+#pageTitle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  margin-top: 200px;
+  width: 100%;
+  background: linear-gradient(45deg, rgba(255,255,255,0.25), transparent);
+  border-radius: 10px;
+  animation: shine 2s infinite linear;
+}
+
+@keyframes shine {
+  from {
+    transform: translateX(-100%);
   }
-  
-  /* Estilos generales */
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--white-color);
-    color: var(--secondary-color);
-    margin: 0;
-    padding: 0;
+  to {
+    transform: translateX(100%);
   }
-  
-  /* Encabezados */
-  #GroupH1, #GroupH2, #GroupH3, #GroupH4, #GroupH5, #GroupH6 {
-    color: var(--primary-color);
+}
+
+@keyframes titleAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  /* Enlaces */
-  #GroupLink {
-    color: var(--primary-color);
-    text-decoration: none;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  #GroupLink:hover {
-    text-decoration: underline;
-  }
-  
-  /* Botones */
-  #buttonGroup {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  #buttonGroup:hover {
-    background-color: var(--secondary-color);
-  }
-  
-  /* Contenedor principal */
-  #mainContainerGroup {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: var(--white-color);
-    border: 1px solid var(--secondary-color);
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Tablas */
-  #dataTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  #dataTable, #tableHeader, #tableData {
-    border: 1px solid var(--secondary-color);
-  }
-  
-  #tableHeader, #tableData {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  #tableHeader {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-  }
-  
-  #tableRowEven {
-    background-color: var(--primary-color);
-    color: var(--white-color);
-  }
-  
-  #tableRowOdd {
-    background-color: var(--white-color);
-    color: var(--secondary-color);
-  }
-  
-  /* Formularios */
-  #inputText, #inputNumber, #inputEmail, #selectInput {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid var(--secondary-color);
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  #inputText:focus, #inputNumber:focus, #inputEmail:focus, #selectInput:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 5px var(--primary-color);
-  }
-  
+}
+
+/* Enlaces */
+#GroupLink {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+#GroupLink:hover {
+  text-decoration: underline;
+}
+
+/* Botones */
+#buttonGroup {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#buttonGroup:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Contenedor principal */
+#mainContainerGroup {
+  display: flex;
+  justify-content: space-around; /* Para alinear los odómetros en una fila */
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--white-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Añadir sombra */
+  transition: transform 0.3s, box-shadow 0.3s; /* Añadir animación */
+  margin-top: 95px;
+}
+
+/* Animación hover para el contenedor */
+#mainContainerGroup:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para cada odómetro */
+#mainContainerGroup > div {
+  margin: 0 20px;
+  padding: 10px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  text-align: center;
+}
+
+/* Mantener el color del nombre de la institución */
+#GroupH3 {
+  color: var(--white-color); /* Asegura que el nombre de la institución sea visible */
+}
+
+/* Tablas */
+#dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#dataTable, #tableHeader, #tableData {
+  border: 1px solid var(--secondary-color);
+}
+
+#tableHeader, #tableData {
+  padding: 10px;
+  text-align: left;
+}
+
+#tableHeader {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+#tableRowEven {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+#tableRowOdd {
+  background-color: var(--white-color);
+  color: var(--secondary-color);
+}
+
+/* Formularios */
+#inputText, #inputNumber, #inputEmail, #selectInput {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#inputText:focus, #inputNumber:focus, #inputEmail:focus, #selectInput:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
+}
+
