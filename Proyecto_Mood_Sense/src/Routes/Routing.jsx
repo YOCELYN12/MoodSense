@@ -19,6 +19,7 @@ const Routing = () => {
         <Route path="/StudentForm" element={<StudentForm />} />
         <Route path="/UserList" element={<UserList />} />
         <Route path="/GroupDash" element={<GroupDash />} />
+        <Route path="/ForemotioP" element={<ForemotioP />} />
       </Routes>
     </div>
   );

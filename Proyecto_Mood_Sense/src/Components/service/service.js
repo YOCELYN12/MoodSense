@@ -1,7 +1,5 @@
 
 
-
-
 export async function getDatosMeta() {
     try {
       const response = await fetch("http://localhost:3000/datosmeta");
@@ -45,28 +43,6 @@ export async function getDatosMeta() {
     }
   }
 
-  export async function getInstitution() {
-    try {
-      const response = await fetch("http://localhost:3000/institution");
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error al obtener la institution:", error);
-      return [];
-    }
-  }
-  
-  export async function getEmotions() {
-    try {
-      const response = await fetch("http://localhost:3000/emotions");
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error al obtener las emociones:", error);
-      return [];
-    }
-  }
-  
 
   export async function postInstitution(institution) {
     try {
@@ -110,5 +86,24 @@ export async function getDatosMeta() {
       return null;
     }
   }
-
+  export async function postEmotion(emotion) {
+      try {
+    
+        const response = await fetch("http://localhost:3000/emotions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emotion),
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Error al registrar la emoción: ${response.statusText}`);
+        }
+    
+      } catch (error) {
+        console.error("Error al enviar la emoción al backend:", error);
+        return null;
+      }
+    }
   
