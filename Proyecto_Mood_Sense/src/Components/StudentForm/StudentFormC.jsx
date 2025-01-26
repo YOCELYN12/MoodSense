@@ -3,6 +3,9 @@ import supabase from "../../supabase/Supabase";
 import "./StudentFormcc.css";
 import { UserAuth } from "../../context/Context";
 
+
+
+
 const StudentFormC = () => {
   const { UpdateTableUsers, user } = UserAuth();
 

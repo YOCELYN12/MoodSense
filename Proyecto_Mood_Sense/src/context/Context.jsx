@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import supabase from "../supabase/Supabase";
 import Cookies from "js-cookie";
 
+
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
