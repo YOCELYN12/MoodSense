@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { postEmotion } from '../../services/emotionService';
+import { postEmotion } from '../service/service';
 
 const FormEmotion = () => {
   const [emotions, setEmotions] = useState({
