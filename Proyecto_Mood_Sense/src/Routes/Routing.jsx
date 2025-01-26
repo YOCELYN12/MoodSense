@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../Pages/LoginPage/LoginP";
 import Register from "../Pages/RegisterPage/RegisterP";
 import StudentForm from "../Pages/StudentFormPage/StudentFormp";
-import UserList from "../Pages/UserList/UserList";
+import Home from "../Pages/home/Home";
+import ForemotioP from "../Pages/FormEmotion/ForemotioP";
+
+
 
 const Routing = () => {
   return (
