@@ -143,7 +143,25 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+<<<<<<< HEAD
   
+=======
+
+  const GetUserTable = async (userId) => {
+      const { data, error } = await supabase
+        .from('user') // nombre de tu tabla
+        .select('*') // selecciona todas las columnas
+        .eq('id', userId) // condicionante, en este caso 'id'
+        .single(); // Devuelve un único registro
+    
+      if (error) {
+        console.error("Error:", error);
+      } else {
+        console.log("User data:", data);
+      }
+    
+  }
+>>>>>>> bb6bb2a0b83d7e6e28994b46ac68370f79ed4ff3
 
   const logOut = async () => {
     //Sale del perfil
@@ -206,7 +224,11 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
+<<<<<<< HEAD
       value={{ user, objPerfil, Loading, Status, getUserInfo, signUp, asignIn, logOut, UpdateTableUsers }}
+=======
+      value={{ user, objPerfil, Loading, getUserInfo, signUp, asignIn, logOut, GetUserTable }}
+>>>>>>> bb6bb2a0b83d7e6e28994b46ac68370f79ed4ff3
     >
       {children}
     </AuthContext.Provider>
