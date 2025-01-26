@@ -1,7 +1,9 @@
   import React from 'react';
-  import { Link } from 'react-router-dom';
+
+  import { Link, Routes, Route } from 'react-router-dom';
   import { List, ListItem, ListItemText, Divider, Typography, Box } from '@mui/material';
   import StudentFormC from '../StudentForm/StudentFormC';
+  import ForemotioP from '../../Pages/FormEmotion/ForemotioP';
 
   const MoodSense = () => {
     return (
@@ -31,7 +33,11 @@
           </ListItem>
         </List>
         <Box sx={{ flexGrow: 1, p: 3 }}>
-          <StudentFormC />
+
+          <Routes>
+            <Route path="/mis-emociones" element={<ForemotioP />} />
+            <Route path="/" element={<StudentFormC />} />
+          </Routes>
         </Box>
       </Box>
     );
