@@ -7,6 +7,9 @@ npm install @supabase/supabase-js
 npm install js-cookie
 npm i sweetalert2
 npm i -g json-server
+npm install chart.js react-chartjs-2
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+
 
 
 - Iniciar el db json:
