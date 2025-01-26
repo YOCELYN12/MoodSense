@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { UserAuth } from "../../context/Context"; 
-
-
+import { getDatosMeta, postDatosMetadata, getInstitution, postInstitution, postUser, postEmotion } from "../service/service";
+import "../GroupsReport/GroupsReport.css";
 
 const UserList = () => {
-  const { getUserInfo, UpdateTableUsers } = UserAuth(); 
-  const [usuarios, setUsuarios] = useState([]); 
-  const [editandoUsuarioId, setEditandoUsuarioId] = useState(null); 
+  const [usuarios, setUsuarios] = useState([]);
+  const [editandoUsuarioId, setEditandoUsuarioId] = useState(null);
   const [formularioEditarUsuario, setFormularioEditarUsuario] = useState({
     name: '',
     last_name: '',
@@ -21,11 +19,12 @@ const UserList = () => {
     cargarUsuarios();
   }, []);
 
-  // Función para obtener y cargar los usuarios desde la API
+  // Función para obtener y cargar los usuarios desde la API local
   const cargarUsuarios = async () => {
     try {
-      const data = await getUserInfo(); 
-      setUsuarios(data); 
+      const response = await fetch("http://localhost:3000/users");
+      const data = await response.json();
+      setUsuarios(data);
     } catch (error) {
       console.error("Error al cargar usuarios:", error);
     }
@@ -33,7 +32,7 @@ const UserList = () => {
 
   // Función para iniciar la edición de un usuario
   const iniciarEdicion = (usuario) => {
-    setEditandoUsuarioId(usuario.id); 
+    setEditandoUsuarioId(usuario.id);
     setFormularioEditarUsuario(usuario);
   };
 
@@ -49,9 +48,15 @@ const UserList = () => {
   // Función para guardar los cambios del usuario
   const guardarCambios = async (id) => {
     try {
-      await UpdateTableUsers(id, formularioEditarUsuario); 
-      setEditandoUsuarioId(null); 
-      cargarUsuarios(); 
+      await fetch(`http://localhost:3000/users/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formularioEditarUsuario),
+      });
+      setEditandoUsuarioId(null);
+      cargarUsuarios();
     } catch (error) {
       console.error("Error al guardar usuario:", error);
     }
@@ -59,7 +64,7 @@ const UserList = () => {
 
   // Función para cancelar la edición del usuario
   const cancelarEdicion = () => {
-    setEditandoUsuarioId(null); 
+    setEditandoUsuarioId(null);
   };
 
   return (
@@ -83,30 +88,21 @@ const UserList = () => {
             <tr key={usuario.id} id={`fila-${usuario.id}`}>
               {editandoUsuarioId === usuario.id ? (
                 <>
-                  <td data-label="Nombre" id="nombre_UserList">{usuario.name}</td>
-                  <td data-label="Apellido" id="apellido_UserList">{usuario.last_name}</td>
-                  <td data-label="ID del Estudiante" id="student_id_UserList">{usuario.student_id}</td>
-                  <td data-label="Edad" id="age_UserList">{usuario.age}</td>
-                  <td data-label="Enfermedades" id="diseases_UserList">{usuario.diseases}</td>
-                  <td data-label="Diagnóstico Psicológico" id="psychological_diagnosis_UserList">{usuario.psychological_diagnosis}</td>
+                  <td data-label="Nombre" id="nombre_UserList"><input type="text" name="name" value={formularioEditarUsuario.name} onChange={EditInput} /></td>
+                  <td data-label="Apellido" id="apellido_UserList"><input type="text" name="last_name" value={formularioEditarUsuario.last_name} onChange={EditInput} /></td>
+                  <td data-label="ID del Estudiante" id="student_id_UserList"><input type="text" name="student_id" value={formularioEditarUsuario.student_id} onChange={EditInput} /></td>
+                  <td data-label="Edad" id="age_UserList"><input type="text" name="age" value={formularioEditarUsuario.age} onChange={EditInput} /></td>
+                  <td data-label="Enfermedades" id="diseases_UserList"><input type="text" name="diseases" value={formularioEditarUsuario.diseases} onChange={EditInput} /></td>
+                  <td data-label="Diagnóstico Psicológico" id="psychological_diagnosis_UserList"><input type="text" name="psychological_diagnosis" value={formularioEditarUsuario.psychological_diagnosis} onChange={EditInput} /></td>
                   <td data-label="Estado del Estudiante">
-                    <select
-                      id="student_state_UserList"
-                      name="student_state"
-                      value={formularioEditarUsuario.student_state}
-                      onChange={EditInput}
-                    >
+                    <select id="student_state_UserList" name="student_state" value={formularioEditarUsuario.student_state} onChange={EditInput}>
                       <option value="true">True</option>
                       <option value="false">False</option>
                     </select>
                   </td>
                   <td data-label="Acciones">
-                    <button id="btnUserList_guardar" onClick={() => guardarCambios(usuario.id)}>
-                      Guardar
-                    </button>
-                    <button id="btnUserList_cancelar" onClick={cancelarEdicion}>
-                      Cancelar
-                    </button>
+                    <button id="btnUserList_guardar" onClick={() => guardarCambios(usuario.id)}>Guardar</button>
+                    <button id="btnUserList_cancelar" onClick={cancelarEdicion}>Cancelar</button>
                   </td>
                 </>
               ) : (
@@ -119,9 +115,7 @@ const UserList = () => {
                   <td data-label="Diagnóstico Psicológico" id="psychological_diagnosis_UserList">{usuario.psychological_diagnosis}</td>
                   <td data-label="Estado del Estudiante" id="student_state_UserList">{usuario.student_state}</td>
                   <td data-label="Acciones">
-                    <button id="btnUserList_editar" onClick={() => iniciarEdicion(usuario)}>
-                      Editar
-                    </button>
+                    <button id="btnUserList_editar" onClick={() => iniciarEdicion(usuario)}>Editar</button>
                   </td>
                 </>
               )}
@@ -134,4 +128,5 @@ const UserList = () => {
 };
 
 export default UserList;
+
 
