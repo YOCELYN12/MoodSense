@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./StudentFormcc.css";
+import service from "../service/service.js"; // Importamos la función de POST
 
 const StudentFormC = () => {
   const [intName, setName] = useState("");
@@ -20,11 +21,46 @@ const StudentFormC = () => {
   const [intPsychologicalDiagnosis, setPsychologicalDiagnosis] = useState("");
   const [intInstitutionId, setInstitutionId] = useState("");
   const [intRole, setRole] = useState("");
+  const [students, setStudents] = useState([]); // Para almacenar los estudiantes obtenidos con GET
+
+
+
+  // Función para manejar el envío del formulario (POST)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newStudent = {
+      name: intName,
+      lastname: intLastname,
+      studentId: intStudentId,
+      nationality: intNationality,
+      idNumber: intIdNumber,
+      personalContact: intPersonalContact,
+      familyContact: intFamilyContact,
+      province: intProvince,
+      canton: intCanton,
+      district: intDistrict,
+      studentState: intStudentState,
+      drugs: intDrugs,
+      studies: intStudies,
+      diseases: intDiseases,
+      residence: intResidence,
+      psychologicalDiagnosis: intPsychologicalDiagnosis,
+      institutionId: intInstitutionId,
+      role: intRole,
+    };
+
+    const result = await PostStudent(newStudent);
+    if (result) {
+      setStudents([...students, result]); // Actualizar el estado con el nuevo estudiante
+      alert("Estudiante agregado correctamente");
+    }
+  };
 
   return (
     <div>
       <h2>Formulario del Perfil</h2>
-      <form className="student-form">
+      <form className="student-form" onSubmit={handleSubmit}>
         <div className="form-nombre">
           <label>Nombre:</label>
           <input
@@ -189,6 +225,13 @@ const StudentFormC = () => {
 
         <button type="submit">Enviar</button>
       </form>
+
+      <h3>Lista de Estudiantes</h3>
+      <ul>
+        {students.map((student) => (
+          <li key={student.id}>{student.name} {student.lastname}</li>
+        ))}
+      </ul>
     </div>
   );
 };

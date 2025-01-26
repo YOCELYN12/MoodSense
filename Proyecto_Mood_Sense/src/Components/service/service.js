@@ -108,3 +108,28 @@ export async function getDatosMeta() {
   //   }
   // }
 
+
+
+  // PostStudent.js
+import React from "react";
+
+const PostStudent = async (studentData) => {
+  try {
+    const response = await fetch("http://localhost:3000/students", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(studentData),
+    });
+
+    const result = await response.json();
+    console.log("Estudiante agregado:", result);
+    return result;
+  } catch (error) {
+    console.error("Error al enviar los datos:", error);
+  }
+};
+
+export default PostStudent;
+
