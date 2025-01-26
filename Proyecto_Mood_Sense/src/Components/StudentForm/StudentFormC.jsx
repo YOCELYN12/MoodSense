@@ -4,26 +4,26 @@ import "./StudentFormcc.css";
 import { UserAuth } from "../../context/Context";
 
 const StudentFormC = () => {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [idEstudiante, setIdEstudiante] = useState("");
-  const [nacionalidad, setNacionalidad] = useState("");
-  const [numerodeIdentificacion, setnumeroIdentificacion] = useState("");
-  const [contactoPersonal, setContactoPersonal] = useState("");
-  const [contactoFamiliar, setContactoFamiliar] = useState("");
-  const [provincia, setProvincia] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastName] = useState("");
+  const [studentId, setStudentId] = useState([]);
+  const [nationality, setNationality] = useState("");
+  const [idNumber, setIdNumber] = useState("");
+  const [personalContact, setpersonalContact] = useState("");
+  const [FamilyContact, setFamilyContact] = useState("");
+  const [province, setProvince] = useState("");
   const [canton, setCanton] = useState("");
-  const [distrito, setDistrito] = useState("");
-  const [estadoEstudiante, setEstadoEstudiante] = useState("");
-  const [medicamentos, setMedicamentos] = useState(""); 
-  const [estudios, setEstudios] = useState("");
-  const [enfermedades, setEnfermedades] = useState("");
-  const [residencia, setResidecia] = useState("");
-  const [diagnosticoPsicológico, setDiagnosticoPsicológico] = useState("");
-  const [idInstitucion, setIdInstitucion] = useState("");
-  const [rol, setRol] = useState("");
+  const [district, setDistrict] = useState("");
+  const [studentState, setStudentState] = useState("");
+  const [drugs, setDrugs] = useState(""); 
+  const [studies, setStudies] = useState("");
+  const [diseases, setDiseases] = useState("");
+  const [residence, setResidence] = useState("");
+  const [psychologicaldiagnosis, setpsychologicaldiagnosis] = useState("");
+  const [InstitutionId, setInstitutionId] = useState("");
+  const [role, setRole] = useState("");
 
-  
+
   return (
     <div>
       <h2>Formulario del Perfil</h2>
@@ -33,9 +33,8 @@ const StudentFormC = () => {
           <input
             className="input-id"
             type="text"
-            id="Nombre"
+            id="setName"
             name="student_id"
-           
           />
         </div>
 
@@ -44,7 +43,7 @@ const StudentFormC = () => {
           <input
             className="input-id"
             type="text"
-            id="from-Apellido"
+            id="setLastName"
             name="student_id"
           />
         </div>
@@ -55,7 +54,7 @@ const StudentFormC = () => {
           <input
             className="input-id"
             type="text"
-            id="idEstudiante"
+            id="setStudentId"
             name="student_id"
            
           />
@@ -67,6 +66,7 @@ const StudentFormC = () => {
           className="input-nacionalidad"
             type="text"
             name="nationality"
+            id="setNationality"
             
           />
         </div>
@@ -77,6 +77,7 @@ const StudentFormC = () => {
           className="input-identidad"
             type="text"
             name="id_number"
+            id="setIdNumber"
            
           />
         </div>
@@ -87,6 +88,7 @@ const StudentFormC = () => {
           className="input-contacto"
             type="text"
             name="personal_contact"
+            id="setpersonalContact"
           />
         </div>
 
@@ -96,6 +98,7 @@ const StudentFormC = () => {
           className="input-familiar"
             type="text"
             name="family_contact"
+            id="setFamilyContact"
             
           />
         </div>
@@ -106,7 +109,7 @@ const StudentFormC = () => {
           className="input-provincia"
             type="text"
             name="province"
-            
+            id="setProvince"
           />
         </div>
 
@@ -116,7 +119,7 @@ const StudentFormC = () => {
           className="input-canton"
             type="text"
             name="canton"
-            
+            id="setCanton"
           />
         </div>
 
@@ -126,6 +129,7 @@ const StudentFormC = () => {
           className="input-distrito"
             type="text"
             name="district"
+            id="setDistrict"
             
           />
         </div>
@@ -136,6 +140,7 @@ const StudentFormC = () => {
           className="input-estado"
             type="text"
             name="student_state"
+            id="setstudent_state"
             
           />
         </div>
@@ -146,7 +151,7 @@ const StudentFormC = () => {
           className="input-medicamentos"
             type="text"
             name="medications"
-            
+            id="setMedications"
           />
         </div>
 
@@ -156,7 +161,7 @@ const StudentFormC = () => {
           className="input-estudios"
             type="text"
             name="studies"
-            
+            id="setStudies"
           />
         </div>
 
@@ -166,7 +171,7 @@ const StudentFormC = () => {
           className="input-enfermedades"
             type="text"
             name="diseases"
-            
+            id="setDiseases"
           />
         </div>
 
@@ -176,7 +181,7 @@ const StudentFormC = () => {
           className="input-residencia"
             type="text"
             name="residence"
-           
+            id="setResidence"
           />
         </div>
 
@@ -186,7 +191,7 @@ const StudentFormC = () => {
           className="input-diagnostico"
             type="text"
             name="psychological_diagnosis"
-            
+            id="setPsychologicalDiagnosis"
           />
         </div>
 
@@ -196,7 +201,7 @@ const StudentFormC = () => {
           className="input-institucion"
             type="text"
             name="institution_id"
-            
+            id="setInstitutionId"
           />
         </div>
 
@@ -206,7 +211,7 @@ const StudentFormC = () => {
           className="input-rol"
             type="text"
             name="rol"
-            
+            id="setRol"
           />
         </div>
 
