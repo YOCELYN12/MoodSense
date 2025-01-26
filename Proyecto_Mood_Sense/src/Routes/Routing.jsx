@@ -16,7 +16,7 @@ const Routing = () => {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/StudentForm" element={<StudentForm />} />
-        <Route path="/form" element={<ForemotioP />} />
+        <Route path="/home" element={<Home />} /> 
       </Routes>
     </div>
   );
