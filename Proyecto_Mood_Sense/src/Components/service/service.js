@@ -1,7 +1,5 @@
 
 
-
-
 export async function getDatosMeta() {
     try {
       const response = await fetch("http://localhost:3000/datosmeta");
@@ -88,26 +86,24 @@ export async function getDatosMeta() {
       return null;
     }
   }
-
-  export async function postUser(user) {
-    try {
-  
-      const response = await fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-  
-      if (!response.ok) {
-        throw new Error(`Error al registrar el usuario: ${response.statusText}`);
+  export async function postEmotion(emotion) {
+      try {
+    
+        const response = await fetch("http://localhost:3000/emotions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(emotion),
+        });
+    
+        if (!response.ok) {
+          throw new Error(`Error al registrar la emoción: ${response.statusText}`);
+        }
+    
+      } catch (error) {
+        console.error("Error al enviar la emoción al backend:", error);
+        return null;
       }
-  
-    } catch (error) {
-      console.error("Error al enviar el usuario al backend:", error);
-      return null;
     }
-  }
   
-

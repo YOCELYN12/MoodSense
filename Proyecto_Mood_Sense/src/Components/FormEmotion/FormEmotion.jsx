@@ -27,10 +27,13 @@ const FormEmotion = () => {
     const selectedEmotions = Object.entries(emotions)
       .filter(([_, emotion]) => emotion.checked)
       .map(([name, emotion]) => ({
-        emotion_name: name,
-        emotion_value: emotion.value,
-        emotion_score: emotion.value,
-        created_at: new Date().toISOString()
+        id: null,
+        id_institution: null,
+        created_at: new Date().toISOString(),
+        user_id: null,
+        main_emotion: name,
+        details: "",
+        second_emotion: null
       }));
 
     if (selectedEmotions.length > 0) {
