@@ -11,6 +11,7 @@ npm i react-lucide
 npm install uuid
 npm install chart.js react-chartjs-2
 npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+npm install react-calendar
 
 
 

@@ -10,12 +10,13 @@ export const AuthContextProvider = ({ children }) => {
 
   //Responsable de verificar si el usuario esta activo.
   const userActive = (email, correo, id_institution) => {
-    
-    const metadata = [{
-      "email": email,
-      "password": correo,
-      "id_institution": id_institution,
-    }];
+    const metadata = [
+      {
+        email: email,
+        password: correo,
+        id_institution: id_institution,
+      },
+    ];
     //Setea al usuario activo, en el contexto
     localStorage.setItem('user_email', email);
     setUser(metadata);
@@ -42,7 +43,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -56,9 +56,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  
-
-  //Validacion de correo
   const validateEmail = async (email) => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -66,6 +63,8 @@ export const AuthContextProvider = ({ children }) => {
 
       // Verifica si el correo ya existe en la base de datos
       const emailExists = data.some((user) => user.email === email);
+
+      console.log(emailExists);
 
       // Retorna true si el correo no existe (es válido para usar)
       // Retorna false si el correo ya existe
@@ -77,15 +76,34 @@ export const AuthContextProvider = ({ children }) => {
   };
 
 
-  const postUser = async (user) => {
+  const GetEmotionTable = async (userId) => {
+    const { data, error } = await supabase
+      .from('user') // nombre de tu tabla
+      .select('*') // selecciona todas las columnas
+      .eq('id', userId) // condicionante, en este caso 'id'
+      .single(); // Devuelve un único registro
+  
+    if (error) {
+      console.error("Error:", error);
+    } else {
+      console.log("User data:", data);
+    }
+  
+}
 
-    console.log(user.email);
+  const GetUserTable = async (userId) => {
+
+    try{
+
     
-    try {
-      const valid = validateEmail(user.email);
-      if (!valid) {
-        console.log("El correo ya existe en la base de datos.");
-        return null;
+      const { data, error } = await supabase
+        .from('user') // nombre de tu tabla
+        .select('*') // selecciona todas las columnas
+        .eq('id', userId) // condicionante, en este caso 'id'
+        .single(); // Devuelve un único registro
+    
+      if (error) {
+        console.error("Error:", error);
       } else {
         const response = await fetch("http://localhost:3000/users", {
           method: "POST",
@@ -108,14 +126,20 @@ export const AuthContextProvider = ({ children }) => {
       console.error("Error al enviar el usuario al backend:", error);
       return null;
     }
-  };
+  }
 
-  return (
-    <AuthContext.Provider value={{ getInstitution, postUser, Loading, getUsers, userActive, getUserLogin }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+
+return (
+  <AuthContext.Provider
+    value={{ user, getInstitution, Loading, getUsers, userActive, getUserLogin }}
+  >
+    {children}
+  </AuthContext.Provider>
+)
+
+
+}
+
 export const UserAuth = () => {
   return useContext(AuthContext);
 };

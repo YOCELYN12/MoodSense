@@ -1,8 +1,42 @@
 import React, { useState } from "react";
 import "./StudentFormcc.css";
+import { UserAuth } from "../../context/Context";
+
 import { actualizarDatos, PostStudent } from "../service/service";
 import Navbar from "../navbar/navbarC"
 const StudentFormC = () => {
+  const { UpdateTableUsers, user } = UserAuth();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    last_name: "",
+    age: "",
+    student_id: "",
+    nationality: "",
+    id_number: "",
+    personal_contact: "",
+    family_contact: "",
+    province: "",
+    canton: "",
+    student_state: "",
+    medications: "",
+    district: "",
+    studies: "",
+    diseases: "",
+    residence: "",
+    psychological_diagnosis: "",
+    institution_id: "",
+    rol: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
   const [intEmail, setEmail] = useState([]);
   const [intPassword, setPassword] = useState("");
   const [intInstitutionId, setInstitutionId] = useState("002");
@@ -47,6 +81,7 @@ const StudentFormC = () => {
       rol: intRole,
     };
 
+    const result = await PostStudent(newStudent);
     const actualizarUsuario = await actualizarDatos(newStudent, localStorage.getItem("usuarioId"));
     console.log(actualizarUsuario);
 
@@ -228,6 +263,17 @@ const StudentFormC = () => {
             />
           </div>
 
+        <button type="submit">Enviar</button>
+      </form>
+
+      <h3>Lista de Estudiantes</h3>
+      <ul>
+        {students.map((student) => (
+          <li key={student.id}>
+            {student.name} {student.lastname}
+          </li>
+        ))}
+      </ul>
           <button type="submit">Enviar</button>
         </form>
       </div>
