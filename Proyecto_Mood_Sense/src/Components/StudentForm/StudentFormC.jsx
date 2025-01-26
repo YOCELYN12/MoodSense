@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./StudentFormcc.css";
-import { UserAuth } from "../../context/Context";
+import { Context } from "../../context/Context";
 
 const StudentFormC = () => {
-  const { UpdateTableUsers } = UserAuth();
   
-
+  const { UpdateTableUsers } = Context();
+  
   const [formData, setFormData] = useState({
     name: "",
     last_name: "",

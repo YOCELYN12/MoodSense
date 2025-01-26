@@ -1,32 +1,31 @@
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 
-const AuthContext = createContext();
+const GlobalContext = createContext();
 
-export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+export const MoodGlobalContext = ({ children }) => {
   const [Loading, setLoading] = useState(false);
-  const [Rol, setRol] = useState();
 
   //Responsable de verificar si el usuario esta activo.
   const userActive = (email, correo, id_institution) => {
-    
-    const metadata = [{
-      "email": email,
-      "password": correo,
-      "id_institution": id_institution,
-    }];
+    const metadata = [
+      {
+        email: email,
+        password: correo,
+        id_institution: id_institution,
+      },
+    ];
     //Setea al usuario activo, en el contexto
-    localStorage.setItem('user_email', email);
-    setUser(metadata);
+    localStorage.setItem("user_email", email);
+    
   };
 
   //Trae los datos del usuario activo en la app.
   const getUserLogin = async () => {
-    const email = localStorage.getItem('user_email');
+    const email = localStorage.getItem("user_email");
     const response = await fetch(`http://localhost:3000/users?email=${email}`);
     const data = await response.json();
-    return {data: data};
+    return { data: data };
   };
 
   const getInstitution = async () => {
@@ -42,7 +41,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -55,8 +53,6 @@ export const AuthContextProvider = ({ children }) => {
       return [];
     }
   };
-
-  
 
   //Validacion de correo
   const validateEmail = async (email) => {
@@ -76,11 +72,9 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-
   const postUser = async (user) => {
-
     console.log(user.email);
-    
+
     try {
       const valid = validateEmail(user.email);
       if (!valid) {
@@ -111,11 +105,20 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ getInstitution, postUser, Loading, getUsers, userActive, getUserLogin }}>
+    <GlobalContext.Provider
+      value={{
+        getInstitution,
+        postUser,
+        Loading,
+        getUsers,
+        userActive,
+        getUserLogin,
+      }}
+    >
       {children}
-    </AuthContext.Provider>
+    </GlobalContext.Provider>
   );
 };
-export const UserAuth = () => {
-  return useContext(AuthContext);
+export const Context = () => {
+  return useContext(GlobalContext);
 };

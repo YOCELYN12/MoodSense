@@ -6,17 +6,19 @@ import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/Admin";
 import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
-import RegisterDb from "../Components/Register/RegisterDb";
+import RegisterP from "../Pages/RegisterPage/RegisterP";
+import PrivateRoute from "./PrivateRoute";
 
 const Routing = () => {
   return (
     <div>
       <Routes>
-        
+        {/* Ruta privada para el componente Admin */}
+        <Route path="/Admin" element={<PrivateRoute> <Admin /> </PrivateRoute>} />
+
         <Route path="/" element={<Login />} />
-        <Route path="/register" element={<RegisterDb />} />
+        <Route path="/register" element={<RegisterP />} />
         <Route path="/StudentForm" element={<StudentForm />} />
-        <Route path="/Admin" element={<Admin />} />
         <Route path="/home" element={<Home />} /> 
         <Route path="/ForemotioP" element={<ForemotioP />} />
       </Routes>

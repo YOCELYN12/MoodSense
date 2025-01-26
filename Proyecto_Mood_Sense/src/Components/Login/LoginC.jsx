@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { UserAuth } from "../../context/Context";
+import { Context } from "../../context/Context";
 
 const LoginC = () => {
   const navigate = useNavigate();
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [Status, setStatus] = useState(false);
-  const { getUsers, userActive } = UserAuth();
+  const { getUsers, userActive } = Context();
 
   const Log_In = async (e) => {
     e.preventDefault();
 
-    
     try {
-      const userInfo = await getUsers();
-      const userExists = userInfo.some((user) => user.email === correo);
-      
-      if (!userExists) {
+      const userInfo = await getUsers(); // Obtén la lista de usuarios
+      const userFound = userInfo.find((user) => user.email === correo); // Busca el usuario por correo
+      const passwordMatch = userFound && userFound.password === contrasena; // Verifica si la contraseña coincide
+
+      if (!userFound) {
         Swal.fire({
           icon: "error",
           title: "Error",
@@ -27,15 +27,24 @@ const LoginC = () => {
         });
         setStatus("Ese correo no existe");
         return;
-      }else{
-        await userActive(correo, contrasena);
-         setStatus("Ingreso exitoso");
-        navigate("/StudentForm");
+      } else if (!passwordMatch) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "La contraseña es incorrecta",
+        });
+        setStatus("La contraseña es incorrecta");
+        return;
+      } else {
+        await userActive(correo, contrasena); //Activa al usuario
+        setStatus("Ingreso exitoso");
+        navigate("/Home");
       }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
   };
+
   return (
     <div className="ContainerLogin">
       <div className="ContainerLoginForm">
@@ -69,7 +78,7 @@ const LoginC = () => {
           </button>
         </form>
         <p>
-          Don´t you have an account? <a href="http://">Sign up</a>
+          Don´t you have an account? <a href="/register">Sign up</a>
         </p>
       </div>
       <div>

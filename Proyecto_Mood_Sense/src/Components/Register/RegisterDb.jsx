@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import "../Register/Register.css";
 import Swal from "sweetalert2";
-import { UserAuth } from "../../context/Context";
-import LoadingSpinner from "../LoadingComponent";
+import { Context } from "../../context/Context";
+import LoadingSpinner from "../Loading/LoadingComponent";
 import { v4 as uuidv4 } from 'uuid';
 
 const RegisterDb = () => {
@@ -14,26 +14,26 @@ const RegisterDb = () => {
   const [institucionId, setInstitucionId] = useState("");
   const [carga, setCarga] = useState("");
 
-  // Recuperar la función getInstitution del contexto UserAuth
-  const { getInstitution, postUser, Status } = UserAuth();
+  // Recuperar la función getInstitution del contexto Context
+  const { getInstitution, postUser, Status } = Context();
 
-  useEffect(() => {
-   
-    const InstitucionesGet = async () => {
-      try {
-        // Obtener las instituciones desde el contexto
-        const institutions = await getInstitution();
-        setInstituciones(institutions);
-  
-        if (institutions.length === 0) {
-          console.log("No se encontraron instituciones");
-        }
-      } catch (error) {
-        console.error("Error al obtener instituciones:", error);
+  const InstitucionesGet = async () => {
+    try {
+      // Obtener las instituciones desde el contexto
+      const institutions = await getInstitution();
+      setInstituciones(institutions);
+
+      if (institutions.length === 0) {
+        console.log("No se encontraron instituciones");
       }
+    } catch (error) {
+      console.error("Error al obtener instituciones:", error);
     }
+  };
 
-    InstitucionesGet()  
+  
+  useEffect(() => {
+    InstitucionesGet();
   }, [])
 
 
@@ -162,13 +162,17 @@ const RegisterDb = () => {
           {Status && <p>{Status}</p>}
             <div className="ContainerTags">
               <p>
-                Do you have an account? <a href="http://">Log in</a>
+                ¿Ya tienes una cuenta? <a href="/">Log in</a>
               </p>
             </div>
           </div>
         </div>
       ) : (
+        <>
+        <p>Servidor caido...</p>
         <LoadingSpinner/>
+        
+        </>
       )}
 
     </>

@@ -1,9 +1,11 @@
 import React from "react";
-import RegisterC from "../../Components/Register/RegisterC";
+
+import RegisterDb from "../../Components/Register/RegisterDb";
+
 const RegisterP = () => {
   return (
     <div>
-      <RegisterC />
+      <RegisterDb />
     </div>
   );
 };

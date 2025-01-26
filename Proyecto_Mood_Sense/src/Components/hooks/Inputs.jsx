@@ -1,13 +1,19 @@
-import React from 'react'
 
-function Inputs() {
-  return (
-    <div>
+import { useState } from 'react'
 
+export const useInput = ({ type, placeholder, name, className }) => {
+  const [value, setValue] = useState('')
 
-        
-    </div>
+  const input = (
+    <input
+      type={type}
+      value={value}
+      name={name}
+      placeholder={placeholder}
+      className={className}
+      onChange={e => setValue(e.target.value)}
+    />
   )
-}
 
-export default Inputs
+  return [value, input, setValue]
+}
