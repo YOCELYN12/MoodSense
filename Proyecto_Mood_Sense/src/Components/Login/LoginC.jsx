@@ -29,6 +29,7 @@ const LoginC = () => {
       console.error("Error al iniciar sesión:", error);
     }
   };
+
   return (
     <div>
       <h1>Inicio Sesión</h1>
@@ -72,6 +73,7 @@ const LoginC = () => {
       />
 
       {Status && <div>{Status}</div>}
+      
     </div>
   );
 };
