@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { postEmotion } from "../service/service";
+import React, { useState } from 'react';
+import { postEmotion } from '../service/service';
+
 
 const FormEmotion = () => {
   const [emotions, setEmotions] = useState({
@@ -27,15 +28,18 @@ const FormEmotion = () => {
     const selectedEmotions = Object.entries(emotions)
       .filter(([_, emotion]) => emotion.checked)
       .map(([name, emotion]) => ({
-        emotion_name: name,
-        emotion_value: emotion.value,
-        emotion_score: emotion.value,
+        id: null,
+        id_institution: null,
         created_at: new Date().toISOString(),
+        user_id: null,
+        main_emotion: name,
+        details: "",
+        second_emotion: null
       }));
 
     if (selectedEmotions.length > 0) {
       try {
-        const response = await postEmotion(selectedEmotions);
+        const response = await xpostEmotion(selectedEmotions);
         if (response.error) throw response.error;
 
         setEmotions((prevEmotions) => {
