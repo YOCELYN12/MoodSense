@@ -28,6 +28,7 @@ const RegisterDb = () => {
         if (institutions.length === 0) {
           console.log("No se encontraron instituciones");
         }
+        
       } catch (error) {
         console.error("Error al obtener instituciones:", error);
       }

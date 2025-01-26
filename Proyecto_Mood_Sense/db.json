@@ -157,5 +157,50 @@
       "details": "Feeling great after completing a project",
       "second_emotion": 5
     }
+  ],
+  "personalInformatition": [
+    {
+      "id": 1,
+      "name": "Juan",
+      "lastname": "Pérez",
+      "studentId": "12345",
+      "nationality": "Costarricense",
+      "idNumber": "123456789",
+      "personalContact": "88888888",
+      "familyContact": "77777777",
+      "province": "San José",
+      "canton": "Central",
+      "district": "Carmen",
+      "studentState": "Activo",
+      "drugs": "Ninguno",
+      "studies": "Ingeniería Informática",
+      "diseases": "Ninguna",
+      "residence": "Avenida 10, San José",
+      "psychologicalDiagnosis": "Ninguno",
+      "institutionId": "001",
+      "role": "Estudiante"
+    },
+    {
+      "id": 2,
+      "name": "María",
+      "lastname": "López",
+      "studentId": "54321",
+      "nationality": "Costarricense",
+      "idNumber": "987654321",
+      "personalContact": "66666666",
+      "familyContact": "55555555",
+      "province": "Alajuela",
+      "canton": "Central",
+      "district": "Alajuela",
+      "studentState": "Inactivo",
+      "drugs": "Paracetamol",
+      "studies": "Medicina",
+      "diseases": "Alergia al polvo",
+      "residence": "Calle 5, Alajuela",
+      "psychologicalDiagnosis": "Estrés",
+      "institutionId": "002",
+      "role": "Estudiante"
+    }
   ]
+
 }
