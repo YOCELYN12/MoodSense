@@ -1,221 +1,193 @@
 import React, { useState } from "react";
-import supabase from "../../supabase/Supabase";
 import "./StudentFormcc.css";
-import { UserAuth } from "../../context/Context";
 
 const StudentFormC = () => {
-  const [name, setName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [studentId, setStudentId] = useState([]);
-  const [nationality, setNationality] = useState("");
-  const [idNumber, setIdNumber] = useState("");
-  const [personalContact, setpersonalContact] = useState("");
-  const [FamilyContact, setFamilyContact] = useState("");
-  const [province, setProvince] = useState("");
-  const [canton, setCanton] = useState("");
-  const [district, setDistrict] = useState("");
-  const [studentState, setStudentState] = useState("");
-  const [drugs, setDrugs] = useState(""); 
-  const [studies, setStudies] = useState("");
-  const [diseases, setDiseases] = useState("");
-  const [residence, setResidence] = useState("");
-  const [psychologicaldiagnosis, setpsychologicaldiagnosis] = useState("");
-  const [InstitutionId, setInstitutionId] = useState("");
-  const [role, setRole] = useState("");
-
+  const [intName, setName] = useState("");
+  const [intLastname, setLastName] = useState("");
+  const [intStudentId, setStudentId] = useState("");
+  const [intNationality, setNationality] = useState("");
+  const [intIdNumber, setIdNumber] = useState("");
+  const [intPersonalContact, setPersonalContact] = useState("");
+  const [intFamilyContact, setFamilyContact] = useState("");
+  const [intProvince, setProvince] = useState("");
+  const [intCanton, setCanton] = useState("");
+  const [intDistrict, setDistrict] = useState("");
+  const [intStudentState, setStudentState] = useState("");
+  const [intDrugs, setDrugs] = useState("");
+  const [intStudies, setStudies] = useState("");
+  const [intDiseases, setDiseases] = useState("");
+  const [intResidence, setResidence] = useState("");
+  const [intPsychologicalDiagnosis, setPsychologicalDiagnosis] = useState("");
+  const [intInstitutionId, setInstitutionId] = useState("");
+  const [intRole, setRole] = useState("");
 
   return (
     <div>
       <h2>Formulario del Perfil</h2>
-      <form  className="student-form">
-      <div className="form-nombre">
-          <label className="id">Nombre:</label>
+      <form className="student-form">
+        <div className="form-nombre">
+          <label>Nombre:</label>
           <input
-            className="input-id"
             type="text"
-            id="setName"
-            name="student_id"
+            value={intName}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
 
-        <div className="form-Apellido">
-          <label className="id">Apellido:</label>
+        <div className="form-apellido">
+          <label>Apellido:</label>
           <input
-            className="input-id"
             type="text"
-            id="setLastName"
-            name="student_id"
+            value={intLastname}
+            onChange={(e) => setLastName(e.target.value)}
           />
         </div>
-
 
         <div className="form-id">
-          <label className="id">ID Estudiante:</label>
+          <label>ID Estudiante:</label>
           <input
-            className="input-id"
             type="text"
-            id="setStudentId"
-            name="student_id"
-           
+            value={intStudentId}
+            onChange={(e) => setStudentId(e.target.value)}
           />
         </div>
 
         <div className="form-nacionalidad">
-          <label className="nacionalidad">Nacionalidad:</label>
+          <label>Nacionalidad:</label>
           <input
-          className="input-nacionalidad"
             type="text"
-            name="nationality"
-            id="setNationality"
-            
+            value={intNationality}
+            onChange={(e) => setNationality(e.target.value)}
           />
         </div>
 
         <div className="form-identidad">
-          <label className="identidad">Número de Identificación:</label>
+          <label>Número de Identificación:</label>
           <input
-          className="input-identidad"
             type="text"
-            name="id_number"
-            id="setIdNumber"
-           
+            value={intIdNumber}
+            onChange={(e) => setIdNumber(e.target.value)}
           />
         </div>
 
         <div className="form-contacto">
-          <label className="contacto">Contacto Personal:</label>
+          <label>Contacto Personal:</label>
           <input
-          className="input-contacto"
             type="text"
-            name="personal_contact"
-            id="setpersonalContact"
+            value={intPersonalContact}
+            onChange={(e) => setPersonalContact(e.target.value)}
           />
         </div>
 
         <div className="form-familiar">
-          <label className="familiar">Contacto Familiar:</label>
+          <label>Contacto Familiar:</label>
           <input
-          className="input-familiar"
             type="text"
-            name="family_contact"
-            id="setFamilyContact"
-            
+            value={intFamilyContact}
+            onChange={(e) => setFamilyContact(e.target.value)}
           />
         </div>
 
         <div className="form-provincia">
-          <label className="provincia">Provincia:</label>
+          <label>Provincia:</label>
           <input
-          className="input-provincia"
             type="text"
-            name="province"
-            id="setProvince"
+            value={intProvince}
+            onChange={(e) => setProvince(e.target.value)}
           />
         </div>
 
         <div className="form-canton">
-          <label className="canton">Cantón:</label>
+          <label>Cantón:</label>
           <input
-          className="input-canton"
             type="text"
-            name="canton"
-            id="setCanton"
+            value={intCanton}
+            onChange={(e) => setCanton(e.target.value)}
           />
         </div>
 
         <div className="form-distrito">
-          <label className="distrito">Distrito:</label>
+          <label>Distrito:</label>
           <input
-          className="input-distrito"
             type="text"
-            name="district"
-            id="setDistrict"
-            
+            value={intDistrict}
+            onChange={(e) => setDistrict(e.target.value)}
           />
         </div>
 
         <div className="form-estado">
-          <label className="estado">Estado del Estudiante:</label>
+          <label>Estado del Estudiante:</label>
           <input
-          className="input-estado"
             type="text"
-            name="student_state"
-            id="setstudent_state"
-            
+            value={intStudentState}
+            onChange={(e) => setStudentState(e.target.value)}
           />
         </div>
 
         <div className="form-medicamentos">
-          <label className="medicamentos">Medicamentos:</label>
+          <label>Medicamentos:</label>
           <input
-          className="input-medicamentos"
             type="text"
-            name="medications"
-            id="setMedications"
+            value={intDrugs}
+            onChange={(e) => setDrugs(e.target.value)}
           />
         </div>
 
         <div className="form-estudios">
-          <label className="estudios">Estudios:</label>
+          <label>Estudios:</label>
           <input
-          className="input-estudios"
             type="text"
-            name="studies"
-            id="setStudies"
+            value={intStudies}
+            onChange={(e) => setStudies(e.target.value)}
           />
         </div>
 
         <div className="form-enfermedades">
-          <label className="enfermedades">Enfermedades:</label>
+          <label>Enfermedades:</label>
           <input
-          className="input-enfermedades"
             type="text"
-            name="diseases"
-            id="setDiseases"
+            value={intDiseases}
+            onChange={(e) => setDiseases(e.target.value)}
           />
         </div>
 
         <div className="form-residencia">
-          <label className="residencia">Residencia:</label>
+          <label>Residencia:</label>
           <input
-          className="input-residencia"
             type="text"
-            name="residence"
-            id="setResidence"
+            value={intResidence}
+            onChange={(e) => setResidence(e.target.value)}
           />
         </div>
 
         <div className="form-diagnostico">
-          <label className="diagnostico">Diagnóstico Psicológico:</label>
+          <label>Diagnóstico Psicológico:</label>
           <input
-          className="input-diagnostico"
             type="text"
-            name="psychological_diagnosis"
-            id="setPsychologicalDiagnosis"
+            value={intPsychologicalDiagnosis}
+            onChange={(e) => setPsychologicalDiagnosis(e.target.value)}
           />
         </div>
 
-        <div className="form-istitucion">
-          <label className="institucion">ID Institución:</label>
+        <div className="form-institucion">
+          <label>ID Institución:</label>
           <input
-          className="input-institucion"
             type="text"
-            name="institution_id"
-            id="setInstitutionId"
+            value={intInstitutionId}
+            onChange={(e) => setInstitutionId(e.target.value)}
           />
         </div>
 
         <div className="form-rol">
-          <label className="rol">Rol:</label>
+          <label>Rol:</label>
           <input
-          className="input-rol"
             type="text"
-            name="rol"
-            id="setRol"
+            value={intRole}
+            onChange={(e) => setRole(e.target.value)}
           />
         </div>
 
-        <button className="boton-guardar" type="submit">Enviar</button>
+        <button type="submit">Enviar</button>
       </form>
     </div>
   );
