@@ -117,7 +117,16 @@ export async function getDatosMeta() {
       return await response.json();
   
     } catch (error) {
+<<<<<<< HEAD
       console.error("Error al enviar la emoción al backend:", error);
       return null;
     }
   }
+=======
+      console.error("Error al enviar el usuario al backend:", error);
+      return null;
+    }
+  }
+  
+
+>>>>>>> 71e4d8d58abfd01e70288ae89f4cbdac52aba966

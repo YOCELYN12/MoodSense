@@ -53,12 +53,10 @@ const FormEmotion = () => {
   };
 
   return (
-
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="emotion-form">
       <h2>¿Qué emociones estás sintiendo?</h2>
-
-      <div>
-        <label>
+      <div className="emotions-container">
+        <label className="emotion-label">
           <input
             type="checkbox"
             checked={emotions.happiness.checked}
@@ -66,7 +64,7 @@ const FormEmotion = () => {
           />
           Felicidad (+10)
         </label>
-        <label>
+        <label className="emotion-label">
           <input
             type="checkbox"
             checked={emotions.sadness.checked}
@@ -74,7 +72,7 @@ const FormEmotion = () => {
           />
           Tristeza (-8)
         </label>
-        <label>
+        <label className="emotion-label">
           <input
             type="checkbox"
             checked={emotions.anger.checked}
@@ -82,7 +80,7 @@ const FormEmotion = () => {
           />
           Ira (-6)
         </label>
-        <label>
+        <label className="emotion-label">
           <input
             type="checkbox"
             checked={emotions.fear.checked}
@@ -90,7 +88,7 @@ const FormEmotion = () => {
           />
           Miedo (-7)
         </label>
-        <label>
+        <label className="emotion-label">
           <input
             type="checkbox"
             checked={emotions.disgust.checked}
@@ -98,7 +96,7 @@ const FormEmotion = () => {
           />
           Asco (-5)
         </label>
-        <label>
+        <label className="emotion-label">
           <input
             type="checkbox"
             checked={emotions.surprise.checked}
@@ -107,7 +105,7 @@ const FormEmotion = () => {
           Sorpresa (0)
         </label>
       </div>
-      <button type="submit">Guardar emociones</button>
+      <button type="submit" className="submit-button">Guardar emociones</button>
     </form>
   );
 };
