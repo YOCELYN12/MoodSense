@@ -3,12 +3,12 @@ import "./StudentFormcc.css";
 import { PostStudent } from "../service/service"; // Importamos la función de POST
 
 const StudentFormC = () => {
-  const [intEmail, setEmail] = useState("");
+  const [intEmail, setEmail] = useState([]);
   const [intPassword, setPassword] = useState("");
   const [intInstitutionId, setInstitutionId] = useState("002");
   const [intName, setName] = useState("");
   const [intLastName, setLastName] = useState("");
-  const [intAge, setAge] = useState(null);
+  const [intAge, setAge] = useState("");
   const [intStudentState, setStudentState] = useState("");
   const [intNationality, setNationality] = useState("");
   const [intPersonalContact, setPersonalContact] = useState("");
@@ -70,6 +70,15 @@ const StudentFormC = () => {
             type="password"
             value={intPassword}
             onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <div className="form-password">
+          <label>Institution id:</label>
+          <input
+            type="number"
+            value={intInstitutionId}
+            onChange={(e) => setInstitutionId(e.target.value)}
           />
         </div>
 

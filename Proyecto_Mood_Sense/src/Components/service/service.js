@@ -96,3 +96,29 @@ export async function postEmotion(emotion) {
       return null;
     }
   }
+
+
+  // Función para hacer la solicitud PUT
+async function actualizarDatos(email) {
+  try {
+    const response = await fetch(email, {
+      method: 'PUT', // Método PUT
+      headers: {
+        'Content-Type': 'application/json', // Indica que los datos están en formato JSON
+      },
+      body: JSON.stringify(data), // Convierte el objeto en una cadena JSON
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud: ${response.status}`);
+    }
+
+    const resultado = await response.json();
+    console.log('Datos actualizados exitosamente:', resultado);
+  } catch (error) {
+    console.error('Error al actualizar los datos:', error);
+  }
+}
+
+// Llamar a la función
+actualizarDatos();
