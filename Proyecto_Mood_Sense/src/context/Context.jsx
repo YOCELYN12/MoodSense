@@ -54,7 +54,10 @@ export const MoodGlobalContext = ({ children }) => {
     }
   };
 
+<<<<<<< HEAD
   //Validacion de correo
+=======
+>>>>>>> cb015bf4cf62e01393011f60f4a47b7b73512469
   const validateEmail = async (email) => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -63,6 +66,11 @@ export const MoodGlobalContext = ({ children }) => {
       // Verifica si el correo ya existe en la base de datos
       const emailExists = data.some((user) => user.email === email);
 
+<<<<<<< HEAD
+=======
+      console.log(emailExists);
+
+>>>>>>> cb015bf4cf62e01393011f60f4a47b7b73512469
       // Retorna true si el correo no existe (es válido para usar)
       // Retorna false si el correo ya existe
       return !emailExists;

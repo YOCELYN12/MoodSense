@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../Pages/LoginPage/LoginP";
 import Register from "../Pages/RegisterPage/RegisterP";
 import StudentForm from "../Pages/StudentFormPage/StudentFormp";
-import Admin from "../Pages/Admin/Admin";
+import Admin from "../Pages/Admin/AdminPage/AdminPage.jsx";
 import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
 import MoodSense from "../Components/navbar/navbarC";
@@ -30,6 +30,7 @@ const Routing = () => {
         <Route path="/NavbarAdministrative" element={<NavbarAdministrative />} />
         <Route path="/home" element={<Home />} /> 
         <Route path="/ForemotioP" element={<ForemotioP />} />
+        <Route path="/Admin" element={<Admin />} />
       </Routes>
     </div>
   );
