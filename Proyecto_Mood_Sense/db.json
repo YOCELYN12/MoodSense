@@ -40,7 +40,7 @@
   "users": [
     {
       "id": 1,
-      "name": "Carlos García",
+      "name": "Carlos ",
       "email": "carlos.garcia@example.com",
       "user_id": "b7c92b44-1b3a-4c8a-8f1c-984dbe489ad5",
       "last_name": "García",
@@ -61,7 +61,7 @@
     },
     {
       "id": 2,
-      "name": "Laura Martínez",
+      "name": "Laura",
       "email": "laura.martinez@example.com",
       "user_id": "c24f9b15-d8f2-4f63-9c56-040ea1f404f1",
       "last_name": "Martínez",
@@ -82,7 +82,7 @@
     },
     {
       "id": 3,
-      "name": "John Doe",
+      "name": "John",
       "email": "javi@gmail.com",
       "user_id": "9a7b89b2-b5d1-4e91-9d5a-5873b74a758f",
       "last_name": "Doe",

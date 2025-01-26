@@ -8,16 +8,44 @@ export async function getDatosMeta() {
     return [];
   }
 }
-    
-    export async function getInstitution() {
-      try {
-        const response = await fetch("http://localhost:3000/institution");
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error("Error al obtener la institution:", error);
-        return [];
-      }
+
+
+export async function getUser() {
+  try {
+    const response = await fetch('http://localhost:3000/users');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error al obtener el usuario:', error);
+    return [];
+  }
+}
+
+
+
+export async function getInstitution() {
+  try {
+    const response = await fetch('http://localhost:3000/institution');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error al obtener la institución:', error);
+    return [];
+  }
+}
+
+export async function postInstitution(institution) {
+  try {
+    const response = await fetch('http://localhost:3000/institution', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(institution),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error al registrar la institución: ${response.statusText}`);
     }
     
     export async function postInstitution(institution) {
