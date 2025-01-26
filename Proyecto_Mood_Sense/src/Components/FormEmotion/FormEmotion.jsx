@@ -27,53 +27,54 @@ const FormEmotion = () => {
     const selectedEmotions = Object.entries(emotions)
       .filter(([_, emotion]) => emotion.checked)
       .map(([name, emotion]) => ({
-        emotion_name: name,
-        emotion_value: emotion.value,
-        emotion_score: emotion.value,
-        created_at: new Date().toISOString()
+        id: null,
+        id_institution: null,
+        created_at: new Date().toISOString(),
+        user_id: null,
+        main_emotion: name,
+        details: "",
+        second_emotion: null
       }));
-
-    if (selectedEmotions.length > 0) {
-      try {
-        const response = await postEmotion(selectedEmotions);
-        if (response.error) throw response.error;
-        
-        setEmotions(prevEmotions => {
-          const resetEmotions = {};
-          Object.keys(prevEmotions).forEach(key => {
-            resetEmotions[key] = { ...prevEmotions[key], checked: false };
+      if (selectedEmotions.length > 0) {
+        try {
+          const response = await postEmotion(selectedEmotions);
+          if (response.error) throw response.error;
+          
+          setEmotions(prevEmotions => {
+            const resetEmotions = {};
+            Object.keys(prevEmotions).forEach(key => {
+              resetEmotions[key] = { ...prevEmotions[key], checked: false };
+            });
+            return resetEmotions;
           });
-          return resetEmotions;
-        });
-
-      } catch (error) {
-        console.error('Error inserting emotions:', error);
+        } catch (error) {
+          console.error('Error inserting emotions:', error);
+        }
       }
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="emotion-form">
-      <h2>¿Qué emociones estás sintiendo?</h2>
-      <div className="emotions-container">
-        <label className="emotion-label">
-          <input
-            type="checkbox"
-            checked={emotions.happiness.checked}
-            onChange={() => handleEmotionChange('happiness')}
-          />
-          Felicidad (+10)
-        </label>
-        <label className="emotion-label">
-          <input
-            type="checkbox"
-            checked={emotions.sadness.checked}
-            onChange={() => handleEmotionChange('sadness')}
-          />
-          Tristeza (-8)
-        </label>
-        <label className="emotion-label">
-          <input
+    };
+  
+    return (
+      <form onSubmit={handleSubmit} className="emotion-form">
+        <h2>¿Qué emociones estás sintiendo?</h2>
+        <div className="emotions-container">
+          <label className="emotion-label">
+            <input
+              type="checkbox"
+              checked={emotions.happiness.checked}
+              onChange={() => handleEmotionChange('happiness')}
+              />
+              Felicidad (+10)
+            </label>
+            <label className="emotion-label">
+              <input
+                type="checkbox"
+                checked={emotions.sadness.checked}
+                onChange={() => handleEmotionChange('sadness')}
+              />
+              Tristeza (-8)
+            </label>
+            <label className="emotion-label">
+            <input
             type="checkbox"
             checked={emotions.anger.checked}
             onChange={() => handleEmotionChange('anger')}
@@ -81,7 +82,7 @@ const FormEmotion = () => {
           Ira (-6)
         </label>
         <label className="emotion-label">
-          <input
+        <input
             type="checkbox"
             checked={emotions.fear.checked}
             onChange={() => handleEmotionChange('fear')}
@@ -110,4 +111,4 @@ const FormEmotion = () => {
   );
 };
 
-export default FormEmotion;
+export default FormEmotion;        
