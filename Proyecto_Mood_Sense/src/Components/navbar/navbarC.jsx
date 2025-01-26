@@ -58,7 +58,7 @@ const MoodSense = () => {
           }} />
         </ListItem>
         <Divider sx={{ backgroundColor: '#FFFFFF' }} />
-        <ListItem button component={Link} to="/mis-emociones">
+        <ListItem button component={Link} to="/ForemotioP">
           <ListItemText primary="Mis Emociones" sx={{
             color: '#5E1151',  // Changed text color
             '@media (max-width: 600px)': {
