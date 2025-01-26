@@ -12,12 +12,12 @@ const EMOTION_COLORS = {
 };
 
 const EMOTION_LABELS = {
-  happiness: { emoji: '😊', text: 'Felicidad', color: '#FFD700' },
-  sadness: { emoji: '😢', text: 'Tristeza', color: '#4169E1' },
-  anger: { emoji: '😠', text: 'Ira', color: '#FF4500' },
-  fear: { emoji: '😨', text: 'Miedo', color: '#800080' },
-  disgust: { emoji: '🤢', text: 'Asco', color: '#32CD32' },
-  surprise: { emoji: '😲', text: 'Sorpresa', color: '#FF69B4' }
+  happiness: { emoji: '😊 ', text: 'Felicidad', color: '#FFD700' },
+  sadness: { emoji: '😢 ', text: 'Tristeza', color: '#4169E1' },
+  anger: { emoji: '😠 ', text: 'Ira', color: '#FF4500' },
+  fear: { emoji: '😨 ', text: 'Miedo', color: '#800080' },
+  disgust: { emoji: '🤢 ', text: 'Asco', color: '#32CD32' },
+  surprise: { emoji: '😲 ', text: 'Sorpresa', color: '#FF69B4' }
 };
 
 const SECONDARY_EMOTIONS_MAP = {
@@ -30,12 +30,12 @@ const SECONDARY_EMOTIONS_MAP = {
 };
 
 const EMOJI_MAP = {
-  alegre: '😊', interesado: '🤔', orgulloso: '😌', aceptado: '🤗', optimista: '😃',
-  melancolico: '😔', desanimado: '😞', solitario: '😪', desesperanzado: '😩', nostalgico: '🥺',
-  frustrado: '😤', irritado: '😠', indignado: '😡', resentido: '😣', furioso: '🤬',
-  ansioso: '😰', inseguro: '😟', preocupado: '😧', nervioso: '😥', aterrado: '😱',
-  repugnado: '🤢', asqueado: '🤮', despreciado: '😖', horrorizado: '😫', ofendido: '😒',
-  asombrado: '😲', impactado: '😮', maravillado: '🤩', confundido: '😕', desconcertado: '😵'
+  alegre: '😊 ', interesado: '🤔 ', orgulloso: '😌 ', aceptado: '🤗 ', optimista: '😃 ',
+  melancolico: '😔 ', desanimado: '😞 ', solitario: '😪 ', desesperanzado: '😩 ', nostalgico: '🥺 ',
+  frustrado: '😤 ', irritado: '😠 ', indignado: '😡 ', resentido: '😣 ', furioso: '🤬 ',
+  ansioso: '😰 ', inseguro: '😟 ', preocupado: '😧 ', nervioso: '😥 ', aterrado: '😱 ',
+  repugnado: '🤢 ', asqueado: '🤮 ', despreciado: '😖 ', horrorizado: '😫 ', ofendido: '😒 ',
+  asombrado: '😲 ', impactado: '😮 ', maravillado: '🤩 ', confundido: '😕 ', desconcertado: '😵 '
 };
 
 const FormEmotion = () => {
@@ -134,85 +134,104 @@ const FormEmotion = () => {
   };
 
   return (
-    <div style={{ display: 'flex', gap: '20px' }}>
-      <form onSubmit={handleSubmit} className="emotion-form">
-        <h2 style={{ color: '#5E1151' }}>Mis Emociones</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          <div className="emotions-container">
-            {Object.entries(emotions).map(([emotion]) => (
-              <label key={emotion} className="emotion-label">
-                <input
-                  type="checkbox"
-                  checked={emotions[emotion].checked}
-                  onChange={() => handleEmotionChange(emotion)}
-                />
-                <span style={{ fontSize: '1.5rem', marginRight: '8px' }}>
-                  {EMOTION_LABELS[emotion].emoji}
-                </span>
-                <span style={{ color: EMOTION_LABELS[emotion].color, fontSize: '1.2rem', fontWeight: 'bold' }}>
-                  {EMOTION_LABELS[emotion].text}
-                </span>
-              </label>
-            ))}
-          </div>
-
-          <div className="emotion-chart" style={{ width: '300px', height: '300px', marginTop: '20px' }}>
-            <h3>Distribución de Emociones</h3>
-            <Doughnut data={emotionStats} options={{ plugins: { legend: { position: 'bottom' } }, circumference: 180, rotation: -90 }} />
-          </div>
-
-          <div className="details-container" style={{ width: '100%', marginTop: '90px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-              <label className="details-label" style={{ color: '#5F3E99', fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '8px' }}>
-                Quieres comentarnos el porque?:
-              </label>
-              <input
-                type="text"
-                value={details}
-                onChange={(e) => setDetails(e.target.value)}
-                className="details-input"
-                style={{ border: '2px solid #5F3E99', width: '15rem', height: '7rem' }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {showModal && selectedPrimaryEmotion && (
-          <div style={modalStyles.overlay}>
-            <div style={modalStyles.content}>
-              <h3>¿Cuál se acerca más a lo que sientes?</h3>
-              {SECONDARY_EMOTIONS_MAP[selectedPrimaryEmotion].map(option => (
-                <label key={option} className="emotion-label">
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', width: '100%' }}>
+      <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', alignItems: 'flex-start', maxWidth: '1200px', width: '100%', padding: '20px' }}>
+        <form onSubmit={handleSubmit} className="emotion-form">
+          <h2 style={{ color: '#5E1151', textAlign: 'center' }}>Mis Emociones</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div className="emotions-container" style={{ backgroundColor: '#F0EDFA', padding: '20px', borderRadius: '10px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+              {Object.entries(emotions).map(([emotion]) => (
+                <label key={emotion} className="emotion-label" style={{ 
+                  display: 'inline-block',
+                  margin: '8px',
+                  padding: '10px 15px',
+                  backgroundColor: 'white',
+                  borderRadius: '10px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                }}>
                   <input
                     type="checkbox"
-                    checked={secondaryEmotions[option].checked}
-                    onChange={() => handleSecondaryEmotionChange(option)}
+                    checked={emotions[emotion].checked}
+                    onChange={() => handleEmotionChange(emotion)}
                   />
-                  <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>{EMOJI_MAP[option]}</span>
-                  {option.charAt(0).toUpperCase() + option.slice(1)}
+                  <span style={{ fontSize: '1.5rem', marginRight: '8px' }}>
+                    {EMOTION_LABELS[emotion].emoji}
+                  </span>
+                  <span style={{ color: EMOTION_LABELS[emotion].color, fontSize: '1.2rem', fontWeight: 'bold' }}>
+                    {EMOTION_LABELS[emotion].text}
+                  </span>
                 </label>
               ))}
-              <button 
-                onClick={() => setShowModal(false)}
-                style={{
-                  marginTop: '20px',
-                  padding: '10px 20px',
-                  backgroundColor: '#5E1151',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: 'pointer'
-                }}
-              >
-                Cerrar
-              </button>
+            </div>
+
+            <div className="emotion-chart" style={{ width: '300px', height: '300px', marginTop: '20px' }}>
+              <h3 style={{ textAlign: 'center' }}>Distribución de Emociones</h3>
+              <Doughnut data={emotionStats} options={{ plugins: { legend: { position: 'bottom' } }, circumference: 180, rotation: -90 }} style={{ width: '250px', height: '250px' }} />
+            </div>
+            <div className="details-container" style={{ width: '100%', marginTop: '20px', display: 'flex', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'center' }}>
+                <label className="details-label" style={{ color: '#000000', fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '8px' }}>
+                  Quieres comentarnos el porque?(o si prefieres escribe que no te sientes comodo escribiendolo):
+                </label>
+                <input
+                  type="text"
+                  value={details}
+                  onChange={(e) => setDetails(e.target.value)}
+                  className="details-input"
+                  style={{ border: '2px solid #5F3E99', width: '15rem', height: '5rem', borderRadius: '10px' }}
+                />
+              </div>
             </div>
           </div>
-        )}
-        <button type="submit" className="submit-button">Guardar emociones</button>
-      </form>
-      <div style={{ marginTop: '50px' }}>
-        <Calendario />
+          {showModal && selectedPrimaryEmotion && (
+            <div style={modalStyles.overlay}>
+              <div style={modalStyles.content}>
+                <h3 style={{ textAlign: 'center' }}>¿Cuál se acerca más a lo que sientes?</h3>
+                <div style={{ backgroundColor: '#F0EDFA', padding: '15px', borderRadius: '15px', display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+                  {SECONDARY_EMOTIONS_MAP[selectedPrimaryEmotion].map(option => (
+                    <label key={option} className="emotion-label" style={{
+                      backgroundColor: 'white',
+                      padding: '8px 15px',
+                      borderRadius: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                    }}>
+                      <input
+                        type="checkbox"
+                        checked={secondaryEmotions[option].checked}
+                        onChange={() => handleSecondaryEmotionChange(option)}
+                      />
+                      <span style={{ fontSize: '1.2rem', marginRight: '8px' }}>{EMOJI_MAP[option]}</span>
+                      {option.charAt(0).toUpperCase() + option.slice(1)}
+                    </label>
+                  ))}
+                </div>
+                <button 
+                  onClick={() => setShowModal(false)}
+                  style={{
+                    marginTop: '20px',
+                    padding: '10px 20px',
+                    backgroundColor: '#5E1151',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer',
+                    display: 'block',
+                    margin: '20px auto 0'
+                  }}
+                >
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          )}
+          <button type="submit" className="submit-button" style={{ display: 'block', margin: '20px auto 0' }}>Guardar emociones</button>
+        </form>
+        <div style={{ marginTop: '180px' }}>
+          <Calendario />
+        </div>
       </div>
     </div>
   );

@@ -14,6 +14,8 @@
         // Las emociones se cargarán dinámicamente usando created_at
       };
       setEmotions(mockEmotions);
+       // Aplicar estilo al calendario
+       document.querySelector('.react-calendar').style.backgroundColor = '#F0EDFA';
     }, []);
 
     const getEmotionEmoji = (emotion) => {
