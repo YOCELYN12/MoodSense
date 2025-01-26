@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./StudentFormcc.css";
-import {PostStudent} from '../service/service';
- // Importamos la función de POST
+
+// Importamos la función de POST
 
 const StudentFormC = () => {
   const [intName, setName] = useState("");
@@ -23,8 +23,6 @@ const StudentFormC = () => {
   const [intInstitutionId, setInstitutionId] = useState("");
   const [intRole, setRole] = useState("");
   const [students, setStudents] = useState([]); // Para almacenar los estudiantes obtenidos con GET
-
-
 
   // Función para manejar el envío del formulario (POST)
   const handleSubmit = async (e) => {
@@ -52,7 +50,6 @@ const StudentFormC = () => {
     };
 
     const result = await PostStudent(newStudent);
-   
   };
 
   return (
@@ -227,7 +224,9 @@ const StudentFormC = () => {
       <h3>Lista de Estudiantes</h3>
       <ul>
         {students.map((student) => (
-          <li key={student.id}>{student.name} {student.lastname}</li>
+          <li key={student.id}>
+            {student.name} {student.lastname}
+          </li>
         ))}
       </ul>
     </div>
