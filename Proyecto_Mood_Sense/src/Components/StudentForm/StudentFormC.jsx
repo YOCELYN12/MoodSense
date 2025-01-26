@@ -1,6 +1,6 @@
-  import React, { useState } from 'react';
+import React, { useState } from 'react';
   import supabase from '../../supabase/Supabase';
-  import './StudentFormcc.css';
+  import '../StudentForm/StudentFormC.css';
   const StudentFormC = () => {
     const [formData, setFormData] = useState({
       entry_date: '',
@@ -19,7 +19,6 @@
       diseases: '',
       psychological_diagnosis: ''
     });
-    //hola
 
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -66,11 +65,15 @@
       <div>
         <div style={{ padding: '20px' }}>
           <form onSubmit={handleSubmit}>
-            <h2>Formulario de datos del estudiante</h2>
+            <h1>Formulario de Perfil</h1>
+            <h2>Datos Personales</h2>
+            <p className='barrita'></p>
 
-            <div>
-              <label>Nombre</label>
+
+            <div className='div-nombre'>
+              <label className='nombre'>Nombre</label>
               <input 
+                className='input-nombre'
                 type="text" 
                 name="name"
                 value={formData.name}
@@ -80,9 +83,10 @@
               />
             </div>
 
-            <div>
-              <label>Apellidos</label>
+            <div className='div-apellido'>
+              <label className='apellido'>Apellidos</label>
               <input 
+                className='input-apellido'
                 type="text" 
                 name="lastname"
                 value={formData.lastname}
@@ -92,45 +96,23 @@
               />
             </div>
 
-            <div>
-              <label>Edad</label>
+            <div className='div-correo'>
+              <label className='correo'>Correo Electronico</label>
               <input 
-                type="number" 
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-                placeholder="Ej: 20"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Carné Estudiantil</label>
-              <input 
+                className='input-correo'
                 type="text" 
-                name="student_id"
-                value={formData.student_id}
+                name="lastname"
+                value={formData.lastname}
                 onChange={handleChange}
-                placeholder="Ej: B12345"
+                placeholder="Ej: Pérez Mora"
                 required 
               />
             </div>
 
-            <div>
-              <label>Nacionalidad</label>
+            <div className='div-cedula'>
+              <label className='cedula'>Cédula</label>
               <input 
-                type="text" 
-                name="nationality"
-                value={formData.nationality}
-                onChange={handleChange}
-                placeholder="Ej: Costarricense"
-                required 
-              />
-            </div>
-
-            <div>
-              <label>Cédula</label>
-              <input 
+                className='input-cedula'
                 type="text" 
                 name="id_number"
                 value={formData.id_number}
@@ -140,33 +122,62 @@
               />
             </div>
 
-            <div>
-              <label>Número de Contacto Personal</label>
+            <div className='div-edad'>
+              <label className='edad'>Edad</label>
               <input 
+                className='input-edad'
+                type="number" 
+                name="age"
+                value={formData.age}
+                onChange={handleChange}
+                placeholder="Ej: 20"
+                required 
+              />
+            </div>
+
+            <div className='div-nacionalidad'>
+              <label className='nacionalidad'>Nacionalidad</label>
+              <input 
+                className='input-nacionalidad'
+                type="text" 
+                name="nationality"
+                value={formData.nationality}
+                onChange={handleChange}
+                placeholder="Ej: Costarricense"
+                required 
+              />
+            </div>
+
+          <h2>Datos Adicionales</h2>
+
+            <div className='div-nivescolaridad'>
+              <label className='nivescolaridad'>Niv.escolaridad</label>
+              <input 
+                className='input-nivescolaridad'
                 type="tel" 
                 name="personal_phone"
                 value={formData.personal_phone}
                 onChange={handleChange}
-                placeholder="Ej: 8888-8888"
+                placeholder="Ej: Bachillerato"
                 required 
               />
             </div>
 
-            <div>
-              <label>Número de Contacto Familiar</label>
-              <input 
-                type="tel" 
-                name="family_phone"
-                value={formData.family_phone}
+            <div className='div-padecimiento'>
+              <label className='padecimiento'>¿Tiene algun padecimiento?</label>
+              <textarea
+                className='input-padecimiento'
+                name="medications"
+                value={formData.medications}
                 onChange={handleChange}
-                placeholder="Ej: 7777-7777"
-                required 
-              />
+                placeholder="Ej: Asma, Diabetes, etc."
+              ></textarea>
             </div>
 
-            <div>
-              <label>Provincia</label>
+            <div className='div-direccion'>
+              <label className='direccion'>Direccion Exacta</label>
               <input 
+                className='input-direccion'
                 type="text" 
                 name="province"
                 value={formData.province}
@@ -176,9 +187,23 @@
               />
             </div>
 
-            <div>
-              <label>Cantón</label>
+            <div className='div-provincia'>
+              <label className='provincia'>Provincia</label>
               <input 
+                className='input-provincia'
+                type="text" 
+                name="province"
+                value={formData.province}
+                onChange={handleChange}
+                placeholder="Ej: San José"
+                required 
+              />
+            </div>
+
+            <div className='div-canton'>
+              <label className='canton'>Cantón</label>
+              <input 
+                className='input-canton'
                 type="text" 
                 name="canton"
                 value={formData.canton}
@@ -188,9 +213,10 @@
               />
             </div>
 
-            <div>
-              <label>Distrito</label>
+            <div className='div-distrito'>
+              <label className='distrito'>Distrito</label>
               <input 
+                className='input-distrito'
                 type="text" 
                 name="district"
                 value={formData.district}
@@ -200,40 +226,10 @@
               />
             </div>
 
-            <div>
-              <label>Fecha de Ingreso</label>
-              <input 
-                type="date" 
-                name="entry_date"
-                value={formData.entry_date}
-                onChange={handleChange}
-                required 
-              />
-            </div>
-
-            <div>
-              <label>¿Toma algún medicamento?</label>
+            <div className='div-diagnostico'>
+              <label className='diagnostico'>Diagnóstico Psicológico</label>
               <textarea
-                name="medications"
-                value={formData.medications}
-                onChange={handleChange}
-                placeholder="Ej: Acetaminofén 500mg, Omeprazol 20mg"
-              ></textarea>
-            </div>
-
-            <div>
-              <label>Enfermedades</label>
-              <textarea
-                name="diseases"
-                value={formData.diseases}
-                onChange={handleChange}
-                placeholder="Ej: Asma, Hipertensión"
-              ></textarea>
-            </div>
-
-            <div>
-              <label>Diagnóstico Psicológico</label>
-              <textarea
+                className='input-diagnostico'
                 name="psychological_diagnosis"
                 value={formData.psychological_diagnosis}
                 onChange={handleChange}
@@ -242,7 +238,7 @@
             </div>
 
             <div>
-              <button type="submit">Guardar</button>
+              <button className='boton-guardar' type="submit">Guardar</button>
             </div>
           </form>
         </div>

@@ -31,7 +31,7 @@
           </ListItem>
         </List>
         <Box sx={{ flexGrow: 1, p: 3 }}>
-          <StudentFormC />
+          {/* <StudentFormC /> */}
         </Box>
       </Box>
     );

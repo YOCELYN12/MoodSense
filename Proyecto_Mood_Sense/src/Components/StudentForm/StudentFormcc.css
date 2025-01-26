@@ -33,3 +33,321 @@
 .list-item-text {
   color: #a20f41;
 }
+.div-nombre{
+  display: grid;
+  }
+  
+  .nombre{
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+      margin-left: -50%;
+  }
+  
+  .input-nombre{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 22%;
+  }
+  
+  .div-apellido{
+    display: grid;
+    }
+    
+  .apellido{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: -20%;
+    margin-top: -93px;
+  }
+    
+  .input-apellido{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 36%;
+    margin-top: -49px;
+  }
+  
+  .div-correo{
+    display: grid;
+    }
+    
+  .correo{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: 17%;
+    margin-top: -93px;
+  }
+    
+  .input-correo{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 52%;
+    margin-top: -49px;
+  }
+  
+  .div-edad{
+    display: grid;
+    }
+    
+  .edad{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: -23%;
+    margin-top: -93px;
+  }
+    
+  .input-edad{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 36%;
+    margin-top: -49px;
+  }
+  
+  
+  .div-nacionalidad{
+    display: grid;
+    }
+    
+  .nacionalidad{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: 14%;
+    margin-top: -93px;
+  }
+    
+  .input-nacionalidad{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 52%;
+    margin-top: -49px;
+  }
+  
+  .div-nivescolaridad{
+    display: grid;
+    }
+    
+  .nivescolaridad{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: -45%;
+  }
+    
+  .input-nivescolaridad{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 22%;
+  }
+  
+  .div-cedula{
+    display: grid;
+    }
+    
+  .cedula{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: -51%;
+  }
+    
+  .input-cedula{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 22%;
+    margin-top: 4px;
+  }
+  
+  .div-padecimiento{
+    display: grid;
+    }
+    
+  .padecimiento{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: -9%;
+    margin-top: -93px;
+  }
+    
+  .input-padecimiento{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 36%;
+    margin-top: -49px;
+  }
+  
+  .div-direccion{
+    display: grid;
+    }
+    
+  .direccion{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: 30%;
+    margin-top: -113px;
+  }
+    
+  .input-direccion{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 59%;
+    margin-top: -65px;
+  }
+  
+  .div-provincia{
+    display: grid;
+    }
+    
+  .provincia{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: -49%;
+    margin-top: -13px;
+  }
+    
+  .input-provincia{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 22%;
+    margin-top: -0px;
+  }
+  
+  .div-canton{
+    display: grid;
+    }
+    
+  .canton{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: -20%;
+    margin-top: -93px;
+  }
+    
+  .input-canton{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 36%;
+    margin-top: -49px;
+  }
+  
+  .div-distrito{
+    display: grid;
+    }
+    
+  .distrito{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: 11%;
+    margin-top: -93px;
+  }
+    
+  .input-distrito{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 53%;
+    margin-top: -49px;
+  }
+  
+  .div-diagnostico{
+    display: grid;
+    }
+    
+  .diagnostico{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    margin-left: 55%;
+    margin-top: -93px;
+  }
+    
+  .input-diagnostico{
+    width: 10%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-left: 70%;
+    margin-top: -49px;
+  }
+  
+  .boton-guardar{
+    background-color: #763a8b;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-left: 45%;
+  }
