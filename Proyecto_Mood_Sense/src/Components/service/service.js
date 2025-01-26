@@ -66,7 +66,7 @@ async function getDatosMeta() {
   }
 
 
-  async function postUser(user) {
+  export const postUser=async(user) => {
     try {
   
       const response = await fetch("http://localhost:3000/users", {
@@ -87,24 +87,24 @@ async function getDatosMeta() {
     }
   }
 
-  async function postUser(user) {
-    try {
+  // export async function postUser(user) {
+  //   try {
   
-      const response = await fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+  //     const response = await fetch("http://localhost:3000/users", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(user),
+  //     });
   
-      if (!response.ok) {
-        throw new Error(`Error al registrar el usuario: ${response.statusText}`);
-      }
+  //     if (!response.ok) {
+  //       throw new Error(`Error al registrar el usuario: ${response.statusText}`);
+  //     }
   
-    } catch (error) {
-      console.error("Error al enviar el usuario al backend:", error);
-      return null;
-    }
-  }
+  //   } catch (error) {
+  //     console.error("Error al enviar el usuario al backend:", error);
+  //     return null;
+  //   }
+  // }
 
