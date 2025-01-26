@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import supabase from "../supabase/Supabase";
 import Cookies from "js-cookie";
 
-
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -39,7 +38,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-
   const getUsers = async () => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -53,8 +51,6 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
-  
-
   const validateEmail = async (email) => {
     try {
       const response = await fetch("http://localhost:3000/users");
@@ -64,7 +60,6 @@ export const AuthContextProvider = ({ children }) => {
       const emailExists = data.some((user) => user.email === email);
 
       console.log(emailExists);
-      
 
       // Retorna true si el correo no existe (es válido para usar)
       // Retorna false si el correo ya existe
@@ -75,31 +70,14 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const postUser = async (user) => {
+    console.log(user.email);
 
-  const GetEmotionTable = async (userId) => {
-    const { data, error } = await supabase
-      .from('user') // nombre de tu tabla
-      .select('*') // selecciona todas las columnas
-      .eq('id', userId) // condicionante, en este caso 'id'
-      .single(); // Devuelve un único registro
-  
-    if (error) {
-      console.error("Error:", error);
-    } else {
-      console.log("User data:", data);
-    }
-  
-}
-
-  const GetUserTable = async (userId) => {
-      const { data, error } = await supabase
-        .from('user') // nombre de tu tabla
-        .select('*') // selecciona todas las columnas
-        .eq('id', userId) // condicionante, en este caso 'id'
-        .single(); // Devuelve un único registro
-    
-      if (error) {
-        console.error("Error:", error);
+    try {
+      const valid = await validateEmail(user.email);
+      if (!valid) {
+        console.log("El correo ya existe en la base de datos.");
+        return null;
       } else {
         const response = await fetch("http://localhost:3000/users", {
           method: "POST",
@@ -111,7 +89,7 @@ export const AuthContextProvider = ({ children }) => {
 
         if (!response.ok) {
           throw new Error(
-            new Error(`Error al registrar los dat: ${response.statusText}`)
+            `Error al registrar los datos: ${response.statusText}`
           );
         } else {
           console.log("Se registraron correctamente sus datos.");
@@ -130,6 +108,7 @@ export const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 export const UserAuth = () => {
   return useContext(AuthContext);
 };

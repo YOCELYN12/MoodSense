@@ -4,9 +4,9 @@ import Login from "../Pages/LoginPage/LoginP";
 import Register from "../Pages/RegisterPage/RegisterP";
 import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/AdminPage/AdminPage.jsx";
-import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
 import GroupDash from "../Pages/GroupDashboard/GroupDash";import RegisterDb from "../Components/Register/RegisterDb";
+import UserList from "../Components/UserList/UserList.jsx";
 
 const Routing = () => {
   return (
@@ -18,6 +18,7 @@ const Routing = () => {
         <Route path="/Admin" element={<Admin />} />
         <Route path="/GroupDash" element={<GroupDash />} />
         <Route path="/ForemotioP" element={<ForemotioP />} />
+        <Route path="/UserList" element={<UserList />} />
         <Route path="/Admin" element={<Admin />} />
       </Routes>
     </div>
