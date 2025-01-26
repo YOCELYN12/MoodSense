@@ -1,11 +1,4 @@
 {
-  "datosmeta": [
-    {
-      "id": 1,
-      "id_institution": 1,
-      "email": "carloslopez@gmail.com"
-    }
-  ],
   "institution": [
     {
       "id": 1,
@@ -90,10 +83,11 @@
     {
       "id": 3,
       "name": "John Doe",
-      "email": "john.doe@example.com",
+      "email": "javi@gmail.com",
       "user_id": "9a7b89b2-b5d1-4e91-9d5a-5873b74a758f",
       "last_name": "Doe",
       "age": 32,
+      "password": "123",
       "student_state": "Graduated",
       "nationality": "American",
       "personal_contact": "+1 202-555-0143",
