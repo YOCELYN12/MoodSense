@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Register/Register.css";
 import Swal from "sweetalert2";
 import supabase from "../../supabase/Supabase";
+import { UserAuth } from "../../context/Context";
 
 const RegisterC = () => {
   const [correo, setCorreo] = useState("");
@@ -76,7 +77,7 @@ const RegisterC = () => {
         <h1>Registro</h1>
         <div className="ContainerInputs1">
           <p>Correo</p>
-          <input
+          <input className="Inputs" 
             onChange={(e) => {
               setCorreo(e.target.value);
             }}
@@ -88,7 +89,7 @@ const RegisterC = () => {
         </div>
         <div className="ContainerInputs1">
           <p>Contraseña</p>
-          <input
+          <input className="Inputs"
             onChange={(e) => {
               setContrasena(e.target.value);
             }}
