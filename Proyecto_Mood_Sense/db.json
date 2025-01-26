@@ -126,61 +126,13 @@
       "0": {
         "id": null,
         "id_institution": null,
-        "created_at": "2025-01-26T07:38:17.241Z",
-        "user_id": null,
-        "main_emotion": "fear",
-        "details": "",
-        "second_emotion": null
-      },
-      "id": "a440"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T07:39:16.830Z",
+        "created_at": "2025-01-26T17:40:00.347Z",
         "user_id": null,
         "main_emotion": "anger",
-        "details": "no quiero",
-        "second_emotion": null
+        "details": "VDFVD",
+        "second_emotion": "frustrado"
       },
-      "id": "d88e"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T07:42:54.541Z",
-        "user_id": null,
-        "main_emotion": "happiness",
-        "details": "prueba",
-        "second_emotion": "orgulloso"
-      },
-      "id": "c65d"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T08:13:13.823Z",
-        "user_id": null,
-        "main_emotion": "disgust",
-        "details": "no zorra",
-        "second_emotion": "asqueado"
-      },
-      "id": "644e"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T08:41:02.346Z",
-        "user_id": null,
-        "main_emotion": "surprise",
-        "details": "",
-        "second_emotion": "maravillado"
-      },
-      "id": "1031"
+      "id": "d125"
     }
   ]
    
