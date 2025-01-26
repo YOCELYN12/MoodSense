@@ -108,3 +108,27 @@ async function getDatosMeta() {
     }
   }
 
+
+  async function postFrom(user) {
+    try {
+      const response = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error al registrar el usuario: ${response.statusText}`);
+      }
+  
+    } catch (error) {
+      console.error("Error al enviar el usuario al backend:", error);
+      return null;
+    }
+  }
+
+
+  
+
