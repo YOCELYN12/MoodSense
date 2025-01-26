@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import supabase from '../../supabase/Supabase';
+import { postEmotion } from '../../services/emotionService';
 
 const FormEmotion = () => {
   const [emotions, setEmotions] = useState({
@@ -35,11 +35,8 @@ const FormEmotion = () => {
 
     if (selectedEmotions.length > 0) {
       try {
-        const { data, error } = await supabase
-          .from('emotional_reports')
-          .insert(selectedEmotions);
-
-        if (error) throw error;
+        const response = await postEmotion(selectedEmotions);
+        if (response.error) throw response.error;
         
         setEmotions(prevEmotions => {
           const resetEmotions = {};
