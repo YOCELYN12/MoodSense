@@ -48,7 +48,7 @@
       "student_state": "Active",
       "nationality": "Spanish",
       "personal_contact": "+34 612 345 678",
-      "family__contact": "+34 689 234 567",
+      "family_contact": "+34 689 234 567",
       "residence": "Calle Mayor, 45, Madrid",
       "diseases": "None",
       "institution_id": "4a7f27b9-b8e9-4673-8d76-2a97e6e54db3",
@@ -182,6 +182,18 @@
         "second_emotion": "maravillado"
       },
       "id": "1031"
+    },
+    {
+      "0": {
+        "id": null,
+        "id_institution": null,
+        "created_at": "2025-01-29T20:46:51.442Z",
+        "user_id": null,
+        "main_emotion": "fear",
+        "details": "No se porque, pero si",
+        "second_emotion": "preocupado"
+      },
+      "id": "38f5"
     }
   ],
   "personalInformatition": [
@@ -206,7 +218,6 @@
       "institutionId": "001",
       "role": "Estudiante"
     },
-    
     {
       "email": "",
       "password": "",
@@ -229,7 +240,5 @@
       "medications": "Paracetamol",
       "psychological_diagnosis": "Estrés"
     }
-    
   ]
-
 }

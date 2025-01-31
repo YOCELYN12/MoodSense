@@ -8,49 +8,46 @@ const LoginC = () => {
   const navigate = useNavigate();
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
-  const [Status, setStatus] = useState(false);
-  const { getUsers, userActive } = Context();
+
+  const { signIn, Message, setMessage } = Context();
 
   const Log_In = async (e) => {
     e.preventDefault();
 
     try {
-      const userInfo = await getUsers(); // Obtén la lista de usuarios
-      const userFound = userInfo.find((user) => user.email === correo); // Busca el usuario por correo
-      const passwordMatch = userFound && userFound.password === contrasena; // Verifica si la contraseña coincide
+      //Valida si el usuario existe en la db.
+      const { error, data } = await signIn(correo, contrasena);
 
-      if (!userFound) {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "El correo no existe en nuestros registros",
-        });
-        setStatus("Ese correo no existe");
-        return;
-      } else if (!passwordMatch) {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "La contraseña es incorrecta",
-        });
-        setStatus("La contraseña es incorrecta");
-        return;
-      } else {
-        await userActive(correo, contrasena); //Activa al usuario
-        setStatus("Ingreso exitoso");
-        navigate("/Home");
-        console.log(correo);
-        const usuarioFiltrado = userInfo.filter(
-          (usuario) => usuario.email === correo
-        );
-        localStorage.setItem("usuarioId", usuarioFiltrado[0].id);
-        localStorage.setItem("usuarioRol", usuarioFiltrado[0].rol);
-        localStorage.setItem("usuarioNombre", usuarioFiltrado[0].name);
-        localStorage.setItem("usuarioApellido", usuarioFiltrado[0].last_name);
-        localStorage.setItem("usuarioEmail", usuarioFiltrado[0].email);
+      if (error) throw (error);
+      
+      if (data) {
+        localStorage.setItem("usuarioEmail", correo);
+        
+        setTimeout(() => {
+          navigate("/Home");
+        }, 1500);
       }
+
+      //     Swal.fire({
+      //       icon: "error",
+      //       title: "Error",
+      //       text: "El correo no existe en nuestros registros",
+      //     });
+      //    
+      //     const usuarioFiltrado = userInfo.filter(
+      //       (usuario) => usuario.email === correo
+      //     );
+      //     // localStorage.setItem("usuarioId", usuarioFiltrado[0].id);
+      //     // localStorage.setItem("usuarioRol", usuarioFiltrado[0].rol);
+      //     // localStorage.setItem("usuarioNombre", usuarioFiltrado[0].name);
+      //     // localStorage.setItem("usuarioApellido", usuarioFiltrado[0].last_name);
+      //     localStorage.setItem("usuarioEmail", usuarioFiltrado[0].email);
+      //   }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
+      if (!Message) {
+        setMessage("Contraseña invalida..."); 
+      }
     }
   };
 
@@ -85,9 +82,11 @@ const LoginC = () => {
           <button className="Login_BTN" onClick={Log_In}>
             Inicio sesión
           </button>
+          {Message && <div className="status_div">{Message}</div>}
+
         </form>
         <p>
-          Don´t you have an account? <a href="/register">Sign up</a>
+          ¿Todavia no tienes una cuenta? <a href="/register">Sign up</a>
         </p>
       </div>
       <div>
@@ -97,8 +96,6 @@ const LoginC = () => {
           alt=""
         />
       </div>
-
-      {Status && <div>{Status}</div>}
     </div>
   );
 };

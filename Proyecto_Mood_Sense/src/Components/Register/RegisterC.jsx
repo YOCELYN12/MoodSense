@@ -1,71 +1,70 @@
 // // Importación de dependencias necesarias: React, hooks, estilos, SweetAlert2 y cliente Supabase
-// import React, { useState, useEffect } from "react";
-// import "../Register/Register.css";
-// import Swal from "sweetalert2";
-// import supabase from "../../supabase/Supabase";
+import React, { useState, useEffect } from "react";
+import "../Register/Register.css";
+import Swal from "sweetalert2";
+import supabase from "../../supabase/Supabase";
+import { Context } from "../../context/Context";
 
-// const RegisterC = () => {
-//   // Estados para manejar el correo, contraseña e institución seleccionada
-//   const [correo, setCorreo] = useState("");
-//   const [contrasena, setContrasena] = useState("");
-//   const [instituciones, setInstituciones] = useState([]);
-//   const [institucionId, setInstitucionId] = useState("");
+const RegisterC = () => {
+  // Estados para manejar el correo, contraseña e institución seleccionada
+  const [correo, setCorreo] = useState("");
+  const [contrasena, setContrasena] = useState("");
+  const [instituciones, setInstituciones] = useState([]);
+  const [institucionId, setInstitucionId] = useState("");
+
+  const { signUp, fetchInstituciones, checkUserExists, Message } = Context();
+
+  const getInstitutions = async () => {
+    try {
+      const { data, error } = await fetchInstituciones();
+
+      if (error) throw error;
+      setInstituciones(data);
+    } catch (error) {
+      console.error("Error al obtener instituciones:", error);
+    }
+  };
 
   // Efecto que se ejecuta al montar el componente para obtener la lista de instituciones
   useEffect(() => {
-    const fetchInstituciones = async () => {
-      try {
-        const { data, error } = await supabase.from("institution").select("*");
-
-//         if (error) throw error;
-//         setInstituciones(data);
-//       } catch (error) {
-//         console.error("Error al obtener instituciones:", error);
-//       }
-//     };
-//     fetchInstituciones();
-//   }, []);
+    getInstitutions();
+  }, []);
 
   // Función para validar y registrar un nuevo usuario
-  const ValidateUser = async () => {
-
-    console.log(institucionId);
-    
+  const ValidateUser = async (e) => {
+    e.preventDefault();
     // Validación de campos vacíos
     if (correo.trim() === "" || contrasena.trim() === "" || !institucionId) {
       Swal.fire("Necesitas llenar todos los campos");
       return;
     }
     try {
-      // Registra el nuevo usuario en auth
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: correo,
-        password: contrasena,
-      });
-      
-      if (authError) throw authError;
+      //Valida que el usuario no exista, para agregarlo, en caso de q que exista, no lo agrega.
+      const check = await checkUserExists(correo);
 
-      if (authData) {
-        // Guarda la información adicional en la tabla users
-        const { error: userError } = await supabase
-        .from('datosmeta')
-        .insert([
-          {
-            email: correo,
-            id_institution: institucionId
-          }
-        ]);
+      if (!check) {
+        const { data, error } = await signUp(correo, contrasena);
+
+        if (error) throw error;
+
+        if (data) {
+          // Guarda la información adicional en la tabla users
+          const { error: userError } = await supabase.from("users").insert([
+            {
+              email: data.user.email,
+              user_id: data.user.id,
+              institution_id: institucionId,
+            },
+          ]);
+        }
+      } else {
+        return;
       }
-
-      if (userError) throw userError;
-      
-
-      Swal.fire("Usuario registrado exitosamente");
     } catch (error) {
-      Swal.fire("Error al registrar usuario o ya hay un usuario con esta cuenta");
       console.error(error);
     }
   };
+
   // Renderizado del formulario de registro
   return (
     <div className="MainContainer">
@@ -75,58 +74,65 @@
           alt="Flores moradas"
         /> */}
       </div>
-      <div className="ContainerInputs">
-        <h1>Registro</h1>
-        <div className="ContainerInputs1">
-          <p>Correo</p>
-          <input className="Inputs" 
-            onChange={(e) => {
-              setCorreo(e.target.value);
-            }}
-            type="email"
-            name=""
-            id="email"
-            placeholder="Ingrese su correo"
-          />
-        </div>
-        <div className="ContainerInputs1">
-          <p>Contraseña</p>
-          <input className="Inputs"
-            onChange={(e) => {
-              setContrasena(e.target.value);
-            }}
-            type="password"
-            name=""
-            id="password"
-            placeholder="Ingrese su contraseña"
-          />
-        </div>
-        <select
-          className="select"
-          name="institucion"
-          id="institucion"
-          onChange={(e) => setInstitucionId(e.target.value)}
-          value={institucionId}
-        >
-          <option value="">Seleccione una institución</option>
-          {instituciones.map((institucion) => (
-            <option key={institucion.id} value={institucion.id}>
-              {institucion.nombre}
-            </option>
-          ))}
-        </select>
+      <form required onSubmit={ValidateUser}>
+        <div className="ContainerInputs">
+          <h1>Registro</h1>
+          <div className="ContainerInputs1">
+            <p>Correo</p>
+            <input
+              required
+              className="Inputs"
+              onChange={(e) => {
+                setCorreo(e.target.value);
+              }}
+              type="email"
+              name=""
+              id="email"
+              placeholder="Ingrese su correo"
+            />
+          </div>
+          <div className="ContainerInputs1">
+            <p>Contraseña</p>
+            <input
+              required
+              className="Inputs"
+              onChange={(e) => {
+                setContrasena(e.target.value);
+              }}
+              type="password"
+              name=""
+              id="password"
+              placeholder="Ingrese su contraseña"
+            />
+          </div>
+          <select
+            className="select"
+            name="institucion"
+            id="institucion"
+            onChange={(e) => setInstitucionId(e.target.value)}
+            value={institucionId}
+          >
+            <option value="">Seleccione una institución</option>
+            {instituciones.map((institucion) => (
+              <option key={institucion.id} value={institucion.id}>
+                {institucion.institution_name}
+              </option>
+            ))}
+          </select>
 
-//         <button className="b-t-n" onClick={ValidateUser}>
-//           Registrarse
-//         </button>
-//         <div className="ContainerTags">
-//           <p>
-//             Do you have an account? <a href="http://">Log in</a>
-//           </p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+          <button type="submit" className="b-t-n">
+            Registrarse
+          </button>
+          {Message && <div className="status_div">{Message}</div>}
+          <div className="ContainerTags">
+            <p>
+              ¿Ya tienes una cuenta? <a href="http://">Log in</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default RegisterC;

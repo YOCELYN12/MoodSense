@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Context } from "../../context/Context";
 import { useNavigate } from "react-router-dom";
 
@@ -6,34 +6,26 @@ const Home = () => {
   const { getUserLogin } = Context();
   const navigate = useNavigate();
 
-  const AsyncGet = async () => {
+  const RedirectionFunction = async () => {
     try {
       const { data } = await getUserLogin();
-      if (!data) {
-        console.log("No hay usuario registrado");
+      const role = data?.[0]?.rol;
+
+      if (role === "admin") {
+        navigate("/Admin");
       } else {
-        return data[0].rol;
+        navigate("/StudentForm");
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error obteniendo el usuario:", error);
     }
   };
 
-  
   useEffect(() => {
     RedirectionFunction();
   }, []);
-  
-  const RedirectionFunction = async () => {
-    const redirection = await AsyncGet();
 
-    if (redirection == "admin") {
-      navigate("/Admin");
-    } else {
-      navigate("/StudentForm");
-    }
-  };
-  
+  return <div>Cargando...</div>; // Asegura que el componente devuelva JSX
 };
 
 export default Home;

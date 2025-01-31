@@ -13,6 +13,9 @@ import NavbarAdministrative from "../Components/NavbarAdministrative/NavbarAdmin
 import RegisterDb from "../Components/Register/RegisterDb";
 import RegisterP from "../Pages/RegisterPage/RegisterP";
 import PrivateRoute from "./PrivateRoute";
+import RegisterC from "../Components/Register/RegisterC.jsx";
+import LoginC from "../Pages/LoginPage/LoginP";
+
 
 const Routing = () => {
   return (
@@ -21,16 +24,15 @@ const Routing = () => {
         {/* Ruta privada para el componente Admin */}
         <Route path="/Admin" element={<PrivateRoute> <Admin /> </PrivateRoute>} />
 
-        <Route path="/" element={<Login />} />
-        <Route path="/register" element={<RegisterP />} />
+        <Route path="/" element={<LoginC />} />
+        <Route path="/register" element={<RegisterC />} />
         <Route path="/StudentForm" element={<StudentForm />} />
         <Route path="/navbar" element={<MoodSense/>} />
         <Route path="/listaUsuarios" element={<ListaUsuarios />} />
         <Route path="/GeneralAdministrative" element={<GeneralAdministrative />} />
-        <Route path="/NavbarAdministrative" element={<NavbarAdministrative />} />
++        <Route path="/NavbarAdministrative" element={<NavbarAdministrative />} />
         <Route path="/home" element={<Home />} /> 
         <Route path="/ForemotioP" element={<ForemotioP />} />
-        <Route path="/Admin" element={<Admin />} />
       </Routes>
     </div>
   );
