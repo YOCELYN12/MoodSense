@@ -4,7 +4,6 @@ import Login from "../Pages/LoginPage/LoginP";
 import Register from "../Pages/RegisterPage/RegisterP";
 import StudentForm from "../Pages/StudentFormPage/StudentFormp";
 import Admin from "../Pages/Admin/AdminPage/AdminPage.jsx";
-import Home from "../Pages/home/Home";
 import ForemotioP from "../Pages/FormEmotion/ForemotioP";
 import MoodSense from "../Components/navbar/navbarC";
 import ListaUsuarios from "../Components/Lista de Usuarios/ListaUsuarios";

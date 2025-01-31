@@ -76,8 +76,9 @@ export const MoodGlobalContext = ({ children }) => {
   const postUser = async (user) => {
     console.log(user.email);
 
+
     try {
-      const valid = validateEmail(user.email);
+      const valid = await validateEmail(user.email);
       if (!valid) {
         console.log("El correo ya existe en la base de datos.");
         return null;
@@ -92,7 +93,7 @@ export const MoodGlobalContext = ({ children }) => {
 
         if (!response.ok) {
           throw new Error(
-            new Error(`Error al registrar los dat: ${response.statusText}`)
+            `Error al registrar los datos: ${response.statusText}`
           );
         } else {
           console.log("Se registraron correctamente sus datos.");

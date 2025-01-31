@@ -40,7 +40,7 @@
   "users": [
     {
       "id": 1,
-      "name": "Carlos García",
+      "name": "Carlos ",
       "email": "carlos.garcia@example.com",
       "user_id": "b7c92b44-1b3a-4c8a-8f1c-984dbe489ad5",
       "last_name": "García",
@@ -61,8 +61,8 @@
     },
     {
       "id": 2,
-      "name": "Laura Martínez",
-      "email": "laura@gmail.com",
+      "name": "Laura",
+      "email": "laura.martinez@example.com",
       "user_id": "c24f9b15-d8f2-4f63-9c56-040ea1f404f1",
       "last_name": "Martínez",
       "password": "1234",
@@ -83,7 +83,7 @@
     },
     {
       "id": 3,
-      "name": "John Doe",
+      "name": "John",
       "email": "javi@gmail.com",
       "user_id": "9a7b89b2-b5d1-4e91-9d5a-5873b74a758f",
       "last_name": "Doe",
@@ -106,139 +106,68 @@
   ],
   "emotions": [
     {
-      "id": 1,
-      "id_institution": 1,
-      "created_at": "2024-01-15T10:30:00Z",
-      "user_id": "9a7b89b2-b5d1-4e91-9d5a-5873b74a758f",
-      "main_emotion": 10,
-      "details": "Feeling great after completing a project",
-      "second_emotion": 5
-    },
-    {
-      "id": 1,
-      "id_institution": 1,
-      "created_at": "2024-01-15T10:30:00Z",
-      "user_id": "9a7b89b2-b5d1-4e91-9d5a-5873b74a758f",
-      "main_emotion": 10,
-      "details": "Feeling great after completing a project",
-      "second_emotion": 5
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T07:38:17.241Z",
-        "user_id": null,
-        "main_emotion": "fear",
-        "details": "",
-        "second_emotion": null
-      },
-      "id": "a440"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T07:39:16.830Z",
-        "user_id": null,
-        "main_emotion": "anger",
-        "details": "no quiero",
-        "second_emotion": null
-      },
-      "id": "d88e"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T07:42:54.541Z",
-        "user_id": null,
-        "main_emotion": "happiness",
-        "details": "prueba",
-        "second_emotion": "orgulloso"
-      },
-      "id": "c65d"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T08:13:13.823Z",
-        "user_id": null,
-        "main_emotion": "disgust",
-        "details": "no zorra",
-        "second_emotion": "asqueado"
-      },
-      "id": "644e"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-26T08:41:02.346Z",
-        "user_id": null,
-        "main_emotion": "surprise",
-        "details": "",
-        "second_emotion": "maravillado"
-      },
-      "id": "1031"
-    },
-    {
-      "0": {
-        "id": null,
-        "id_institution": null,
-        "created_at": "2025-01-29T20:46:51.442Z",
-        "user_id": null,
-        "main_emotion": "fear",
-        "details": "No se porque, pero si",
-        "second_emotion": "preocupado"
-      },
-      "id": "38f5"
-    }
-  ],
-  "personalInformatition": [
-    {
-      "id": 1,
-      "name": "Juan",
-      "lastname": "Pérez",
-      "studentId": "12345",
-      "nationality": "Costarricense",
-      "idNumber": "123456789",
-      "personalContact": "88888888",
-      "familyContact": "77777777",
-      "province": "San José",
-      "canton": "Central",
-      "district": "Carmen",
-      "studentState": "Activo",
-      "drugs": "Ninguno",
-      "studies": "Ingeniería Informática",
-      "diseases": "Ninguna",
-      "residence": "Avenida 10, San José",
-      "psychologicalDiagnosis": "Ninguno",
-      "institutionId": "001",
-      "role": "Estudiante"
-    },
-    {
-      "email": "",
-      "password": "",
-      "institucion_id": "002",
-      "id": "54321",
-      "name": "María",
-      "last_name": "López",
-      "age": null,
-      "student_state": "Inactivo",
-      "nationality": "Costarricense",
-      "personal_contact": "66666666",
-      "family_contact": "55555555",
-      "residence": "Calle 5, Alajuela",
-      "diseases": "Alergia al polvo",
-      "institution_id": "002",
-      "rol": "Estudiante",
-      "province": "Alajuela",
-      "district": "Alajuela",
-      "canton": "Central",
-      "medications": "Paracetamol",
-      "psychological_diagnosis": "Estrés"
-    }
+    "id_institution": 1,
+    "created_at": "2024-01-15T10:30:00Z",
+    "user_id": "1",
+    "main_emotion": 10,
+    "details": "Feeling great after completing a project",
+    "second_emotion": 5,
+    "id": "c2f5"
+   },
+   {
+    "id_institution": 2,
+    "created_at": "2024-01-15T12:30:00Z",
+    "user_id": "1",
+    "main_emotion": 2,
+    "details": "Feeling great after completing a project",
+    "second_emotion": 5,
+    "id": "c213"
+   },
+   {
+    "id_institution": 3,
+    "created_at": "2024-01-15T10:00:00Z",
+    "user_id": "1",
+    "main_emotion": 2,
+    "details": "Feeling great after completing a project",
+    "second_emotion": 5,
+    "id": "c214"
+   },
+   {
+    "id_institution": 2,
+    "created_at": "2024-01-15T10:30:00Z",
+    "user_id": 2,
+    "main_emotion": 1,
+    "details": "Feeling great after completing a project",
+    "second_emotion": 5,
+    "id": "c215"
+   },
+   {
+    "id_institution": 2,
+    "created_at": "2024-01-11T08:30:00Z",
+    "user_id": 1,
+    "main_emotion": 10,
+    "details": "Feeling great after completing a project",
+    "second_emotion": 5,
+    "id": "c216"
+   },
+   {
+    "id_institution": 1,
+    "created_at": "2024-01-15T10:30:00Z",
+    "user_id": 2,
+    "main_emotion": 10,
+    "details": "Feeling great after completing a project",
+    "second_emotion": 5,
+    "id": "c217"
+   },
+   {
+    "id_institution": 1,
+    "created_at": "2024-01-15T10:30:00Z",
+    "user_id": "9a7b89b2-b5d1-4e91-9d5a-5873b74a758f",
+    "main_emotion": 10,
+    "details": "Feeling great after completing a project",
+    "second_emotion": 5,
+    "id": "c218"
+   }
   ]
+   
 }
