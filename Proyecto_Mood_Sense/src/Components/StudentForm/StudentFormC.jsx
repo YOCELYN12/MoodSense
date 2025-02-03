@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./StudentFormcc.css";
 import { actualizarDatos, PostStudent } from "../service/service";
-import Navbar from "../navbar/navbarC"
+import { Context } from "../../context/Context";
+
 const StudentFormC = () => {
-  const [intEmail, setEmail] = useState([]);
-  const [intPassword, setPassword] = useState("");
-  const [intInstitutionId, setInstitutionId] = useState("002");
-  const [intName, setName] = useState("");
+
+  const { getUserInfo, updateUser } = Context();
+  const [userActiveData, setUserActiveData] = useState("");
   const [intLastName, setLastName] = useState("");
+  const [intName, setName] = useState("");
   const [intAge, setAge] = useState("");
-  const [intStudentState, setStudentState] = useState("");
   const [intNationality, setNationality] = useState("");
   const [intPersonalContact, setPersonalContact] = useState("");
   const [intFamilyContact, setFamilyContact] = useState("");
@@ -19,21 +19,31 @@ const StudentFormC = () => {
   const [intDistrict, setDistrict] = useState("");
   const [intCanton, setCanton] = useState("");
   const [intMedications, setMedications] = useState("");
-  const [intPsychologicalDiagnosis, setPsychologicalDiagnosis] = useState("");
-  const [intRole, setRole] = useState("");
+
+
+  const getData = async () => {
+    try {
+      const data = await getUserInfo();
+      setUserActiveData(data);
+      return;
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+  };
+
+  //Trae los datos del usuario logeado:
+  useEffect(() => {
+    getData();
+  }, []);
 
   // Función para manejar el envío del formulario (POST)
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newStudent = {
-      email: intEmail,
-      password: intPassword,
-      institucion_id: intInstitutionId,
-      // id: "54321", // ID asignado manualmente como en el JSON de ejemplo
       name: intName,
       last_name: intLastName,
       age: intAge,
-      student_state: intStudentState,
       nationality: intNationality,
       personal_contact: intPersonalContact,
       family_contact: intFamilyContact,
@@ -43,55 +53,62 @@ const StudentFormC = () => {
       district: intDistrict,
       canton: intCanton,
       medications: intMedications,
-      psychological_diagnosis: intPsychologicalDiagnosis,
-      rol: intRole,
+      student_state: true,
+      // psychological_diagnosis: intPsychologicalDiagnosis,
+      // email: intEmail,
     };
 
-    const actualizarUsuario = await actualizarDatos(newStudent, localStorage.getItem("usuarioId"));
-    console.log(actualizarUsuario);
-
+    try {
+      await updateUser(userActiveData.email, newStudent);
+      console.log("Se edito correcto desde el front");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
+  // const { UpdateTableUsers, user } = UserAuth();
+
+  // const [formData, setFormData] = useState({
+  //   name: "",
+  //   last_name: "",
+  //   age: "",
+  //   student_id: "",
+  //   nationality: "",
+  //   id_number: "",
+  //   personal_contact: "",
+  //   family_contact: "",
+  //   province: "",
+  //   canton: "",
+  //   student_state: "",
+  //   medications: "",
+  //   district: "",
+  //   studies: "",
+  //   diseases: "",
+  //   residence: "",
+  //   psychological_diagnosis: "",
+  //   institution_id: "",
+  //   rol: "",
+  //   province: "",
+  // });
+
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // };
 
   return (
     <div>
 
-      <Navbar />
-    
-
       <div className="student-form-container">
-        
-        <h2 className="LetrasPerfil" >Formulario del Perfil</h2>
+        <h2 className="LetrasPerfil">Formulario del Perfil</h2>
         <br />
         <br />
         <h2 className="lineaHr">Datos personales</h2>
         <form className="student-form" onSubmit={handleSubmit}>
-          <div className="form-email">
-            <label>Correo Electrónico:</label>
-            <input
-              type="email"
-              value={intEmail}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
 
-          <div className="form-password">
-            <label>Contraseña:</label>
-            <input
-              type="password"
-              value={intPassword}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          <div className="form-password">
-            <label>Institution id:</label>
-            <input
-              type="number"
-              value={intInstitutionId}
-              onChange={(e) => setInstitutionId(e.target.value)}
-            />
-          </div>
 
           <div className="form-nombre">
             <label>Nombre:</label>
@@ -117,15 +134,6 @@ const StudentFormC = () => {
               type="number"
               value={intAge || ""}
               onChange={(e) => setAge(Number(e.target.value))}
-            />
-          </div>
-
-          <div className="form-estado">
-            <label>Estado del Estudiante:</label>
-            <input
-              type="text"
-              value={intStudentState}
-              onChange={(e) => setStudentState(e.target.value)}
             />
           </div>
 
@@ -207,24 +215,6 @@ const StudentFormC = () => {
               type="text"
               value={intMedications}
               onChange={(e) => setMedications(e.target.value)}
-            />
-          </div>
-
-          <div className="form-diagnostico">
-            <label>Diagnóstico Psicológico:</label>
-            <input
-              type="text"
-              value={intPsychologicalDiagnosis}
-              onChange={(e) => setPsychologicalDiagnosis(e.target.value)}
-            />
-          </div>
-
-          <div className="form-rol">
-            <label>Rol:</label>
-            <input
-              type="text"
-              value={intRole}
-              onChange={(e) => setRole(e.target.value)}
             />
           </div>
 

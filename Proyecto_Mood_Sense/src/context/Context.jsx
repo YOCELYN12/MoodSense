@@ -76,7 +76,6 @@ export const MoodGlobalContext = ({ children }) => {
   const postUser = async (user) => {
     console.log(user.email);
 
-
     try {
       const valid = await validateEmail(user.email);
       if (!valid) {
@@ -106,110 +105,157 @@ export const MoodGlobalContext = ({ children }) => {
     }
   };
 
-  //*********************************************SUPABASE************************************************* */
+  /*********************************************
+   *                 SUPABASE
+   *********************************************/
 
+  // 📌 Obtener usuario logueado
+  const getUserInfo = async () => {
+    try {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+      if (error) throw error;
+      return user;
+    } catch (error) {
+      console.error("❌ Error obteniendo usuario:", error.message);
+      return null;
+    }
+  };
+
+  // 📌 Registro de usuario
   const signUp = async (email, password) => {
-    
-    //Registro con la app.
     try {
-      const check = await checkUserExists(email);
-      
-      if (!check) {
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password,
-        });
+      const userExists = await checkUserExists(email);
 
-        if (error) throw (error);
-        
-        return { data: data, error: null };
-      }else{
-        setMessage("Este correo ya existe...")
+      if (userExists) {
+        setMessage("❌ Este correo ya está registrado.");
         return;
       }
-    
+
+      const { data, error } = await supabase.auth.signUp({ email, password });
+
+      if (error) {
+        setMessage("❌ Ha ocurrido un error en el registro.");
+        return;
+      }
+
+      setMessage("✅ Registro exitoso. Revisa tu correo para confirmar.");
+      return { data, error: null };
     } catch (error) {
+      console.error("❌ Error en signUp:", error);
       return { data: null, error };
     }
   };
 
-  const fetchInstituciones = async () => { //Obtener instituciones
+  // 📌 Iniciar sesión
+  const signIn = async (email, password) => {
     try {
-      const { data, error } = await supabase.from("institutions").select("*");
+      const { dataTables } = await getUsersSupabase();
+      const userFound = dataTables.find((user) => user.email === email);
 
-      if (error) throw error;
-      return { data: data, error: error };
-    } catch (error) {
-      console.error("Error al obtener instituciones:", error);
-    }
-  };
-
-  const getUsersSupabase = async () => { //Obtener instituciones
-    try {
-      const { data, error } = await supabase.from("users").select("*");
-
-      if (error) throw error;
-      return { data_tables: data, error_tables: error };
-    } catch (error) {
-      console.error("Error al obtener usuarios:", error);
-    }
-  };
-
-  const signIn = async (email_prop, password) => {//LOGIN CON LA APP ->
-    try {
-
-      const { data_tables, error_tables } = await getUsersSupabase(); // Obtén la lista de usuarios.
-
-      const userFound = data_tables.find(({ email }) => email === email_prop); // Busca el usuario por correo.
-
-      if (userFound == undefined) {
-        setMessage("El correo no existe, registrese.");
+      if (!userFound) {
+        setMessage("❌ El correo no existe, regístrese.");
         return;
       }
-      
+
       const { data, error } = await supabase.auth.signInWithPassword({
-        email: email_prop,
-        password: password,
-      });   
-      
-
-      if (data.user) {
-        setMessage("Ingreso exitoso, redirigiendo a su cuenta...");
-        return {data: data.user, error: error};
-      }
+        email,
+        password,
+      });
 
       if (error) throw error;
-      return { data, error: error };
+
+      setMessage("✅ Inicio de sesión exitoso. Redirigiendo...");
+      return { data: data.user, error: null };
     } catch (error) {
+      console.error("❌ Error en signIn:", error);
       return { data: null, error };
     }
   };
 
+  // 📌 Verificar si un usuario ya existe
   const checkUserExists = async (email) => {
     try {
-      // Realiza la consulta a Supabase
-      const {data} = await supabase
-        .from('users')
-        .select('email')
-        .eq('email', email)
-        .maybeSingle()
-      
-      // Si la búsqueda devuelve datos, el correo ya existe
-      if (data == null) {
-        setMessage("Registrado correctamente, revise su corre para autenticar correo.")
-        return false; // El usuario no existe
-      } else {
+      const { data } = await supabase
+        .from("users")
+        .select("email")
+        .eq("email", email)
+        .maybeSingle();
 
-        setMessage('Este usuario ya existe...');
-        return true; // El usuario existe
-      }
-    } catch (err) {
-      // Maneja cualquier error no anticipado
-      console.error('Error inesperado:', err);
-      return false; // Retorna false si ocurre un error inesperado
+      return !!data;
+    } catch (error) {
+      console.error("❌ Error verificando usuario:", error);
+      return false;
     }
   };
-  
+
+  // 📌 Obtener todas las instituciones
+  const fetchInstituciones = async () => {
+    try {
+      const { data, error } = await supabase.from("institutions").select("*");
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error("❌ Error al obtener instituciones:", error);
+      return [];
+    }
+  };
+
+  // 📌 Obtener todos los usuarios
+  const getUsersSupabase = async () => {
+    try {
+      const { data, error } = await supabase.from("users").select("*");
+      if (error) throw error;
+      return { dataTables: data, errorTables: null };
+    } catch (error) {
+      console.error("❌ Error al obtener usuarios:", error);
+      return { dataTables: null, errorTables: error };
+    }
+  };
+
+  // 📌 Obtener el rol de un usuario
+  const getUserRole = async () => {
+    try {
+      const userActive = await getUserInfo();
+      const { dataTables } = await getUsersSupabase();
+      const userRole = dataTables.find(
+        (user) => user.email === userActive?.email
+      );
+      return userRole?.rol || "Usuario sin rol asignado";
+    } catch (error) {
+      console.error("❌ Error obteniendo rol del usuario:", error);
+      return null;
+    }
+  };
+
+  // 📌 Actualizar información de usuario
+  const updateUser = async (email, updatedData) => {
+    try {
+      const { error } = await supabase
+        .from("users")
+        .update(updatedData)
+        .eq("email", email);
+
+      if (error) throw error;
+
+      console.log("✅ Usuario actualizado correctamente.");
+    } catch (error) {
+      console.error("❌ Error al actualizar usuario:", error);
+    }
+  };
+
+  // 📌 Cerrar sesión
+  const signOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw new Error("❌ Error al cerrar sesión.");
+      setMessage("✅ Sesión cerrada correctamente.");
+    } catch (error) {
+      console.error("❌ Error al cerrar sesión:", error);
+    }
+  };
 
   return (
     <GlobalContext.Provider
@@ -225,14 +271,20 @@ export const MoodGlobalContext = ({ children }) => {
         fetchInstituciones,
         getUsersSupabase,
         checkUserExists,
+        getUserInfo,
+        getUserRole,
+        updateUser,
         Message,
-        setMessage
+        signOut,
+        setMessage,
       }}
     >
       {children}
     </GlobalContext.Provider>
   );
 };
+
+// Hook personalizado para usar el contexto
 export const Context = () => {
   return useContext(GlobalContext);
 };

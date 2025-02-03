@@ -79,10 +79,10 @@ const LoginC = () => {
             value={contrasena}
           />
 
+          {Message && <div className="status_div">{Message}</div>}
           <button className="Login_BTN" onClick={Log_In}>
             Inicio sesión
           </button>
-          {Message && <div className="status_div">{Message}</div>}
 
         </form>
         <p>

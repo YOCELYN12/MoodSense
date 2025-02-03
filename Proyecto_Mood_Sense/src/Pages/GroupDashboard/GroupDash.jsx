@@ -1,5 +1,5 @@
 import React from "react";
-import EmotionsDashboardGroup from "../../Components/GroupsReport/GroupsReport";
+import EmotionsDashboardGroup from "../../Components/Admin/GroupsReport/GroupsReport";
 
 
 const GroupDash = () => {

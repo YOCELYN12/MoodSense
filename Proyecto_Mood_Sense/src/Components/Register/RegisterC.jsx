@@ -54,6 +54,7 @@ const RegisterC = () => {
               email: data.user.email,
               user_id: data.user.id,
               institution_id: institucionId,
+              rol: "student"
             },
           ]);
         }
@@ -74,7 +75,7 @@ const RegisterC = () => {
           alt="Flores moradas"
         /> */}
       </div>
-      <form required onSubmit={ValidateUser}>
+      <form className="form-register" required onSubmit={ValidateUser}>
         <div className="ContainerInputs">
           <h1>Registro</h1>
           <div className="ContainerInputs1">
@@ -126,7 +127,7 @@ const RegisterC = () => {
           {Message && <div className="status_div">{Message}</div>}
           <div className="ContainerTags">
             <p>
-              ¿Ya tienes una cuenta? <a href="http://">Log in</a>
+              ¿Ya tienes una cuenta? <a href="/">Log in</a>
             </p>
           </div>
         </div>

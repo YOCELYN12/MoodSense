@@ -1,31 +1,40 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react"; // Eliminamos la importación duplicada
 import { Context } from "../../context/Context";
 import { useNavigate } from "react-router-dom";
+import LoadingFace from "../../Components/Loading/FaceLoading";
 
 const Home = () => {
-  const { getUserLogin } = Context();
+  const { getUserRole } = Context(); // Usamos `useContext` correctamente
   const navigate = useNavigate();
 
-  const RedirectionFunction = async () => {
+  // Función para obtener el usuario y redirigir según el rol
+  const AsyncGet = async () => {
     try {
-      const { data } = await getUserLogin();
-      const role = data?.[0]?.rol;
-
-      if (role === "admin") {
-        navigate("/Admin");
-      } else {
-        navigate("/StudentForm");
-      }
+      const rol = await getUserRole();
+    
+      return rol;
     } catch (error) {
       console.error("Error obteniendo el usuario:", error);
     }
   };
 
+  // Función para manejar la redirección
+  const RedirectionFunction = async () => {
+    const role = await AsyncGet();
+    
+    if (role === "admin") {
+      navigate("/admin");
+    } else if (role === "student") {
+      navigate("/home-student");
+    }
+  };
+
+  // useEffect para ejecutar la redirección cuando el componente se monta
   useEffect(() => {
     RedirectionFunction();
-  }, []);
-
-  return <div>Cargando...</div>; // Asegura que el componente devuelva JSX
+  }, []); // Solo ejecutará una vez, al montar el componente
+  
+  return  <LoadingFace />; // Componente JSX de carga mientras se obtiene el usuario
 };
 
 export default Home;

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import GaugeChart from 'react-gauge-chart';
-import { getInstitution, getEmotions } from '../service/service';
+import { getInstitution, getEmotions } from '../../service/service';
 import emailjs from 'emailjs-com';
 import { jsPDF } from 'jspdf';
 import Swal from 'sweetalert2';
-import "../GroupsReport/GroupsReport.css";
+import "./GroupsReport.css";
 
 const EmotionsDashboard = () => {
   const [institutions, setInstitutions] = useState([]);
@@ -34,6 +34,7 @@ const EmotionsDashboard = () => {
     });
   };
 
+  //Alerta molesta---
   const mostrarAlertaYEnviarCorreo = (institution, puntaje) => {
     Swal.fire({
       title: '¡Atención!',

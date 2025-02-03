@@ -67,20 +67,21 @@ export async function getDatosMeta() {
       
 }
 
-export async function getEmotions() {
-  try {
-    const response = await fetch("http://localhost:3000/emotions");
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error al obtener las emociones:", error);
-    return [];
-  }
-}
+
 
 export async function getEmotions() {
   try {
     const response = await fetch('http://localhost:3000/emotions');
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error al obtener las emociones:', error);
+    return [];
+  }
+}
+export async function getUser() {
+  try {
+    const response = await fetch('http://localhost:3000/users');
     const data = await response.json();
     return data;
   } catch (error) {

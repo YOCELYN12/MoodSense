@@ -1,6 +1,7 @@
 .AdminPage {
   display: grid;
   grid-template-columns: 10% 90%;
+  margin-top: 150px;
 }
 
 .AdminPage-NavFilter {

@@ -1,0 +1,71 @@
+export const EMOTION_COLORS = {
+  happiness: "#FFD700",
+  sadness: "#4169E1",
+  anger: "#FF4500",
+  fear: "#800080",
+  disgust: "#32CD32",
+  surprise: "#FF69B4",
+};
+
+export const EMOTION_LABELS = {
+  happiness: { emoji: "😊 ", text: "Felicidad", color: "#FFD700" },
+  sadness: { emoji: "😢 ", text: "Tristeza", color: "#4169E1" },
+  anger: { emoji: "😠 ", text: "Ira", color: "#FF4500" },
+  fear: { emoji: "😨 ", text: "Miedo", color: "#800080" },
+  disgust: { emoji: "🤢 ", text: "Asco", color: "#32CD32" },
+  surprise: { emoji: "😲 ", text: "Sorpresa", color: "#FF69B4" },
+};
+
+export const SECONDARY_EMOTIONS_MAP = {
+  happiness: ["alegre", "interesado", "orgulloso", "aceptado", "optimista"],
+  sadness: [
+    "melancolico",
+    "desanimado",
+    "solitario",
+    "desesperanzado",
+    "nostalgico",
+  ],
+  anger: ["frustrado", "irritado", "indignado", "resentido", "furioso"],
+  fear: ["ansioso", "inseguro", "preocupado", "nervioso", "aterrado"],
+  disgust: ["repugnado", "asqueado", "despreciado", "horrorizado", "ofendido"],
+  surprise: [
+    "asombrado",
+    "impactado",
+    "maravillado",
+    "confundido",
+    "desconcertado",
+  ],
+};
+
+export const EMOJI_MAP = {
+  alegre: "😊 ",
+  interesado: "🤔 ",
+  orgulloso: "😌 ",
+  aceptado: "🤗 ",
+  optimista: "😃 ",
+  melancolico: "😔 ",
+  desanimado: "😞 ",
+  solitario: "😪 ",
+  desesperanzado: "😩 ",
+  nostalgico: "🥺 ",
+  frustrado: "😤 ",
+  irritado: "😠 ",
+  indignado: "😡 ",
+  resentido: "😣 ",
+  furioso: "🤬 ",
+  ansioso: "😰 ",
+  inseguro: "😟 ",
+  preocupado: "😧 ",
+  nervioso: "😥 ",
+  aterrado: "😱 ",
+  repugnado: "🤢 ",
+  asqueado: "🤮 ",
+  despreciado: "😖 ",
+  horrorizado: "😫 ",
+  ofendido: "😒 ",
+  asombrado: "😲 ",
+  impactado: "😮 ",
+  maravillado: "🤩 ",
+  confundido: "😕 ",
+  desconcertado: "😵 ",
+};

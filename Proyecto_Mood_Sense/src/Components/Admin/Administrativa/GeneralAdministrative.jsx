@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import "../Administrativa/GeneralAdministrative.css";
-import { getEmotions } from '../service/service'; 
+import "./GeneralAdministrative.css";
+import { getEmotions } from '../../service/service'; 
 
 const GeneralAdministrative = () => {
   const [stats, setStats] = useState({

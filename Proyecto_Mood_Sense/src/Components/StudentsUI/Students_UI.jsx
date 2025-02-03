@@ -1,7 +1,5 @@
 import React from "react";
-import MoodSense from "../navbar/navbarC";
-
-
+import MoodSense from "../NavbarStudent/navbarC";
 
 function Students_UI() {
   return (
